@@ -1,4 +1,4 @@
-.vercel/
+.vercel
 *.log
 Thumbs.db
 Desktop.ini
