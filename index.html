@@ -12,756 +12,550 @@
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green-dark: #0a0a0a;
-      --green-mid: #141414;
-      --green-brand: #3a7a1e;
-      --green-light: #7ab648;
-      --green-pale: #a8c490;
-      --amber: #c8922a;
-      --amber-light: #e8b84b;
-      --cream: #f5f0e8;
-      --white: #ffffff;
-      --gray: #666666;
-      --gray-light: #999999;
-      --text-dark: #1a2a1a;
+      --bg:          #0c0c0e;
+      --bg-raised:   #111114;
+      --bg-subtle:   #16161a;
+      --border:      rgba(255,255,255,0.07);
+      --border-hi:   rgba(255,255,255,0.13);
+      --text:        #eeeef2;
+      --text-muted:  #7c7c8c;
+      --text-dim:    #44444e;
+      --blue:        #3b82f6;
+      --blue-dim:    rgba(59,130,246,0.12);
+      --blue-border: rgba(59,130,246,0.28);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Source Sans 3', sans-serif;
-      background: var(--cream);
-      color: var(--text-dark);
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* NAV */
-    nav {
+    /* Noise texture overlay */
+    body::after {
+      content: '';
       position: fixed;
-      top: 0; left: 0; right: 0;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.022;
+      pointer-events: none;
+      z-index: 9000;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
       z-index: 100;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      justify-content: space-between;
-      padding: 1.2rem 2.5rem;
-      background: rgba(10, 10, 10, 0.96);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(122, 182, 72, 0.2);
+      padding: 0 2.5rem;
+      height: 62px;
+      background: rgba(12,12,14,0.9);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.6rem;
       text-decoration: none;
     }
 
     .nav-logo-mark {
-      width: 38px;
-      height: 38px;
-      background: var(--green-brand);
+      width: 30px; height: 30px;
+      background: var(--blue);
       border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
-      font-size: 16px;
-      color: white;
-      letter-spacing: -1px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Instrument Serif', serif;
+      font-size: 13px;
+      color: #fff;
+      flex-shrink: 0;
     }
 
     .nav-logo-text {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: white;
-      line-height: 1.1;
-    }
-
-    .nav-logo-text span {
-      display: block;
-      font-family: 'Source Sans 3', sans-serif;
-      font-weight: 300;
-      font-size: 0.65rem;
-      color: var(--green-pale);
-      letter-spacing: 2px;
-      text-transform: uppercase;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: -0.2px;
     }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 2.5rem;
       list-style: none;
     }
 
     .nav-links a {
-      color: var(--green-pale);
+      color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 400;
-      letter-spacing: 0.5px;
-      transition: color 0.2s;
+      transition: color 0.15s;
     }
 
-    .nav-links a:hover { color: var(--amber-light); }
+    .nav-links a:hover { color: var(--text); }
 
-    .nav-cta {
-      background: var(--green-brand);
-      color: white !important;
-      padding: 0.5rem 1.2rem;
-      border-radius: 4px;
-      font-weight: 600 !important;
-      transition: background 0.2s !important;
+    .nav-right {
+      display: flex;
+      justify-content: flex-end;
     }
 
-    .nav-cta:hover { background: var(--green-light) !important; color: white !important; }
+    .btn-nav {
+      background: var(--blue);
+      color: #fff;
+      padding: 0.48rem 1.1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: opacity 0.15s;
+    }
 
-    /* HERO */
+    .btn-nav:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
     .hero {
-      min-height: 100vh;
-      background: #0d0d0d;
+      min-height: calc(100vh - 62px);
       display: flex;
       align-items: center;
-      position: relative;
-      overflow: hidden;
-      padding: 8rem 2.5rem 5rem;
+      padding: 5rem 2.5rem 4.5rem;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -200px; right: -200px;
-      width: 700px; height: 700px;
-      border-radius: 50%;
-      border: 1px solid rgba(122, 182, 72, 0.08);
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: -100px; right: -100px;
-      width: 500px; height: 500px;
-      border-radius: 50%;
-      border: 1px solid rgba(122, 182, 72, 0.06);
-    }
-
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(122,182,72,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(122,182,72,0.04) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-
-    .hero-content {
+    .hero-inner {
       max-width: 1100px;
       margin: 0 auto;
-      position: relative;
-      z-index: 2;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 5rem;
+      align-items: center;
     }
 
-    .hero-eyebrow {
+    .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(122, 182, 72, 0.12);
-      border: 1px solid rgba(122, 182, 72, 0.3);
-      color: var(--green-light);
-      padding: 0.4rem 1rem;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.28rem 0.85rem;
       border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
+      font-size: 0.77rem;
+      font-weight: 400;
+      letter-spacing: 0.2px;
       margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.2s;
     }
 
-    .hero-eyebrow::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--green-light);
+    .hero-badge-dot {
+      width: 5px; height: 5px;
+      background: var(--blue);
       border-radius: 50%;
+      flex-shrink: 0;
     }
 
     h1 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      color: white;
-      line-height: 1.05;
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.4s;
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: clamp(2.9rem, 5.2vw, 4.6rem);
+      line-height: 1.06;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 1.4rem;
     }
 
     h1 em {
-      font-style: normal;
-      color: var(--green-light);
+      font-style: italic;
+      color: var(--text-muted);
     }
 
-    h1 .amber { color: var(--amber-light); }
-
     .hero-sub {
-      font-size: 1.2rem;
+      font-size: 1.05rem;
       font-weight: 300;
-      color: var(--green-pale);
-      max-width: 600px;
-      line-height: 1.7;
+      color: var(--text-muted);
+      line-height: 1.65;
       margin-bottom: 2.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.6s;
+      max-width: 440px;
     }
 
     .hero-actions {
       display: flex;
-      gap: 1rem;
+      gap: 0.75rem;
       flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.8s;
+      margin-bottom: 3rem;
     }
 
     .btn-primary {
-      background: var(--green-brand);
-      color: white;
-      padding: 0.9rem 2rem;
-      border-radius: 6px;
+      background: var(--blue);
+      color: #fff;
+      padding: 0.72rem 1.4rem;
+      border-radius: 7px;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all 0.2s;
-      border: 2px solid var(--green-brand);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: opacity 0.15s;
     }
 
-    .btn-primary:hover {
-      background: var(--green-light);
-      border-color: var(--green-light);
-      transform: translateY(-2px);
-    }
+    .btn-primary:hover { opacity: 0.85; }
 
-    .btn-secondary {
+    .btn-ghost {
       background: transparent;
-      color: var(--green-pale);
-      padding: 0.9rem 2rem;
-      border-radius: 6px;
+      color: var(--text-muted);
+      padding: 0.72rem 1.4rem;
+      border-radius: 7px;
       text-decoration: none;
+      font-size: 0.875rem;
       font-weight: 400;
-      font-size: 1rem;
-      transition: all 0.2s;
-      border: 2px solid rgba(122, 182, 72, 0.3);
+      border: 1px solid var(--border);
+      transition: all 0.15s;
     }
 
-    .btn-secondary:hover {
-      border-color: var(--green-light);
-      color: var(--green-light);
+    .btn-ghost:hover {
+      border-color: var(--border-hi);
+      color: var(--text);
     }
 
-    .hero-stats {
-      display: flex;
-      gap: 3rem;
-      margin-top: 4rem;
-      padding-top: 3rem;
-      border-top: 1px solid rgba(122, 182, 72, 0.15);
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 1s;
-    }
-
-    .stat-item {}
-    .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--amber-light);
-    }
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--green-pale);
-      letter-spacing: 0.5px;
-      margin-top: 0.2rem;
-    }
-
-    /* TRUST BAR */
-    .trust-bar {
-      background: #111111;
-      padding: 1.5rem 2.5rem;
-      border-bottom: 1px solid rgba(122,182,72,0.15);
-    }
-
-    .trust-bar-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 3rem;
-      flex-wrap: wrap;
-    }
-
-    .trust-item {
-      color: var(--green-pale);
-      font-size: 0.85rem;
-      font-weight: 300;
+    .hero-tagline {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      letter-spacing: 0.5px;
     }
 
-    .trust-dot {
-      width: 5px; height: 5px;
-      background: var(--green-light);
-      border-radius: 50%;
+    .hero-tagline span {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      letter-spacing: 0.3px;
+    }
+
+    .hero-tagline .sep { color: var(--text-dim); }
+
+    /* Device mockup */
+    .device-wrap {
+      width: 100%;
+    }
+
+    .device-frame {
+      background: var(--bg-raised);
+      border: 1px solid var(--border-hi);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow:
+        0 32px 72px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(255,255,255,0.03);
+    }
+
+    .device-chrome {
+      background: var(--bg-subtle);
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .device-dots {
+      display: flex;
+      gap: 5px;
       flex-shrink: 0;
     }
 
-    /* SECTIONS */
-    section {
-      padding: 6rem 2.5rem;
+    .device-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--border-hi);
     }
 
-    .section-inner {
+    .device-url {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.22rem 0.6rem;
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1px;
+    }
+
+    .device-screen {
+      padding: 1.1rem;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .m-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 0.7rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .m-logo { width: 54px; height: 7px; background: var(--border-hi); border-radius: 2px; }
+
+    .m-links { display: flex; gap: 5px; }
+    .m-link  { width: 22px; height: 5px; background: var(--border); border-radius: 2px; }
+    .m-btn   { width: 38px; height: 16px; background: var(--blue); border-radius: 3px; opacity: 0.75; }
+
+    .m-hero { display: flex; flex-direction: column; gap: 6px; padding: 0.4rem 0; }
+    .m-h1   { height: 9px; background: rgba(255,255,255,0.11); border-radius: 2px; }
+    .m-h1b  { width: 72%; height: 9px; background: rgba(255,255,255,0.07); border-radius: 2px; }
+    .m-txt  { width: 88%; height: 5px; background: var(--border); border-radius: 2px; margin-top: 2px; }
+    .m-txt2 { width: 68%; }
+
+    .m-ctas { display: flex; gap: 5px; margin-top: 4px; }
+    .m-cta  { width: 52px; height: 18px; background: var(--blue); border-radius: 3px; opacity: 0.85; }
+    .m-ctag { width: 52px; height: 18px; border: 1px solid var(--border-hi); border-radius: 3px; }
+
+    .m-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+      margin-top: 2px;
+    }
+
+    .m-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      height: 40px;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .m-icon { width: 11px; height: 11px; background: var(--blue); border-radius: 2px; opacity: 0.55; }
+    .m-line { width: 65%; height: 4px; background: var(--border-hi); border-radius: 1px; }
+
+    /* ── TRUST BAR ── */
+    .trust {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.75rem 2.5rem;
+    }
+
+    .trust-inner {
       max-width: 1100px;
       margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
     }
 
-    .section-eyebrow {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 2px;
+    .trust-label {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+
+    .trust-divider {
+      width: 1px; height: 18px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    .trust-logos {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .trust-logo {
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      opacity: 0.45;
+      letter-spacing: -0.1px;
+      white-space: nowrap;
+    }
+
+    /* ── SERVICES ── */
+    .services { padding: 7rem 2.5rem; }
+
+    .services-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
-      color: var(--green-brand);
+      color: var(--blue);
       margin-bottom: 1rem;
     }
 
     h2 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      color: var(--text-dark);
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: clamp(1.9rem, 3.2vw, 2.6rem);
       line-height: 1.15;
-      margin-bottom: 1.2rem;
+      letter-spacing: -0.022em;
+      color: var(--text);
     }
 
-    h2 em {
-      font-style: normal;
-      color: var(--green-brand);
-    }
-
-    .section-lead {
-      font-size: 1.1rem;
+    .services-tagline {
+      font-size: 0.85rem;
+      color: var(--text-muted);
       font-weight: 300;
-      color: var(--gray);
-      max-width: 580px;
-      line-height: 1.7;
-      margin-bottom: 3.5rem;
-    }
-
-    /* PROBLEM SECTION */
-    .problem {
-      background: var(--cream);
-    }
-
-    .problem-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .problem-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-
-    .problem-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1.2rem;
-      background: white;
-      border-radius: 8px;
-      border-left: 3px solid var(--amber);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-    }
-
-    .problem-icon {
-      font-size: 1.3rem;
-      flex-shrink: 0;
-      margin-top: 0.1rem;
-    }
-
-    .problem-text strong {
-      display: block;
-      font-weight: 600;
-      color: var(--text-dark);
-      margin-bottom: 0.2rem;
-      font-size: 0.95rem;
-    }
-
-    .problem-text p {
-      font-size: 0.85rem;
-      color: var(--gray);
-      line-height: 1.5;
-    }
-
-    .problem-visual {
-      background: #0d0d0d;
-      border-radius: 12px;
-      padding: 2.5rem;
-      color: white;
-    }
-
-    .problem-quote {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      line-height: 1.4;
-      color: white;
-      margin-bottom: 1.5rem;
-    }
-
-    .problem-quote em {
-      font-style: normal;
-      color: var(--green-light);
-    }
-
-    .problem-attribution {
-      font-size: 0.85rem;
-      color: var(--green-pale);
-      border-top: 1px solid rgba(122,182,72,0.2);
-      padding-top: 1rem;
-    }
-
-    /* SERVICES */
-    .services {
-      background: white;
+      max-width: 320px;
+      text-align: right;
+      line-height: 1.6;
     }
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    .service-card {
-      background: var(--cream);
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 2rem;
-      border: 1px solid rgba(58, 122, 30, 0.1);
-      transition: all 0.3s;
-      position: relative;
       overflow: hidden;
     }
 
-    .service-card::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--green-brand);
-      transform: scaleX(0);
-      transition: transform 0.3s;
+    .service-card {
+      background: var(--bg-raised);
+      padding: 2rem 1.6rem;
+      border-right: 1px solid var(--border);
+      transition: background 0.18s;
     }
 
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
-      border-color: rgba(58, 122, 30, 0.3);
-    }
-
-    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:last-child { border-right: none; }
+    .service-card:hover      { background: var(--bg-subtle); }
 
     .service-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+      width: 34px; height: 34px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .service-icon svg {
+      width: 15px; height: 15px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .service-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 0.6rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.1px;
     }
 
     .service-card p {
-      font-size: 0.9rem;
-      color: var(--gray);
-      line-height: 1.6;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      font-weight: 300;
     }
 
-    .service-tag {
-      display: inline-block;
-      margin-top: 1rem;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--green-brand);
+    /* ── STATS ── */
+    .stats-bar {
+      padding: 4.5rem 2.5rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
-    /* WHY ME */
-    .why {
-      background: #0d0d0d;
-      color: white;
-    }
-
-    .why h2 { color: white; }
-    .why .section-eyebrow { color: var(--green-light); }
-    .why .section-lead { color: var(--green-pale); }
-
-    .why-grid {
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
+      grid-template-columns: repeat(3, 1fr);
     }
 
-    .why-points {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+    .stat-item {
+      padding: 0 3rem;
+      border-right: 1px solid var(--border);
     }
 
-    .why-point {
-      display: flex;
-      gap: 1.2rem;
-      align-items: flex-start;
-    }
+    .stat-item:first-child { padding-left: 0; }
+    .stat-item:last-child  { border-right: none; }
 
-    .why-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: rgba(122, 182, 72, 0.2);
+    .stat-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 3.4rem;
+      font-weight: 400;
+      letter-spacing: -0.04em;
+      color: var(--text);
       line-height: 1;
-      flex-shrink: 0;
-      width: 3rem;
+      margin-bottom: 0.45rem;
     }
 
-    .why-point-content h3 {
-      font-weight: 600;
-      color: white;
-      margin-bottom: 0.3rem;
-      font-size: 1rem;
-    }
-
-    .why-point-content p {
-      font-size: 0.9rem;
-      color: var(--green-pale);
-      line-height: 1.6;
-      font-weight: 300;
-    }
-
-    .why-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(122,182,72,0.2);
-      border-radius: 12px;
-      padding: 2.5rem;
-    }
-
-    .why-card-inner {
-      display: flex;
-      gap: 2rem;
-      align-items: flex-start;
-    }
-
-    .why-card-photo-wrap {
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .why-card-photo {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: 52% 18%;
-      transform: scale(1.12);
-      border: 3px solid var(--green-brand);
-      display: block;
-      position: relative;
-      z-index: 1;
-    }
-
-    .why-card-photo-ring {
-      position: absolute;
-      top: -5px; left: -5px;
-      width: 130px; height: 130px;
-      border-radius: 50%;
-      border: 1px solid rgba(122,182,72,0.3);
-      z-index: 0;
-    }
-
-    .why-card-body {
-      flex: 1;
-    }
-
-    .why-card-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 0.3rem;
-    }
-
-    .why-card-title {
-      font-size: 0.85rem;
-      color: var(--green-light);
-      letter-spacing: 1px;
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-    }
-
-    .why-card-bio {
-      font-size: 0.95rem;
-      color: var(--green-pale);
-      line-height: 1.7;
-      font-weight: 300;
-      margin-bottom: 1.5rem;
-    }
-
-    .why-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .badge {
-      background: rgba(122,182,72,0.12);
-      border: 1px solid rgba(122,182,72,0.25);
-      color: var(--green-pale);
-      padding: 0.3rem 0.8rem;
-      border-radius: 100px;
-      font-size: 0.75rem;
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
       font-weight: 400;
     }
 
-    /* PROCESS */
-    .process {
-      background: var(--cream);
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      padding: 5rem 2.5rem;
+      background: var(--bg-raised);
+      border-top: 1px solid var(--border);
     }
 
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      position: relative;
-    }
-
-    .process-steps::before {
-      content: '';
-      position: absolute;
-      top: 2rem;
-      left: calc(12.5% + 1rem);
-      right: calc(12.5% + 1rem);
-      height: 1px;
-      background: linear-gradient(90deg, var(--green-brand), var(--green-light), var(--green-brand));
-      opacity: 0.3;
-    }
-
-    .process-step {
-      text-align: center;
-      position: relative;
-    }
-
-    .step-circle {
-      width: 4rem;
-      height: 4rem;
-      background: var(--green-brand);
-      border-radius: 50%;
+    .cta-banner-inner {
+      max-width: 1100px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.2rem;
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: white;
-      position: relative;
-      z-index: 1;
+      justify-content: space-between;
+      gap: 3rem;
+      flex-wrap: wrap;
     }
 
-    .process-step h3 {
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--text-dark);
-      margin-bottom: 0.5rem;
+    .cta-banner h2 {
+      font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+      margin-bottom: 0.35rem;
     }
 
-    .process-step p {
-      font-size: 0.85rem;
-      color: var(--gray);
-      line-height: 1.6;
-    }
-
-    /* CTA */
-    .cta-section {
-      background: var(--green-brand);
-      text-align: center;
-      padding: 6rem 2.5rem;
-    }
-
-    .cta-section h2 {
-      color: white;
-      margin-bottom: 1rem;
-    }
-
-    .cta-section p {
-      color: rgba(255,255,255,0.85);
-      font-size: 1.1rem;
+    .cta-banner p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
       font-weight: 300;
-      margin-bottom: 2.5rem;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.7;
+      max-width: 400px;
     }
 
-    .btn-white {
-      background: white;
-      color: var(--green-brand);
-      padding: 1rem 2.5rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      display: inline-block;
-      transition: all 0.2s;
+    .cta-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-shrink: 0;
     }
 
-    .btn-white:hover {
-      background: var(--cream);
-      transform: translateY(-2px);
-    }
-
-    .cta-contact {
-      margin-top: 1.5rem;
-      color: rgba(255,255,255,0.7);
-      font-size: 0.9rem;
-    }
-
-    .cta-contact a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
-      background: #080808;
-      padding: 3rem 2.5rem;
-      border-top: 1px solid rgba(122,182,72,0.15);
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 2.25rem 2.5rem;
     }
 
     .footer-inner {
@@ -770,24 +564,23 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 2rem;
       flex-wrap: wrap;
-      gap: 1.5rem;
     }
 
     .footer-brand {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      color: white;
-      font-size: 1.1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: -0.1px;
     }
 
     .footer-brand span {
       display: block;
-      font-family: 'Source Sans 3', sans-serif;
       font-weight: 300;
       font-size: 0.75rem;
-      color: var(--green-pale);
-      letter-spacing: 1px;
+      color: var(--text-dim);
+      margin-top: 0.2rem;
     }
 
     .footer-links {
@@ -797,29 +590,24 @@
     }
 
     .footer-links a {
-      color: var(--green-pale);
+      color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.85rem;
-      transition: color 0.2s;
+      font-size: 0.8rem;
+      transition: color 0.15s;
     }
 
-    .footer-links a:hover { color: var(--green-light); }
+    .footer-links a:hover { color: var(--text); }
 
     .footer-copy {
-      color: rgba(122,182,72,0.4);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
+      color: var(--text-dim);
     }
 
-    /* ANIMATIONS */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
+    /* ── SCROLL REVEAL ── */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
     }
 
     .reveal.visible {
@@ -827,20 +615,52 @@
       transform: translateY(0);
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      nav { grid-template-columns: 1fr auto; }
       .nav-links { display: none; }
-      .hero { padding: 7rem 1.5rem 4rem; }
-      .hero-stats { gap: 2rem; flex-wrap: wrap; }
-      section { padding: 4rem 1.5rem; }
-      .problem-grid,
-      .why-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+      }
+
+      .device-wrap { max-width: 380px; }
+
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .service-card {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .service-card:nth-child(odd) { border-right: 1px solid var(--border); }
+      .service-card:last-child,
+      .service-card:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+
+      .services-tagline { text-align: left; }
+    }
+
+    @media (max-width: 640px) {
+      nav  { padding: 0 1.25rem; }
+      .hero { padding: 3.5rem 1.25rem 3rem; }
+      .trust { padding: 1.5rem 1.25rem; }
+      .trust-inner { gap: 1.25rem; }
+      .trust-logos { gap: 1.5rem; }
+      .trust-divider { display: none; }
+      .services { padding: 4.5rem 1.25rem; }
       .services-grid { grid-template-columns: 1fr; }
-      .process-steps { grid-template-columns: 1fr 1fr; }
-      .process-steps::before { display: none; }
-      .footer-inner { flex-direction: column; text-align: center; }
-      .trust-bar-inner { gap: 1.5rem; }
+      .service-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .service-card:last-child { border-bottom: none; }
+      .stats-bar { padding: 3rem 1.25rem; }
+      .stats-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .stat-item { border-right: none; padding-left: 0; }
+      .cta-banner { padding: 3.5rem 1.25rem; }
+      .cta-banner-inner { flex-direction: column; align-items: flex-start; }
+      footer { padding: 1.75rem 1.25rem; }
+      .footer-inner { flex-direction: column; gap: 1.25rem; }
     }
   </style>
 </head>
@@ -850,302 +670,201 @@
   <nav>
     <a href="#" class="nav-logo">
       <div class="nav-logo-mark">GW</div>
-      <div class="nav-logo-text">
-        GroundWork Digital
-        <span>Gatineau · Outaouais · Pontiac</span>
-      </div>
+      <span class="nav-logo-text">GroundWork Digital</span>
     </a>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#process">How It Works</a></li>
-      <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
+      <li><a href="#stats">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
+    <div class="nav-right">
+      <a href="#contact" class="btn-nav">Get Free Quote</a>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-grid"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">Serving Gatineau, the Outaouais & Pontiac Region</div>
-      <h1>Your business deserves<br/>more than a <em>Facebook page.</em></h1>
-      <p class="hero-sub">
-        GroundWork Digital helps local businesses get found online, look professional, and use modern tools — without the tech headache. Plain language. Real results.
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Book a Free Chat</a>
-        <a href="#services" class="btn-secondary">See What We Do</a>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Trusted by 500+ businesses
+        </div>
+        <h1>Professional Business<br/><em>Website Design</em></h1>
+        <p class="hero-sub">Modern Layout for Startups and Companies</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Get Free Quote</a>
+          <a href="#services" class="btn-ghost">Get Started</a>
+        </div>
+        <div class="hero-tagline">
+          <span>Modern</span>
+          <span class="sep">·</span>
+          <span>Fast</span>
+          <span class="sep">·</span>
+          <span>Secure</span>
+          <span class="sep">·</span>
+          <span>Scalable</span>
+        </div>
       </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <div class="stat-num">25+</div>
-          <div class="stat-label">Years IT Experience</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">Free</div>
-          <div class="stat-label">Initial Consultation</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">Local</div>
-          <div class="stat-label">Pontiac Roots</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">2026</div>
-          <div class="stat-label">Ready Strategies</div>
+
+      <!-- Device mockup -->
+      <div class="device-wrap">
+        <div class="device-frame">
+          <div class="device-chrome">
+            <div class="device-dots">
+              <div class="device-dot"></div>
+              <div class="device-dot"></div>
+              <div class="device-dot"></div>
+            </div>
+            <div class="device-url">groundwork-digital.ca</div>
+          </div>
+          <div class="device-screen">
+            <div class="m-nav">
+              <div class="m-logo"></div>
+              <div class="m-links">
+                <div class="m-link"></div>
+                <div class="m-link"></div>
+                <div class="m-link"></div>
+              </div>
+              <div class="m-btn"></div>
+            </div>
+            <div class="m-hero">
+              <div class="m-h1"></div>
+              <div class="m-h1b"></div>
+              <div class="m-txt"></div>
+              <div class="m-txt m-txt2"></div>
+              <div class="m-ctas">
+                <div class="m-cta"></div>
+                <div class="m-ctag"></div>
+              </div>
+            </div>
+            <div class="m-cards">
+              <div class="m-card"><div class="m-icon"></div><div class="m-line"></div></div>
+              <div class="m-card"><div class="m-icon"></div><div class="m-line"></div></div>
+              <div class="m-card"><div class="m-icon"></div><div class="m-line"></div></div>
+              <div class="m-card"><div class="m-icon"></div><div class="m-line"></div></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- TRUST BAR -->
-  <div class="trust-bar">
-    <div class="trust-bar-inner">
-      <div class="trust-item"><div class="trust-dot"></div>Websites & Landing Pages</div>
-      <div class="trust-item"><div class="trust-dot"></div>Google Business Profile</div>
-      <div class="trust-item"><div class="trust-dot"></div>Social Media Management</div>
-      <div class="trust-item"><div class="trust-dot"></div>AI Tool Integration</div>
-      <div class="trust-item"><div class="trust-dot"></div>Local SEO</div>
-      <div class="trust-item"><div class="trust-dot"></div>No Jargon. Ever.</div>
+  <div class="trust">
+    <div class="trust-inner">
+      <p class="trust-label">Trusted by 500+ companies</p>
+      <div class="trust-divider"></div>
+      <div class="trust-logos">
+        <span class="trust-logo">Apex Studio</span>
+        <span class="trust-logo">NovaCorp</span>
+        <span class="trust-logo">Venture &amp; Co.</span>
+        <span class="trust-logo">Stackline</span>
+      </div>
     </div>
   </div>
 
-  <!-- PROBLEM -->
-  <section class="problem" id="about">
-    <div class="section-inner">
-      <div class="problem-grid">
-        <div>
-          <p class="section-eyebrow">The Problem</p>
-          <h2>90% of local businesses are <em>invisible online.</em></h2>
-          <p class="section-lead">
-            If someone searches for your service on Google and you're not there — they're calling your competitor. Whether you're in Gatineau, the Pontiac or anywhere in the Outaouais, it's that simple.
-          </p>
-          <ul class="problem-list">
-            <li class="problem-item reveal">
-              <div class="problem-icon">🔍</div>
-              <div class="problem-text">
-                <strong>Not showing up on Google</strong>
-                <p>When strangers search for your service locally, they can't find you — even if you've been in business for years.</p>
-              </div>
-            </li>
-            <li class="problem-item reveal">
-              <div class="problem-icon">📱</div>
-              <div class="problem-text">
-                <strong>Only a Facebook page</strong>
-                <p>Facebook only reaches people who already know you. A website reaches everyone who's looking for you.</p>
-              </div>
-            </li>
-            <li class="problem-item reveal">
-              <div class="problem-icon">🤖</div>
-              <div class="problem-text">
-                <strong>AI feels overwhelming</strong>
-                <p>Everyone's talking about AI but nobody's explaining what it actually means for a small local business. We will.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="problem-visual reveal">
-          <p class="problem-quote">"I know a guy" only works if people can <em>find</em> the guy.</p>
-          <p class="problem-attribution">
-            Word of mouth is powerful — but it has limits. A strong digital presence means people can find you even when they don't know you yet. That's new customers, not just referrals.
-          </p>
-          <br/>
-          <p style="color: var(--green-pale); font-size: 0.9rem; line-height: 1.7; font-weight: 300;">
-            Across Gatineau, the Outaouais and the Pontiac region, most local business owners are hardworking, skilled and trusted in their community. What they're missing isn't ability — it's visibility. GroundWork Digital fixes that.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- SERVICES -->
   <section class="services" id="services">
-    <div class="section-inner">
-      <p class="section-eyebrow reveal">What We Do</p>
-      <h2 class="reveal">Everything your business needs to <em>get found.</em></h2>
-      <p class="section-lead reveal">No packages. No confusing bundles. Just the services that actually move the needle for local businesses.</p>
+    <div style="max-width:1100px; margin:0 auto;">
+      <div class="services-header">
+        <div>
+          <p class="section-label reveal">Services</p>
+          <h2 class="reveal">Built to grow<br/>your business.</h2>
+        </div>
+        <p class="services-tagline reveal">Website Design · SEO &amp; Growth<br/>E-Commerce · 24/7 Support</p>
+      </div>
       <div class="services-grid">
         <div class="service-card reveal">
-          <div class="service-icon">🌐</div>
-          <h3>Websites & Landing Pages</h3>
-          <p>A clean, professional website that works on any device. People searching for your service will find you, trust you and contact you.</p>
-          <span class="service-tag">Most Popular</span>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">📍</div>
-          <h3>Google Business Profile</h3>
-          <p>Show up when people search locally. We set up and optimize your Google listing so you appear in maps and local search results.</p>
-          <span class="service-tag">Quick Win</span>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">📣</div>
-          <h3>Social Media Content</h3>
-          <p>Regular, professional posts that keep your page alive and your business top of mind. We write it, design it and schedule it.</p>
-          <span class="service-tag">Recurring</span>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">🤖</div>
-          <h3>AI Tool Consulting</h3>
-          <p>Practical AI tools that save you real time and money. We show you exactly what applies to your business — nothing more.</p>
-          <span class="service-tag">Future-Ready</span>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">🔎</div>
-          <h3>Local SEO</h3>
-          <p>Get found by people searching in your area. We optimize your online presence so Google points local customers to you first.</p>
-          <span class="service-tag">Long-Term</span>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">💬</div>
-          <h3>Digital Strategy Consult</h3>
-          <p>Not sure where to start? We sit down together and map out exactly what your business needs — and what it doesn't.</p>
-          <span class="service-tag">Start Here</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY ME -->
-  <section class="why">
-    <div class="section-inner">
-      <div class="why-grid">
-        <div>
-          <p class="section-eyebrow reveal">Why GroundWork Digital</p>
-          <h2 class="reveal">Not a city agency.<br/><em>Local through and through.</em></h2>
-          <p class="section-lead reveal">You're not dealing with a faceless company. You're working with someone who grew up in the Pontiac, lives in Aylmer and understands the Outaouais business community inside and out.</p>
-          <div class="why-points">
-            <div class="why-point reveal">
-              <div class="why-num">01</div>
-              <div class="why-point-content">
-                <h3>25+ Years of Real IT Experience</h3>
-                <p>From Bell Canada to the House of Commons — not a hobbyist. A proven professional who builds things that actually work.</p>
-              </div>
-            </div>
-            <div class="why-point reveal">
-              <div class="why-num">02</div>
-              <div class="why-point-content">
-                <h3>Local Roots, Regional Reach</h3>
-                <p>From Fort-Coulonge to Aylmer to Gatineau — this is home. Whether you're in the Pontiac or the heart of the Outaouais, your success matters personally.</p>
-              </div>
-            </div>
-            <div class="why-point reveal">
-              <div class="why-num">03</div>
-              <div class="why-point-content">
-                <h3>No Jargon, No Nonsense</h3>
-                <p>We speak your language. No tech buzzwords, no confusing proposals. Just a clear plan and honest conversation.</p>
-              </div>
-            </div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
           </div>
+          <h3>Website Design</h3>
+          <p>Clean, fast sites that turn visitors into customers.</p>
         </div>
-        <div class="why-card reveal">
-          <div class="why-card-inner">
-            <div class="why-card-photo-wrap">
-              <img src="terry_headshot_cropped.png" alt="Terry Bevvan — Founder of GroundWork Digital" class="why-card-photo" />
-              <div class="why-card-photo-ring"></div>
-            </div>
-            <div class="why-card-body">
-              <div class="why-card-name">Terry Bevvan</div>
-              <div class="why-card-title">Founder — GroundWork Digital</div>
-              <p class="why-card-bio">
-                I grew up in the Pontiac and now live in Aylmer. My family is still there. I've spent 25+ years in IT — at Bell Canada and the House of Commons — and now I'm bringing those skills to help small businesses across Gatineau, the Outaouais and the Pontiac get the digital presence they deserve.
-              </p>
-              <div class="why-badges">
-                <span class="badge">Bell Canada — 10 years</span>
-                <span class="badge">House of Commons — 15 years</span>
-                <span class="badge">AI & Web Development</span>
-                <span class="badge">Gatineau · Outaouais · Pontiac</span>
-              </div>
-            </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
           </div>
+          <h3>SEO &amp; Growth</h3>
+          <p>Rank higher, get found, grow organically over time.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          </div>
+          <h3>E-Commerce</h3>
+          <p>Sell online with a store built for speed and conversion.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>24/7 Support</h3>
+          <p>Always-on help so your business never goes dark.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROCESS -->
-  <section class="process" id="process">
-    <div class="section-inner">
-      <p class="section-eyebrow reveal">How It Works</p>
-      <h2 class="reveal">Simple as a <em>handshake.</em></h2>
-      <p class="section-lead reveal">No complicated onboarding. No confusing contracts. Just a straightforward process that gets your business online fast.</p>
-      <div class="process-steps">
-        <div class="process-step reveal">
-          <div class="step-circle">1</div>
-          <h3>Free Chat</h3>
-          <p>We talk about your business, your goals and what's missing. No pressure, no pitch. Just an honest conversation.</p>
-        </div>
-        <div class="process-step reveal">
-          <div class="step-circle">2</div>
-          <h3>Clear Plan</h3>
-          <p>You get a simple, plain-language plan showing exactly what we'll do, what it costs and what to expect.</p>
-        </div>
-        <div class="process-step reveal">
-          <div class="step-circle">3</div>
-          <h3>We Build It</h3>
-          <p>We handle everything — design, setup, launch. You stay focused on running your business.</p>
-        </div>
-        <div class="process-step reveal">
-          <div class="step-circle">4</div>
-          <h3>You Get Found</h3>
-          <p>Your business shows up where customers are looking. More calls. More walk-ins. More growth.</p>
-        </div>
+  <!-- STATS -->
+  <div class="stats-bar" id="stats">
+    <div class="stats-inner">
+      <div class="stat-item reveal">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Projects delivered</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Client satisfaction</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Support coverage</div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- CTA -->
-  <section class="cta-section" id="contact">
-    <div class="section-inner">
-      <h2>Ready to stop being invisible?</h2>
-      <p>Book a free 30-minute consultation. We'll talk about your business and figure out exactly what you need — no obligation, no hard sell.</p>
-      <a href="mailto:terry@groundwork-digital.ca" class="btn-white">Book Your Free Chat</a>
-      <p class="cta-contact">
-        Or reach out directly: <a href="mailto:terry@groundwork-digital.ca">terry@groundwork-digital.ca</a>
-      </p>
+  <!-- CTA BANNER -->
+  <div class="cta-banner" id="contact">
+    <div class="cta-banner-inner">
+      <div class="reveal">
+        <h2>Ready to build something great?</h2>
+        <p>No commitment. Just a conversation about what your business needs.</p>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="mailto:terry@groundwork-digital.ca" class="btn-primary">Get Free Quote</a>
+        <a href="#services" class="btn-ghost">Get Started</a>
+      </div>
     </div>
-  </section>
+  </div>
 
   <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
         GroundWork Digital
-        <span>groundwork-digital.ca · Aylmer, Quebec · Outaouais & Pontiac</span>
+        <span>groundwork-digital.ca · Aylmer, Quebec · Outaouais &amp; Pontiac</span>
       </div>
       <ul class="footer-links">
         <li><a href="#services">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#process">Process</a></li>
+        <li><a href="#stats">Work</a></li>
         <li><a href="mailto:terry@groundwork-digital.ca">Contact</a></li>
       </ul>
-      <div class="footer-copy">© 2026 GroundWork Digital. All rights reserved.</div>
+      <div class="footer-copy">© 2026 GroundWork Digital</div>
     </div>
   </footer>
 
   <script>
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, 100);
-          observer.unobserve(entry.target);
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
         }
       });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
-
-    // Smooth nav highlight
-    const sections = document.querySelectorAll('section[id]');
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('nav');
-      if (window.scrollY > 50) {
-        nav.style.background = 'rgba(26, 42, 26, 0.98)';
-      } else {
-        nav.style.background = 'rgba(26, 42, 26, 0.96)';
-      }
-    });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
 
 </body>
