@@ -342,49 +342,46 @@
     .m-icon { width: 11px; height: 11px; background: var(--blue); border-radius: 2px; opacity: 0.55; }
     .m-line { width: 65%; height: 4px; background: var(--border-hi); border-radius: 1px; }
 
-    /* ── TRUST BAR ── */
-    .trust {
+    /* ── FOUNDER CARD ── */
+    .founder-strip {
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 1.75rem 2.5rem;
+      padding: 1.5rem 2.5rem;
     }
 
-    .trust-inner {
+    .founder-strip-inner {
       max-width: 1100px;
       margin: 0 auto;
       display: flex;
       align-items: center;
-      gap: 2.5rem;
-      flex-wrap: wrap;
+      gap: 1rem;
     }
 
-    .trust-label {
-      font-size: 0.78rem;
-      color: var(--text-dim);
-      letter-spacing: 0.3px;
-      white-space: nowrap;
-    }
-
-    .trust-divider {
-      width: 1px; height: 18px;
-      background: var(--border);
+    .founder-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: 52% 18%;
+      border: 1px solid var(--border-hi);
       flex-shrink: 0;
     }
 
-    .trust-logos {
+    .founder-meta {
       display: flex;
-      gap: 2.5rem;
-      align-items: center;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 0.1rem;
     }
 
-    .trust-logo {
-      font-size: 0.83rem;
+    .founder-name {
+      font-size: 0.82rem;
       font-weight: 500;
+      color: var(--text);
+    }
+
+    .founder-title {
+      font-size: 0.75rem;
       color: var(--text-dim);
-      opacity: 0.45;
-      letter-spacing: -0.1px;
-      white-space: nowrap;
+      font-weight: 300;
     }
 
     /* ── SERVICES ── */
@@ -646,10 +643,7 @@
     @media (max-width: 640px) {
       nav  { padding: 0 1.25rem; }
       .hero { padding: 3.5rem 1.25rem 3rem; }
-      .trust { padding: 1.5rem 1.25rem; }
-      .trust-inner { gap: 1.25rem; }
-      .trust-logos { gap: 1.5rem; }
-      .trust-divider { display: none; }
+      .founder-strip { padding: 1.25rem 1.25rem; }
       .services { padding: 4.5rem 1.25rem; }
       .services-grid { grid-template-columns: 1fr; }
       .service-card { border-right: none; border-bottom: 1px solid var(--border); }
@@ -688,7 +682,7 @@
       <div class="hero-text">
         <div class="hero-badge">
           <span class="hero-badge-dot"></span>
-          Trusted by 500+ businesses
+          Gatineau · Outaouais · Pontiac
         </div>
         <h1>Professional Business<br/><em>Website Design</em></h1>
         <p class="hero-sub">Modern Layout for Startups and Companies</p>
@@ -750,16 +744,13 @@
     </div>
   </section>
 
-  <!-- TRUST BAR -->
-  <div class="trust">
-    <div class="trust-inner">
-      <p class="trust-label">Trusted by 500+ companies</p>
-      <div class="trust-divider"></div>
-      <div class="trust-logos">
-        <span class="trust-logo">Apex Studio</span>
-        <span class="trust-logo">NovaCorp</span>
-        <span class="trust-logo">Venture &amp; Co.</span>
-        <span class="trust-logo">Stackline</span>
+  <!-- FOUNDER STRIP -->
+  <div class="founder-strip">
+    <div class="founder-strip-inner">
+      <img src="terry_headshot_cropped.png" alt="Terry Bevvan" class="founder-avatar" />
+      <div class="founder-meta">
+        <span class="founder-name">Terry Bevvan</span>
+        <span class="founder-title">Founder — GroundWork Digital · Aylmer, QC</span>
       </div>
     </div>
   </div>
