@@ -1,1152 +1,945 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GroundWork Digital — Bringing Local Businesses Into 2026</title>
-  <meta name="description" content="GroundWork Digital helps small and local businesses in Gatineau, the Outaouais and Pontiac region build their online presence, get found on Google, and use AI tools to grow. Plain language. Real results." />
-  <meta name="keywords" content="web design Gatineau, web design Pontiac, local business digital marketing Outaouais, Google Business Profile setup, social media management Gatineau, AI consulting small business, Aylmer web design, Fort-Coulonge, Campbell's Bay, Outaouais" />
-  <meta property="og:title" content="GroundWork Digital — Bringing Local Businesses Into 2026" />
-  <meta property="og:description" content="Websites, Google presence, social media and AI tools for small businesses in Gatineau, the Outaouais and Pontiac region. Plain language. Real results." />
-  <meta property="og:url" content="https://groundwork-digital.ca" />
-  <meta property="og:type" content="website" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --green-dark: #0a0a0a;
-      --green-mid: #141414;
-      --green-brand: #3a7a1e;
-      --green-light: #7ab648;
-      --green-pale: #a8c490;
-      --amber: #c8922a;
-      --amber-light: #e8b84b;
-      --cream: #f5f0e8;
-      --white: #ffffff;
-      --gray: #666666;
-      --gray-light: #999999;
-      --text-dark: #1a2a1a;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Source Sans 3', sans-serif;
-      background: var(--cream);
-      color: var(--text-dark);
-      overflow-x: hidden;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.2rem 2.5rem;
-      background: rgba(10, 10, 10, 0.96);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(122, 182, 72, 0.2);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-    }
-
-    .nav-logo-mark {
-      width: 38px;
-      height: 38px;
-      background: var(--green-brand);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
-      font-size: 16px;
-      color: white;
-      letter-spacing: -1px;
-    }
-
-    .nav-logo-text {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: white;
-      line-height: 1.1;
-    }
-
-    .nav-logo-text span {
-      display: block;
-      font-family: 'Source Sans 3', sans-serif;
-      font-weight: 300;
-      font-size: 0.65rem;
-      color: var(--green-pale);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--green-pale);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--amber-light); }
-
-    .nav-cta {
-      background: var(--green-brand);
-      color: white !important;
-      padding: 0.5rem 1.2rem;
-      border-radius: 4px;
-      font-weight: 600 !important;
-      transition: background 0.2s !important;
-    }
-
-    .nav-cta:hover { background: var(--green-light) !important; color: white !important; }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      background: #0d0d0d;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      padding: 8rem 2.5rem 5rem;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -200px; right: -200px;
-      width: 700px; height: 700px;
-      border-radius: 50%;
-      border: 1px solid rgba(122, 182, 72, 0.08);
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: -100px; right: -100px;
-      width: 500px; height: 500px;
-      border-radius: 50%;
-      border: 1px solid rgba(122, 182, 72, 0.06);
-    }
-
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(122,182,72,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(122,182,72,0.04) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-
-    .hero-content {
-      max-width: 1100px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(122, 182, 72, 0.12);
-      border: 1px solid rgba(122, 182, 72, 0.3);
-      color: var(--green-light);
-      padding: 0.4rem 1rem;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.2s;
-    }
-
-    .hero-eyebrow::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--green-light);
-      border-radius: 50%;
-    }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      color: white;
-      line-height: 1.05;
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.4s;
-    }
-
-    h1 em {
-      font-style: normal;
-      color: var(--green-light);
-    }
-
-    h1 .amber { color: var(--amber-light); }
-
-    .hero-sub {
-      font-size: 1.2rem;
-      font-weight: 300;
-      color: var(--green-pale);
-      max-width: 600px;
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.6s;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.8s;
-    }
-
-    .btn-primary {
-      background: var(--green-brand);
-      color: white;
-      padding: 0.9rem 2rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all 0.2s;
-      border: 2px solid var(--green-brand);
-    }
-
-    .btn-primary:hover {
-      background: var(--green-light);
-      border-color: var(--green-light);
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--green-pale);
-      padding: 0.9rem 2rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 400;
-      font-size: 1rem;
-      transition: all 0.2s;
-      border: 2px solid rgba(122, 182, 72, 0.3);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--green-light);
-      color: var(--green-light);
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 3rem;
-      margin-top: 4rem;
-      padding-top: 3rem;
-      border-top: 1px solid rgba(122, 182, 72, 0.15);
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 1s;
-    }
-
-    .stat-item {}
-    .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--amber-light);
-    }
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--green-pale);
-      letter-spacing: 0.5px;
-      margin-top: 0.2rem;
-    }
-
-    /* TRUST BAR */
-    .trust-bar {
-      background: #111111;
-      padding: 1.5rem 2.5rem;
-      border-bottom: 1px solid rgba(122,182,72,0.15);
-    }
-
-    .trust-bar-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 3rem;
-      flex-wrap: wrap;
-    }
-
-    .trust-item {
-      color: var(--green-pale);
-      font-size: 0.85rem;
-      font-weight: 300;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      letter-spacing: 0.5px;
-    }
-
-    .trust-dot {
-      width: 5px; height: 5px;
-      background: var(--green-light);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 6rem 2.5rem;
-    }
-
-    .section-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-eyebrow {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--green-brand);
-      margin-bottom: 1rem;
-    }
-
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      color: var(--text-dark);
-      line-height: 1.15;
-      margin-bottom: 1.2rem;
-    }
-
-    h2 em {
-      font-style: normal;
-      color: var(--green-brand);
-    }
-
-    .section-lead {
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: var(--gray);
-      max-width: 580px;
-      line-height: 1.7;
-      margin-bottom: 3.5rem;
-    }
-
-    /* PROBLEM SECTION */
-    .problem {
-      background: var(--cream);
-    }
-
-    .problem-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .problem-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-
-    .problem-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1.2rem;
-      background: white;
-      border-radius: 8px;
-      border-left: 3px solid var(--amber);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-    }
-
-    .problem-icon {
-      font-size: 1.3rem;
-      flex-shrink: 0;
-      margin-top: 0.1rem;
-    }
-
-    .problem-text strong {
-      display: block;
-      font-weight: 600;
-      color: var(--text-dark);
-      margin-bottom: 0.2rem;
-      font-size: 0.95rem;
-    }
-
-    .problem-text p {
-      font-size: 0.85rem;
-      color: var(--gray);
-      line-height: 1.5;
-    }
-
-    .problem-visual {
-      background: #0d0d0d;
-      border-radius: 12px;
-      padding: 2.5rem;
-      color: white;
-    }
-
-    .problem-quote {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      line-height: 1.4;
-      color: white;
-      margin-bottom: 1.5rem;
-    }
-
-    .problem-quote em {
-      font-style: normal;
-      color: var(--green-light);
-    }
-
-    .problem-attribution {
-      font-size: 0.85rem;
-      color: var(--green-pale);
-      border-top: 1px solid rgba(122,182,72,0.2);
-      padding-top: 1rem;
-    }
-
-    /* SERVICES */
-    .services {
-      background: white;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    .service-card {
-      background: var(--cream);
-      border-radius: 10px;
-      padding: 2rem;
-      border: 1px solid rgba(58, 122, 30, 0.1);
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--green-brand);
-      transform: scaleX(0);
-      transition: transform 0.3s;
-    }
-
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
-      border-color: rgba(58, 122, 30, 0.3);
-    }
-
-    .service-card:hover::before { transform: scaleX(1); }
-
-    .service-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .service-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 0.6rem;
-    }
-
-    .service-card p {
-      font-size: 0.9rem;
-      color: var(--gray);
-      line-height: 1.6;
-    }
-
-    .service-tag {
-      display: inline-block;
-      margin-top: 1rem;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--green-brand);
-    }
-
-    /* WHY ME */
-    .why {
-      background: #0d0d0d;
-      color: white;
-    }
-
-    .why h2 { color: white; }
-    .why .section-eyebrow { color: var(--green-light); }
-    .why .section-lead { color: var(--green-pale); }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .why-points {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .why-point {
-      display: flex;
-      gap: 1.2rem;
-      align-items: flex-start;
-    }
-
-    .why-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: rgba(122, 182, 72, 0.2);
-      line-height: 1;
-      flex-shrink: 0;
-      width: 3rem;
-    }
-
-    .why-point-content h3 {
-      font-weight: 600;
-      color: white;
-      margin-bottom: 0.3rem;
-      font-size: 1rem;
-    }
-
-    .why-point-content p {
-      font-size: 0.9rem;
-      color: var(--green-pale);
-      line-height: 1.6;
-      font-weight: 300;
-    }
-
-    .why-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(122,182,72,0.2);
-      border-radius: 12px;
-      padding: 2.5rem;
-    }
-
-    .why-card-inner {
-      display: flex;
-      gap: 2rem;
-      align-items: flex-start;
-    }
-
-    .why-card-photo-wrap {
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .why-card-photo {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: 52% 18%;
-      transform: scale(1.12);
-      border: 3px solid var(--green-brand);
-      display: block;
-      position: relative;
-      z-index: 1;
-    }
-
-    .why-card-photo-ring {
-      position: absolute;
-      top: -5px; left: -5px;
-      width: 130px; height: 130px;
-      border-radius: 50%;
-      border: 1px solid rgba(122,182,72,0.3);
-      z-index: 0;
-    }
-
-    .why-card-body {
-      flex: 1;
-    }
-
-    .why-card-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 0.3rem;
-    }
-
-    .why-card-title {
-      font-size: 0.85rem;
-      color: var(--green-light);
-      letter-spacing: 1px;
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-    }
-
-    .why-card-bio {
-      font-size: 0.95rem;
-      color: var(--green-pale);
-      line-height: 1.7;
-      font-weight: 300;
-      margin-bottom: 1.5rem;
-    }
-
-    .why-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .badge {
-      background: rgba(122,182,72,0.12);
-      border: 1px solid rgba(122,182,72,0.25);
-      color: var(--green-pale);
-      padding: 0.3rem 0.8rem;
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 400;
-    }
-
-    /* PROCESS */
-    .process {
-      background: var(--cream);
-    }
-
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      position: relative;
-    }
-
-    .process-steps::before {
-      content: '';
-      position: absolute;
-      top: 2rem;
-      left: calc(12.5% + 1rem);
-      right: calc(12.5% + 1rem);
-      height: 1px;
-      background: linear-gradient(90deg, var(--green-brand), var(--green-light), var(--green-brand));
-      opacity: 0.3;
-    }
-
-    .process-step {
-      text-align: center;
-      position: relative;
-    }
-
-    .step-circle {
-      width: 4rem;
-      height: 4rem;
-      background: var(--green-brand);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.2rem;
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: white;
-      position: relative;
-      z-index: 1;
-    }
-
-    .process-step h3 {
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--text-dark);
-      margin-bottom: 0.5rem;
-    }
-
-    .process-step p {
-      font-size: 0.85rem;
-      color: var(--gray);
-      line-height: 1.6;
-    }
-
-    /* CTA */
-    .cta-section {
-      background: var(--green-brand);
-      text-align: center;
-      padding: 6rem 2.5rem;
-    }
-
-    .cta-section h2 {
-      color: white;
-      margin-bottom: 1rem;
-    }
-
-    .cta-section p {
-      color: rgba(255,255,255,0.85);
-      font-size: 1.1rem;
-      font-weight: 300;
-      margin-bottom: 2.5rem;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.7;
-    }
-
-    .btn-white {
-      background: white;
-      color: var(--green-brand);
-      padding: 1rem 2.5rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      display: inline-block;
-      transition: all 0.2s;
-    }
-
-    .btn-white:hover {
-      background: var(--cream);
-      transform: translateY(-2px);
-    }
-
-    .cta-contact {
-      margin-top: 1.5rem;
-      color: rgba(255,255,255,0.7);
-      font-size: 0.9rem;
-    }
-
-    .cta-contact a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #080808;
-      padding: 3rem 2.5rem;
-      border-top: 1px solid rgba(122,182,72,0.15);
-    }
-
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
-
-    .footer-brand {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      color: white;
-      font-size: 1.1rem;
-    }
-
-    .footer-brand span {
-      display: block;
-      font-family: 'Source Sans 3', sans-serif;
-      font-weight: 300;
-      font-size: 0.75rem;
-      color: var(--green-pale);
-      letter-spacing: 1px;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .footer-links a {
-      color: var(--green-pale);
-      text-decoration: none;
-      font-size: 0.85rem;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: var(--green-light); }
-
-    .footer-copy {
-      color: rgba(122,182,72,0.4);
-      font-size: 0.8rem;
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-      .hero { padding: 7rem 1.5rem 4rem; }
-      .hero-stats { gap: 2rem; flex-wrap: wrap; }
-      section { padding: 4rem 1.5rem; }
-      .problem-grid,
-      .why-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .services-grid { grid-template-columns: 1fr; }
-      .process-steps { grid-template-columns: 1fr 1fr; }
-      .process-steps::before { display: none; }
-      .footer-inner { flex-direction: column; text-align: center; }
-      .trust-bar-inner { gap: 1.5rem; }
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GroundWork Digital — Terry Bevvan · Aylmer, QC</title>
+<meta name="description" content="GroundWork Digital helps local businesses in Gatineau, the Outaouais and Pontiac get found online. Websites, Google Business, SEO, AI tools. No jargon. Real results."/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── DARK MODE (default) ── */
+:root {
+  --bg:        #0a0c0f;
+  --bg2:       #10131a;
+  --bg3:       #171b24;
+  --border:    rgba(255,255,255,0.07);
+  --border2:   rgba(255,255,255,0.14);
+  --green:     #4ade80;
+  --green-dim: rgba(74,222,128,0.10);
+  --green-rgb: 74,222,128;
+  --text:      #f2f0ec;
+  --text2:     #9a9790;
+  --text3:     #5a5854;
+  --nav-bg:    rgba(10,12,15,0.88);
+  --photo-card-bg: rgba(16,19,26,0.95);
+  --ticker-bg: rgba(16,19,26,0.9);
+  --problem-bg:rgba(16,19,26,0.96);
+  --cta-fade:  rgba(10,12,15,0.95);
+  --vignette0: rgba(10,12,15,0.0);
+  --vignette1: rgba(10,12,15,0.55);
+  --vignette2: rgba(10,12,15,0.92);
+  --serif:     'Instrument Serif', serif;
+  --sans:      'Bricolage Grotesque', sans-serif;
+  --mono:      'DM Mono', monospace;
+}
+
+/* ── LIGHT MODE ── */
+html.light {
+  --bg:        #f4f3ef;
+  --bg2:       #eceae4;
+  --bg3:       #e2ded6;
+  --border:    rgba(0,0,0,0.08);
+  --border2:   rgba(0,0,0,0.16);
+  --green:     #16a34a;
+  --green-dim: rgba(22,163,74,0.10);
+  --green-rgb: 22,163,74;
+  --text:      #141210;
+  --text2:     #4a4640;
+  --text3:     #9a9690;
+  --nav-bg:    rgba(244,243,239,0.88);
+  --photo-card-bg: rgba(236,234,228,0.95);
+  --ticker-bg: rgba(236,234,228,0.92);
+  --problem-bg:rgba(236,234,228,0.97);
+  --cta-fade:  rgba(244,243,239,0.95);
+  --vignette0: rgba(244,243,239,0.0);
+  --vignette1: rgba(244,243,239,0.55);
+  --vignette2: rgba(244,243,239,0.92);
+}
+
+/* Smooth theme transition */
+html.transitioning,
+html.transitioning * {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease !important;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* NOISE LAYER */
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;opacity:0.5;
+}
+
+/* ── TECH GRID BACKGROUND CANVAS ── */
+#grid-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:60px;padding:0 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--nav-bg);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-mark{
+  width:32px;height:32px;background:var(--green);border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:12px;color:var(--bg);flex-shrink:0;
+}
+.logo-name{font-size:13px;font-weight:600;color:var(--text);letter-spacing:-0.1px;}
+.logo-sub{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:0.4px;}
+.nav-right{display:flex;align-items:center;gap:1.5rem;}
+.nav-right a{font-size:12px;color:var(--text2);text-decoration:none;transition:color 0.15s;}
+.nav-right a:hover{color:var(--text);}
+.nav-cta{
+  padding:7px 18px;background:var(--green);color:var(--bg) !important;
+  font-weight:600 !important;font-size:12px !important;
+  border-radius:100px;transition:background 0.15s !important;
+}
+.nav-cta:hover{background:#86efac !important;}
+
+/* ── CHAPTER SYSTEM ── */
+.chapter{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:100px 2rem 80px;
+  position:relative;
+  z-index:1;
+  border-bottom:1px solid var(--border);
+}
+.chapter-inner{max-width:780px;margin:0 auto;width:100%;}
+
+.ch-question{
+  display:inline-block;
+  font-family:var(--mono);font-size:11px;
+  color:var(--text3);letter-spacing:1px;text-transform:uppercase;
+  margin-bottom:2.5rem;
+  padding:6px 14px;
+  border:1px solid var(--border);
+  border-radius:100px;
+}
+.ch-answer{
+  font-family:var(--serif);
+  font-size:clamp(2.6rem,5.5vw,4.2rem);
+  font-weight:400;line-height:1.08;
+  letter-spacing:-0.5px;color:var(--text);
+  margin-bottom:2rem;
+}
+.ch-answer em{font-style:italic;color:var(--green);}
+.ch-body{
+  font-size:1.05rem;color:var(--text2);line-height:1.8;
+  font-weight:300;max-width:620px;
+}
+.ch-body p+p{margin-top:1rem;}
+.ch-body strong{font-weight:600;color:var(--text);}
+.ch-next{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-top:3rem;font-size:13px;color:var(--text3);
+  text-decoration:none;border-bottom:1px solid var(--border);
+  padding-bottom:2px;transition:color 0.15s,border-color 0.15s;
+}
+.ch-next:hover{color:var(--green);border-color:var(--green);}
+.ch-next-arrow{font-family:var(--mono);font-size:11px;color:var(--green);transition:transform 0.2s;}
+.ch-next:hover .ch-next-arrow{transform:translateX(3px);}
+
+/* ── CHAPTER 1: HERO ── */
+#ch-hello{background:transparent;}
+#ch-hello .chapter-inner{
+  display:grid;grid-template-columns:1fr auto;
+  gap:4rem;align-items:center;
+}
+/* Radial vignette so text stays readable over grid */
+#ch-hello::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 65% 90% at 28% 50%,
+      var(--vignette0) 0%,
+      var(--vignette1) 55%,
+      var(--vignette2) 100%);
+  pointer-events:none;z-index:0;
+}
+#ch-hello .chapter-inner{position:relative;z-index:1;}
+#ch-hello > a.ch-next{position:relative;z-index:1;}
+
+.hello-label{
+  font-family:var(--mono);font-size:11px;color:var(--green);
+  letter-spacing:1.5px;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;margin-bottom:1.75rem;
+}
+.hello-label::before{content:'';width:20px;height:1px;background:var(--green);}
+.hello-h1{
+  font-family:var(--serif);
+  font-size:clamp(3rem,6.5vw,5rem);
+  font-weight:400;line-height:1.05;
+  letter-spacing:-1px;color:var(--text);margin-bottom:1.5rem;
+}
+.hello-h1 em{font-style:italic;color:var(--green);}
+.hello-sub{
+  font-size:1.05rem;color:var(--text2);
+  line-height:1.75;font-weight:300;
+  max-width:480px;margin-bottom:2.5rem;
+}
+.hello-photo-wrap{position:relative;flex-shrink:0;}
+.hello-photo{
+  width:220px;height:270px;object-fit:cover;object-position:top;
+  border-radius:14px;display:block;
+  filter:grayscale(15%);
+  border:1px solid var(--border2);
+}
+.hello-photo-card{
+  position:absolute;bottom:-18px;left:-18px;
+  background:var(--photo-card-bg);border:1px solid var(--border2);
+  border-radius:10px;padding:10px 14px;white-space:nowrap;
+  backdrop-filter:blur(8px);
+}
+.hello-photo-card .name{font-size:13px;font-weight:600;color:var(--text);}
+.hello-photo-card .title{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:2px;letter-spacing:0.3px;}
+.hello-stats{
+  display:flex;gap:2.5rem;flex-wrap:wrap;
+  padding-top:2rem;border-top:1px solid var(--border);margin-top:2.5rem;
+}
+.hstat-num{font-family:var(--serif);font-size:1.9rem;color:var(--text);line-height:1;}
+.hstat-label{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:0.5px;margin-top:3px;}
+
+/* ── TICKER ── */
+.ticker-wrap{
+  overflow:hidden;position:relative;z-index:1;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:11px 0;background:var(--ticker-bg);
+}
+.ticker{display:flex;width:max-content;animation:tick 24s linear infinite;}
+.ticker-item{
+  display:inline-flex;align-items:center;gap:18px;
+  padding:0 36px;font-family:var(--mono);font-size:10px;
+  color:var(--text3);letter-spacing:1px;text-transform:uppercase;white-space:nowrap;
+}
+.ticker-item::after{content:'·';color:var(--green);font-size:14px;}
+@keyframes tick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ── CHAPTER 2: PROBLEM ── */
+#ch-problem{background:var(--problem-bg);}
+.problem-stat-big{
+  font-family:var(--serif);
+  font-size:clamp(5rem,12vw,9rem);
+  line-height:1;letter-spacing:-3px;
+  color:var(--border2);
+  margin-bottom:-1rem;display:block;
+}
+.problem-list{
+  margin-top:2.5rem;
+  display:flex;flex-direction:column;gap:1px;
+  border:1px solid var(--border);border-radius:12px;overflow:hidden;
+}
+.problem-item{
+  display:flex;align-items:flex-start;gap:1.25rem;
+  padding:1.25rem 1.5rem;background:var(--bg3);transition:background 0.15s;
+}
+.problem-item:hover{background:var(--bg2);}
+.p-icon{
+  width:34px;height:34px;flex-shrink:0;
+  background:var(--green-dim);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;margin-top:1px;
+}
+.p-text h3{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px;}
+.p-text p{font-size:13px;color:var(--text2);line-height:1.6;font-weight:300;}
+.pull-quote{
+  margin-top:2.5rem;padding:1.5rem 1.75rem;
+  border-left:2px solid var(--green);
+  background:var(--green-dim);border-radius:0 10px 10px 0;
+}
+.pull-quote p{font-family:var(--serif);font-size:1.3rem;font-style:italic;color:var(--text);line-height:1.5;}
+
+/* ── CHAPTER 3: SERVICES ── */
+#ch-services{background:var(--bg);}
+.services-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:14px;overflow:hidden;
+  margin-top:2.5rem;
+}
+.svc{
+  background:var(--bg);padding:1.75rem;
+  display:flex;flex-direction:column;gap:0.6rem;transition:background 0.15s;
+}
+.svc:hover{background:var(--bg2);}
+.svc-num{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:0.5px;}
+.svc-icon{font-size:18px;}
+.svc h3{font-size:15px;font-weight:600;color:var(--text);}
+.svc p{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;}
+.svc-badge{
+  display:inline-block;padding:3px 10px;
+  background:var(--green-dim);color:var(--green);
+  font-size:10px;font-family:var(--mono);letter-spacing:0.3px;
+  border-radius:100px;margin-top:auto;align-self:flex-start;
+}
+
+/* ── CHAPTER 4: WHY / WHY NOT ── */
+#ch-why{background:var(--bg2);}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.5rem;}
+.why-block{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.75rem;}
+.why-block h3{
+  font-size:13px;font-weight:600;letter-spacing:0.5px;
+  font-family:var(--mono);text-transform:uppercase;margin-bottom:1.25rem;
+}
+.why-block.hire h3{color:var(--green);}
+.why-block.nothire h3{color:var(--text3);}
+.why-list{list-style:none;display:flex;flex-direction:column;gap:0.9rem;}
+.why-list li{display:flex;align-items:flex-start;gap:0.75rem;font-size:13px;color:var(--text2);line-height:1.6;font-weight:300;}
+.why-list li::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:6px;}
+.hire .why-list li::before{background:var(--green);}
+.nothire .why-list li::before{background:var(--text3);}
+.why-list strong{color:var(--text);font-weight:600;}
+
+/* ── CHAPTER 5: ABOUT ── */
+#ch-about{background:var(--bg);}
+.about-layout{display:grid;grid-template-columns:auto 1fr;gap:3.5rem;align-items:start;margin-top:1rem;}
+.about-img{width:200px;border-radius:14px;display:block;filter:grayscale(10%);border:1px solid var(--border2);}
+.cred-stack{
+  margin-top:1rem;display:flex;flex-direction:column;gap:1px;
+  border:1px solid var(--border);border-radius:10px;overflow:hidden;width:200px;
+}
+.cred-row{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:var(--bg2);gap:8px;}
+.cred-row span:first-child{font-size:12px;color:var(--text2);}
+.cred-row span:last-child{font-family:var(--mono);font-size:10px;color:var(--text3);}
+.about-text .ch-body{max-width:100%;}
+.fun-facts{margin-top:2rem;padding:1.5rem;background:var(--bg2);border:1px solid var(--border);border-radius:12px;}
+.fun-facts h4{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem;}
+.facts-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
+.fact{display:flex;align-items:center;gap:0.6rem;font-size:13px;color:var(--text2);font-weight:300;}
+.fact-dot{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0;}
+
+/* ── CHAPTER 6: PROCESS ── */
+#ch-process{background:var(--bg2);}
+.steps{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-top:2.5rem;
+}
+.step{background:var(--bg2);padding:2rem 1.75rem;transition:background 0.15s;}
+.step:hover{background:var(--bg3);}
+.step-n{font-family:var(--serif);font-size:3rem;color:var(--border2);line-height:1;margin-bottom:1rem;display:block;}
+.step h3{font-size:14px;font-weight:600;color:var(--text);margin-bottom:0.4rem;}
+.step p{font-size:12px;color:var(--text2);line-height:1.65;font-weight:300;}
+
+/* ── CHAPTER 7: CTA ── */
+#ch-contact{background:transparent;text-align:center;}
+#ch-contact::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 100% at 50% 50%,
+    rgba(74,222,128,0.05) 0%, transparent 70%);
+  pointer-events:none;
+}
+/* fade-in vignette so grid shows through the CTA */
+#ch-contact::after{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 100% 60% at 50% 0%, var(--cta-fade) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 60% at 50% 100%, var(--cta-fade) 0%, transparent 60%);
+  pointer-events:none;z-index:0;
+}
+#ch-contact .chapter-inner{position:relative;z-index:1;max-width:600px;}
+#ch-contact .chapter-inner::before{
+  content:'';display:block;width:1px;height:60px;
+  background:var(--border2);margin:0 auto 3rem;
+}
+.cta-h2{
+  font-family:var(--serif);font-size:clamp(2.5rem,5vw,4rem);
+  font-weight:400;line-height:1.1;letter-spacing:-0.5px;
+  color:var(--text);margin-bottom:1.25rem;
+}
+.cta-h2 em{font-style:italic;color:var(--green);}
+.cta-sub{font-size:1rem;color:var(--text2);line-height:1.75;font-weight:300;margin-bottom:2.5rem;}
+.cta-buttons{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 30px;background:var(--green);
+  color:var(--bg);font-weight:600;font-size:14px;
+  border-radius:100px;text-decoration:none;
+  transition:background 0.15s,transform 0.1s;
+}
+.btn-primary:hover{background:#86efac;transform:translateY(-1px);}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;border:1px solid var(--border2);
+  color:var(--text2);font-size:14px;border-radius:100px;
+  text-decoration:none;transition:all 0.15s;
+}
+.btn-secondary:hover{border-color:var(--border2);color:var(--text);}
+.cta-email{font-size:13px;color:var(--text3);}
+.cta-email a{color:var(--text2);text-decoration:none;border-bottom:1px solid var(--border2);transition:color 0.15s;}
+.cta-email a:hover{color:var(--text);}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);padding:2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;position:relative;z-index:1;
+  background:var(--bg);
+}
+.footer-left{display:flex;align-items:center;gap:10px;}
+.footer-copy{font-size:12px;color:var(--text3);}
+.footer-links{display:flex;gap:1.75rem;list-style:none;}
+.footer-links a{font-size:12px;color:var(--text3);text-decoration:none;transition:color 0.15s;}
+.footer-links a:hover{color:var(--text2);}
+
+
+/* ── THEME TOGGLE BUTTON ── */
+#theme-toggle {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border2);
+  background: var(--bg3);
+  color: var(--text2);
+  font-size: 15px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  flex-shrink: 0;
+  line-height: 1;
+}
+#theme-toggle:hover {
+  background: var(--bg2);
+  border-color: var(--green);
+  color: var(--green);
+  transform: scale(1.08);
+}
+#theme-toggle:active { transform: scale(0.95); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  #ch-hello .chapter-inner{grid-template-columns:1fr;}
+  .hello-photo-wrap{display:none;}
+  .two-col{grid-template-columns:1fr;}
+  .about-layout{grid-template-columns:1fr;}
+  .about-photo-col{display:flex;gap:1.5rem;align-items:flex-start;}
+  .cred-stack{width:auto;flex:1;}
+  .steps{grid-template-columns:1fr 1fr;}
+  .services-grid{grid-template-columns:1fr;}
+  .nav-right .nav-link-hide{display:none;}
+  footer{flex-direction:column;text-align:center;}
+}
+@media(max-width:540px){
+  .chapter{padding:90px 1.25rem 60px;}
+  .hello-h1{font-size:2.8rem;}
+  .ch-answer{font-size:2.4rem;}
+  .steps{grid-template-columns:1fr;}
+  .facts-grid{grid-template-columns:1fr;}
+  nav{padding:0 1.25rem;}
+}
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">
-      <div class="nav-logo-mark">GW</div>
-      <div class="nav-logo-text">
-        GroundWork Digital
-        <span>Gatineau · Outaouais · Pontiac</span>
-      </div>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#process">How It Works</a></li>
-      <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
-    </ul>
-  </nav>
+<!-- TECH GRID CANVAS -->
+<canvas id="grid-canvas"></canvas>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-grid"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">Serving Gatineau, the Outaouais & Pontiac Region</div>
-      <h1>Your business deserves<br/>more than a <em>Facebook page.</em></h1>
-      <p class="hero-sub">
-        GroundWork Digital helps local businesses get found online, look professional, and use modern tools — without the tech headache. Plain language. Real results.
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Book a Free Chat</a>
-        <a href="#services" class="btn-secondary">See What We Do</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <div class="stat-num">25+</div>
-          <div class="stat-label">Years IT Experience</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">Free</div>
-          <div class="stat-label">Initial Consultation</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">Local</div>
-          <div class="stat-label">Pontiac Roots</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">2026</div>
-          <div class="stat-label">Ready Strategies</div>
-        </div>
+<!-- NAV -->
+<nav>
+  <a href="#ch-hello" class="nav-logo">
+    <div class="logo-mark">GW</div>
+    <div>
+      <div class="logo-name">GroundWork Digital</div>
+      <div class="logo-sub">Gatineau · Outaouais · Pontiac</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="#ch-services" class="nav-link-hide">Services</a>
+    <a href="#ch-about" class="nav-link-hide">About</a>
+    <a href="#ch-process" class="nav-link-hide">Process</a>
+    <a href="mailto:terry@groundwork-digital.ca" class="nav-cta">Free Chat</a>
+    <button id="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle theme">
+      <span id="theme-icon">☀</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="chapter" id="ch-hello">
+  <div class="chapter-inner">
+    <div class="hello-text">
+      <div class="hello-label">Gatineau · Outaouais · Pontiac</div>
+      <h1 class="hello-h1">Your business deserves<br>more than a <em>Facebook&nbsp;page.</em></h1>
+      <p class="hello-sub">GroundWork Digital helps local businesses get found online, look professional, and use modern tools — without the tech headache. Plain language. Real results.</p>
+      <div class="hello-stats">
+        <div class="hstat"><div class="hstat-num">25+</div><div class="hstat-label">Years IT Experience</div></div>
+        <div class="hstat"><div class="hstat-num">Free</div><div class="hstat-label">First Consultation</div></div>
+        <div class="hstat"><div class="hstat-num">Local</div><div class="hstat-label">Pontiac Roots</div></div>
       </div>
     </div>
-  </section>
-
-  <!-- TRUST BAR -->
-  <div class="trust-bar">
-    <div class="trust-bar-inner">
-      <div class="trust-item"><div class="trust-dot"></div>Websites & Landing Pages</div>
-      <div class="trust-item"><div class="trust-dot"></div>Google Business Profile</div>
-      <div class="trust-item"><div class="trust-dot"></div>Social Media Management</div>
-      <div class="trust-item"><div class="trust-dot"></div>AI Tool Integration</div>
-      <div class="trust-item"><div class="trust-dot"></div>Local SEO</div>
-      <div class="trust-item"><div class="trust-dot"></div>No Jargon. Ever.</div>
+    <div class="hello-photo-wrap">
+      <img src="https://www.groundwork-digital.ca/terry_headshot_cropped.png" alt="Terry Bevvan" class="hello-photo"/>
+      <div class="hello-photo-card">
+        <div class="name">Terry Bevvan</div>
+        <div class="title">Founder · Aylmer, QC</div>
+      </div>
     </div>
   </div>
+  <div style="max-width:780px;margin:3rem auto 0;width:100%;padding:0;position:relative;z-index:1;">
+    <a href="#ch-problem" class="ch-next">So what's the actual problem? <span class="ch-next-arrow">→</span></a>
+  </div>
+</section>
 
-  <!-- PROBLEM -->
-  <section class="problem" id="about">
-    <div class="section-inner">
-      <div class="problem-grid">
-        <div>
-          <p class="section-eyebrow">The Problem</p>
-          <h2>90% of local businesses are <em>invisible online.</em></h2>
-          <p class="section-lead">
-            If someone searches for your service on Google and you're not there — they're calling your competitor. Whether you're in Gatineau, the Pontiac or anywhere in the Outaouais, it's that simple.
-          </p>
-          <ul class="problem-list">
-            <li class="problem-item reveal">
-              <div class="problem-icon">🔍</div>
-              <div class="problem-text">
-                <strong>Not showing up on Google</strong>
-                <p>When strangers search for your service locally, they can't find you — even if you've been in business for years.</p>
-              </div>
-            </li>
-            <li class="problem-item reveal">
-              <div class="problem-icon">📱</div>
-              <div class="problem-text">
-                <strong>Only a Facebook page</strong>
-                <p>Facebook only reaches people who already know you. A website reaches everyone who's looking for you.</p>
-              </div>
-            </li>
-            <li class="problem-item reveal">
-              <div class="problem-icon">🤖</div>
-              <div class="problem-text">
-                <strong>AI feels overwhelming</strong>
-                <p>Everyone's talking about AI but nobody's explaining what it actually means for a small local business. We will.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="problem-visual reveal">
-          <p class="problem-quote">"I know a guy" only works if people can <em>find</em> the guy.</p>
-          <p class="problem-attribution">
-            Word of mouth is powerful — but it has limits. A strong digital presence means people can find you even when they don't know you yet. That's new customers, not just referrals.
-          </p>
-          <br/>
-          <p style="color: var(--green-pale); font-size: 0.9rem; line-height: 1.7; font-weight: 300;">
-            Across Gatineau, the Outaouais and the Pontiac region, most local business owners are hardworking, skilled and trusted in their community. What they're missing isn't ability — it's visibility. GroundWork Digital fixes that.
-          </p>
-        </div>
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item">Websites &amp; Landing Pages</span>
+    <span class="ticker-item">Google Business Profile</span>
+    <span class="ticker-item">Local SEO</span>
+    <span class="ticker-item">AI Tool Integration</span>
+    <span class="ticker-item">Social Media Content</span>
+    <span class="ticker-item">Digital Strategy</span>
+    <span class="ticker-item">No Jargon. Ever.</span>
+    <span class="ticker-item">Websites &amp; Landing Pages</span>
+    <span class="ticker-item">Google Business Profile</span>
+    <span class="ticker-item">Local SEO</span>
+    <span class="ticker-item">AI Tool Integration</span>
+    <span class="ticker-item">Social Media Content</span>
+    <span class="ticker-item">Digital Strategy</span>
+    <span class="ticker-item">No Jargon. Ever.</span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="chapter" id="ch-problem">
+  <div class="chapter-inner">
+    <div class="ch-question">The problem</div>
+    <span class="problem-stat-big">90%</span>
+    <div class="ch-answer">of local businesses are <em>invisible online.</em></div>
+    <div class="ch-body"><p>If someone searches for your service on Google and you're not there — they're calling your competitor. Whether you're in Gatineau, the Pontiac or anywhere in the Outaouais, it's that simple.</p></div>
+    <div class="problem-list">
+      <div class="problem-item"><div class="p-icon">🔍</div><div class="p-text"><h3>Not showing up on Google</h3><p>When strangers search for your service locally, they can't find you — even if you've been in business for years.</p></div></div>
+      <div class="problem-item"><div class="p-icon">📱</div><div class="p-text"><h3>Only a Facebook page</h3><p>Facebook only reaches people who already know you. A website reaches everyone who's looking for you.</p></div></div>
+      <div class="problem-item"><div class="p-icon">🤖</div><div class="p-text"><h3>AI feels overwhelming</h3><p>Everyone's talking about AI but nobody's explaining what it actually means for a small local business. We will.</p></div></div>
+    </div>
+    <div class="pull-quote"><p>"I know a guy" only works if people can <em>find</em> the guy.</p></div>
+    <a href="#ch-services" class="ch-next">Okay, so what do you actually do? <span class="ch-next-arrow">→</span></a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="chapter" id="ch-services">
+  <div class="chapter-inner">
+    <div class="ch-question">What we do</div>
+    <div class="ch-answer">Everything your business needs to <em>get found.</em></div>
+    <div class="ch-body"><p>No packages. No confusing bundles. Just the services that actually move the needle for local businesses.</p></div>
+    <div class="services-grid">
+      <div class="svc"><div class="svc-num">01</div><div class="svc-icon">🌐</div><h3>Websites &amp; Landing Pages</h3><p>A clean, professional website that works on any device. People searching for your service will find you, trust you and contact you.</p><span class="svc-badge">Most Popular</span></div>
+      <div class="svc"><div class="svc-num">02</div><div class="svc-icon">📍</div><h3>Google Business Profile</h3><p>Show up when people search locally. We set up and optimize your Google listing so you appear in maps and local search results.</p><span class="svc-badge">Quick Win</span></div>
+      <div class="svc"><div class="svc-num">03</div><div class="svc-icon">📣</div><h3>Social Media Content</h3><p>Regular, professional posts that keep your page alive and your business top of mind. We write it, design it and schedule it.</p><span class="svc-badge">Recurring</span></div>
+      <div class="svc"><div class="svc-num">04</div><div class="svc-icon">🤖</div><h3>AI Tool Consulting</h3><p>Practical AI tools that save you real time and money. We show you exactly what applies to your business — nothing more.</p><span class="svc-badge">Future-Ready</span></div>
+      <div class="svc"><div class="svc-num">05</div><div class="svc-icon">🔎</div><h3>Local SEO</h3><p>Get found by people searching in your area. We optimize your online presence so Google points local customers to you first.</p><span class="svc-badge">Long-Term</span></div>
+      <div class="svc"><div class="svc-num">06</div><div class="svc-icon">💬</div><h3>Digital Strategy Consult</h3><p>Not sure where to start? We sit down together and map out exactly what your business needs — and what it doesn't.</p><span class="svc-badge">Start Here</span></div>
+    </div>
+    <a href="#ch-why" class="ch-next">Why should I hire you — and why shouldn't I? <span class="ch-next-arrow">→</span></a>
+  </div>
+</section>
+
+<!-- WHY / WHY NOT -->
+<section class="chapter" id="ch-why">
+  <div class="chapter-inner">
+    <div class="ch-question">Honest answers</div>
+    <div class="ch-answer">Why you should — and <em>shouldn't</em> — hire me.</div>
+    <div class="ch-body"><p>I'd rather give you the real picture up front than waste both our time.</p></div>
+    <div class="two-col">
+      <div class="why-block hire">
+        <h3>✓ Hire me if…</h3>
+        <ul class="why-list">
+          <li><div><strong>You want someone local who gets it.</strong> I grew up in the Pontiac. I know the region, the clients, the culture.</div></li>
+          <li><div><strong>You want to talk to the person doing the work.</strong> No account managers. No juniors. Just me, start to finish.</div></li>
+          <li><div><strong>You're tired of jargon.</strong> Plain language. You'll always know what's happening and why.</div></li>
+          <li><div><strong>You want 25 years of IT behind your project.</strong> Bell Canada. House of Commons. Not a hobbyist.</div></li>
+          <li><div><strong>You need results, not reports.</strong> More calls. More walk-ins. Measurable growth.</div></li>
+        </ul>
+      </div>
+      <div class="why-block nothire">
+        <h3>✗ Don't hire me if…</h3>
+        <ul class="why-list">
+          <li><div><strong>You want the big agency experience.</strong> No catered lunches, no Trademarked Process™.</div></li>
+          <li><div><strong>You already know exactly what you want.</strong> If you just need someone to push buttons, I'm not your guy.</div></li>
+          <li><div><strong>You have an aggressive timeline and I'm booked.</strong> My time is finite. I'll always tell you up front.</div></li>
+          <li><div><strong>You don't value your online presence.</strong> I won't try to convince you. The businesses that win already believe it matters.</div></li>
+        </ul>
       </div>
     </div>
-  </section>
+    <a href="#ch-about" class="ch-next">Okay, but who are you really? <span class="ch-next-arrow">→</span></a>
+  </div>
+</section>
 
-  <!-- SERVICES -->
-  <section class="services" id="services">
-    <div class="section-inner">
-      <p class="section-eyebrow reveal">What We Do</p>
-      <h2 class="reveal">Everything your business needs to <em>get found.</em></h2>
-      <p class="section-lead reveal">No packages. No confusing bundles. Just the services that actually move the needle for local businesses.</p>
-      <div class="services-grid">
-        <div class="service-card reveal">
-          <div class="service-icon">🌐</div>
-          <h3>Websites & Landing Pages</h3>
-          <p>A clean, professional website that works on any device. People searching for your service will find you, trust you and contact you.</p>
-          <span class="service-tag">Most Popular</span>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">📍</div>
-          <h3>Google Business Profile</h3>
-          <p>Show up when people search locally. We set up and optimize your Google listing so you appear in maps and local search results.</p>
-          <span class="service-tag">Quick Win</span>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">📣</div>
-          <h3>Social Media Content</h3>
-          <p>Regular, professional posts that keep your page alive and your business top of mind. We write it, design it and schedule it.</p>
-          <span class="service-tag">Recurring</span>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">🤖</div>
-          <h3>AI Tool Consulting</h3>
-          <p>Practical AI tools that save you real time and money. We show you exactly what applies to your business — nothing more.</p>
-          <span class="service-tag">Future-Ready</span>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">🔎</div>
-          <h3>Local SEO</h3>
-          <p>Get found by people searching in your area. We optimize your online presence so Google points local customers to you first.</p>
-          <span class="service-tag">Long-Term</span>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">💬</div>
-          <h3>Digital Strategy Consult</h3>
-          <p>Not sure where to start? We sit down together and map out exactly what your business needs — and what it doesn't.</p>
-          <span class="service-tag">Start Here</span>
+<!-- ABOUT -->
+<section class="chapter" id="ch-about">
+  <div class="chapter-inner">
+    <div class="ch-question">Who is Terry?</div>
+    <div class="ch-answer">Not a city agency. <em>Local through and through.</em></div>
+    <div class="about-layout">
+      <div class="about-photo-col">
+        <img src="https://www.groundwork-digital.ca/terry_headshot_cropped.png" alt="Terry Bevvan — Founder of GroundWork Digital" class="about-img"/>
+        <div class="cred-stack">
+          <div class="cred-row"><span>Bell Canada</span><span>10 yrs</span></div>
+          <div class="cred-row"><span>House of Commons</span><span>15 yrs</span></div>
+          <div class="cred-row"><span>AI &amp; Web Dev</span><span>Current</span></div>
+          <div class="cred-row"><span>Pontiac / Aylmer</span><span>Home</span></div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- WHY ME -->
-  <section class="why">
-    <div class="section-inner">
-      <div class="why-grid">
-        <div>
-          <p class="section-eyebrow reveal">Why GroundWork Digital</p>
-          <h2 class="reveal">Not a city agency.<br/><em>Local through and through.</em></h2>
-          <p class="section-lead reveal">You're not dealing with a faceless company. You're working with someone who grew up in the Pontiac, lives in Aylmer and understands the Outaouais business community inside and out.</p>
-          <div class="why-points">
-            <div class="why-point reveal">
-              <div class="why-num">01</div>
-              <div class="why-point-content">
-                <h3>25+ Years of Real IT Experience</h3>
-                <p>From Bell Canada to the House of Commons — not a hobbyist. A proven professional who builds things that actually work.</p>
-              </div>
-            </div>
-            <div class="why-point reveal">
-              <div class="why-num">02</div>
-              <div class="why-point-content">
-                <h3>Local Roots, Regional Reach</h3>
-                <p>From Fort-Coulonge to Aylmer to Gatineau — this is home. Whether you're in the Pontiac or the heart of the Outaouais, your success matters personally.</p>
-              </div>
-            </div>
-            <div class="why-point reveal">
-              <div class="why-num">03</div>
-              <div class="why-point-content">
-                <h3>No Jargon, No Nonsense</h3>
-                <p>We speak your language. No tech buzzwords, no confusing proposals. Just a clear plan and honest conversation.</p>
-              </div>
-            </div>
-          </div>
+      <div class="about-text">
+        <div class="ch-body">
+          <p>I grew up in the Pontiac. My family is still there. After 25+ years in IT — at Bell Canada and the House of Commons — I'm now bringing those skills to help small businesses across Gatineau, the Outaouais and the Pontiac get the digital presence they deserve.</p>
+          <p>You're not dealing with a faceless company. You're working with someone who knows the region, speaks the language (both of them), and genuinely wants to see local businesses thrive.</p>
+          <p>When you hire GroundWork Digital, you get me. From the first call to the day your site goes live — and every call after that.</p>
         </div>
-        <div class="why-card reveal">
-          <div class="why-card-inner">
-            <div class="why-card-photo-wrap">
-              <img src="terry_headshot_cropped.png" alt="Terry Bevvan — Founder of GroundWork Digital" class="why-card-photo" />
-              <div class="why-card-photo-ring"></div>
-            </div>
-            <div class="why-card-body">
-              <div class="why-card-name">Terry Bevvan</div>
-              <div class="why-card-title">Founder — GroundWork Digital</div>
-              <p class="why-card-bio">
-                I grew up in the Pontiac and now live in Aylmer. My family is still there. I've spent 25+ years in IT — at Bell Canada and the House of Commons — and now I'm bringing those skills to help small businesses across Gatineau, the Outaouais and the Pontiac get the digital presence they deserve.
-              </p>
-              <div class="why-badges">
-                <span class="badge">Bell Canada — 10 years</span>
-                <span class="badge">House of Commons — 15 years</span>
-                <span class="badge">AI & Web Development</span>
-                <span class="badge">Gatineau · Outaouais · Pontiac</span>
-              </div>
-            </div>
+        <div class="fun-facts">
+          <h4>A few things about me</h4>
+          <div class="facts-grid">
+            <div class="fact"><div class="fact-dot"></div><span>Grew up in Fort-Coulonge, QC</span></div>
+            <div class="fact"><div class="fact-dot"></div><span>Now in Aylmer, Quebec</span></div>
+            <div class="fact"><div class="fact-dot"></div><span>Bilingual — EN / FR</span></div>
+            <div class="fact"><div class="fact-dot"></div><span>25+ years in IT</span></div>
+            <div class="fact"><div class="fact-dot"></div><span>Local first, always</span></div>
+            <div class="fact"><div class="fact-dot"></div><span>No jargon. Ever.</span></div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+    <a href="#ch-process" class="ch-next">How does it actually work? <span class="ch-next-arrow">→</span></a>
+  </div>
+</section>
 
-  <!-- PROCESS -->
-  <section class="process" id="process">
-    <div class="section-inner">
-      <p class="section-eyebrow reveal">How It Works</p>
-      <h2 class="reveal">Simple as a <em>handshake.</em></h2>
-      <p class="section-lead reveal">No complicated onboarding. No confusing contracts. Just a straightforward process that gets your business online fast.</p>
-      <div class="process-steps">
-        <div class="process-step reveal">
-          <div class="step-circle">1</div>
-          <h3>Free Chat</h3>
-          <p>We talk about your business, your goals and what's missing. No pressure, no pitch. Just an honest conversation.</p>
-        </div>
-        <div class="process-step reveal">
-          <div class="step-circle">2</div>
-          <h3>Clear Plan</h3>
-          <p>You get a simple, plain-language plan showing exactly what we'll do, what it costs and what to expect.</p>
-        </div>
-        <div class="process-step reveal">
-          <div class="step-circle">3</div>
-          <h3>We Build It</h3>
-          <p>We handle everything — design, setup, launch. You stay focused on running your business.</p>
-        </div>
-        <div class="process-step reveal">
-          <div class="step-circle">4</div>
-          <h3>You Get Found</h3>
-          <p>Your business shows up where customers are looking. More calls. More walk-ins. More growth.</p>
-        </div>
-      </div>
+<!-- PROCESS -->
+<section class="chapter" id="ch-process">
+  <div class="chapter-inner">
+    <div class="ch-question">How it works</div>
+    <div class="ch-answer">Simple as a <em>handshake.</em></div>
+    <div class="ch-body"><p>No complicated onboarding. No confusing contracts. Just a straightforward process that gets your business online fast.</p></div>
+    <div class="steps">
+      <div class="step"><span class="step-n">01</span><h3>Free Chat</h3><p>We talk about your business, your goals and what's missing. No pressure, no pitch. Just an honest conversation.</p></div>
+      <div class="step"><span class="step-n">02</span><h3>Clear Plan</h3><p>You get a simple, plain-language plan showing exactly what we'll do, what it costs and what to expect.</p></div>
+      <div class="step"><span class="step-n">03</span><h3>We Build It</h3><p>We handle everything — design, setup, launch. You stay focused on running your business.</p></div>
+      <div class="step"><span class="step-n">04</span><h3>You Get Found</h3><p>Your business shows up where customers are looking. More calls. More walk-ins. More growth.</p></div>
     </div>
-  </section>
+    <a href="#ch-contact" class="ch-next">Alright. Let's talk. <span class="ch-next-arrow">→</span></a>
+  </div>
+</section>
 
-  <!-- CTA -->
-  <section class="cta-section" id="contact">
-    <div class="section-inner">
-      <h2>Ready to stop being invisible?</h2>
-      <p>Book a free 30-minute consultation. We'll talk about your business and figure out exactly what you need — no obligation, no hard sell.</p>
-      <a href="mailto:terry@groundwork-digital.ca" class="btn-white">Book Your Free Chat</a>
-      <p class="cta-contact">
-        Or reach out directly: <a href="mailto:terry@groundwork-digital.ca">terry@groundwork-digital.ca</a>
-      </p>
+<!-- CTA -->
+<section class="chapter" id="ch-contact">
+  <div class="chapter-inner">
+    <div class="ch-question">Let's go</div>
+    <div class="cta-h2">Ready to stop being <em>invisible?</em></div>
+    <p class="cta-sub">Book a free 30-minute consultation. We'll talk about your business and figure out exactly what you need — no obligation, no hard sell.</p>
+    <div class="cta-buttons">
+      <a href="mailto:terry@groundwork-digital.ca" class="btn-primary">Book Your Free Chat →</a>
+      <a href="tel:+16132924762" class="btn-secondary">Call Terry</a>
     </div>
-  </section>
+    <p class="cta-email">Or email directly: <a href="mailto:terry@groundwork-digital.ca">terry@groundwork-digital.ca</a></p>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        GroundWork Digital
-        <span>groundwork-digital.ca · Aylmer, Quebec · Outaouais & Pontiac</span>
-      </div>
-      <ul class="footer-links">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#process">Process</a></li>
-        <li><a href="mailto:terry@groundwork-digital.ca">Contact</a></li>
-      </ul>
-      <div class="footer-copy">© 2026 GroundWork Digital. All rights reserved.</div>
-    </div>
-  </footer>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <div class="logo-mark" style="width:26px;height:26px;font-size:10px;">GW</div>
+    <span class="footer-copy">© 2026 GroundWork Digital · Aylmer, Quebec</span>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#ch-services">Services</a></li>
+    <li><a href="#ch-about">About</a></li>
+    <li><a href="#ch-process">Process</a></li>
+    <li><a href="mailto:terry@groundwork-digital.ca">Contact</a></li>
+  </ul>
+</footer>
 
-  <script>
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, 100);
-          observer.unobserve(entry.target);
-        }
+<script>
+// ── THEME TOGGLE ────────────────────────────────────────────────────────
+(function() {
+  const html  = document.documentElement;
+  const btn   = document.getElementById('theme-toggle');
+  const icon  = document.getElementById('theme-icon');
+  const DARK  = '☀';   // show sun when in dark mode (click to go light)
+  const LIGHT = '☾';   // show moon when in light mode (click to go dark)
+
+  // Restore saved preference
+  const saved = localStorage.getItem('gwd-theme');
+  if (saved === 'light') { html.classList.add('light'); icon.textContent = LIGHT; }
+  else { icon.textContent = DARK; }
+
+  btn.addEventListener('click', function() {
+    const isLight = html.classList.contains('light');
+    // Add transition class, swap, remove after animation
+    html.classList.add('transitioning');
+    setTimeout(() => html.classList.remove('transitioning'), 400);
+
+    if (isLight) {
+      html.classList.remove('light');
+      icon.textContent = DARK;
+      localStorage.setItem('gwd-theme', 'dark');
+    } else {
+      html.classList.add('light');
+      icon.textContent = LIGHT;
+      localStorage.setItem('gwd-theme', 'light');
+    }
+
+    // Tell canvas to repaint with new color
+    if (window.gwdGridColor) window.gwdGridColor();
+  });
+})();
+</script>
+
+<script>
+(function() {
+  const canvas = document.getElementById('grid-canvas');
+  const ctx = canvas.getContext('2d');
+
+  // ── CONFIG ──────────────────────────────────────────
+  const CELL      = 48;       // grid cell size px
+  const DOT_R     = 1.5;      // intersection dot radius
+  const LINE_OP   = 0.045;    // base grid line opacity
+  const DOT_OP    = 0.18;     // dot opacity
+  // Read green from CSS var so it adapts to light/dark mode
+  function getGreen() {
+    return getComputedStyle(document.documentElement)
+      .getPropertyValue('--green-rgb').trim() || '74,222,128';
+  }
+  let GREEN = getGreen();
+  // Expose refresh hook for theme toggle
+  window.gwdGridColor = function() { GREEN = getGreen(); };
+
+  // Animated pulse nodes — bright lit intersections that drift
+  const NUM_PULSES = 18;
+  const pulses = [];
+
+  // Animated scan lines
+  const NUM_SCANS = 3;
+  const scans = [];
+
+  // Animated data paths — packets moving along grid edges
+  const NUM_PACKETS = 12;
+  const packets = [];
+
+  let W, H, cols, rows;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    cols = Math.ceil(W / CELL) + 2;
+    rows = Math.ceil(H / CELL) + 2;
+  }
+
+  function initPulses() {
+    pulses.length = 0;
+    for (let i = 0; i < NUM_PULSES; i++) {
+      pulses.push({
+        col: Math.floor(Math.random() * (cols - 2)) + 1,
+        row: Math.floor(Math.random() * (rows - 2)) + 1,
+        life: Math.random(),          // 0–1 cycle position
+        speed: 0.003 + Math.random() * 0.004,
+        maxR: 18 + Math.random() * 28,
+        bright: 0.5 + Math.random() * 0.5,
       });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
+    }
+  }
 
-    // Smooth nav highlight
-    const sections = document.querySelectorAll('section[id]');
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('nav');
-      if (window.scrollY > 50) {
-        nav.style.background = 'rgba(26, 42, 26, 0.98)';
-      } else {
-        nav.style.background = 'rgba(26, 42, 26, 0.96)';
-      }
+  function initScans() {
+    scans.length = 0;
+    for (let i = 0; i < NUM_SCANS; i++) {
+      scans.push({
+        y: Math.random() * H,
+        speed: 0.15 + Math.random() * 0.25, // px per frame
+        opacity: 0.03 + Math.random() * 0.04,
+      });
+    }
+  }
+
+  function initPackets() {
+    packets.length = 0;
+    for (let i = 0; i < NUM_PACKETS; i++) {
+      spawnPacket();
+    }
+  }
+
+  function spawnPacket() {
+    // pick a random grid edge to travel along
+    const horiz = Math.random() > 0.5;
+    const col = Math.floor(Math.random() * (cols - 2)) + 1;
+    const row = Math.floor(Math.random() * (rows - 2)) + 1;
+    const len = (2 + Math.floor(Math.random() * 5)) * CELL; // path length in px
+    packets.push({
+      horiz,
+      x: col * CELL,
+      y: row * CELL,
+      t: 0,          // 0 → len  progress
+      len,
+      speed: 0.6 + Math.random() * 1.2,
+      opacity: 0.35 + Math.random() * 0.45,
+      width: 2 + Math.random() * 2,
+      dir: Math.random() > 0.5 ? 1 : -1,
     });
-  </script>
+  }
 
+  function drawGrid() {
+    ctx.clearRect(0, 0, W, H);
+
+    // ── 1. BASE GRID LINES ───────────────────────────
+    ctx.strokeStyle = `rgba(${GREEN},${LINE_OP})`;
+    ctx.lineWidth = 0.5;
+    ctx.beginPath();
+    for (let c = 0; c <= cols; c++) {
+      const x = c * CELL;
+      ctx.moveTo(x, 0); ctx.lineTo(x, H);
+    }
+    for (let r = 0; r <= rows; r++) {
+      const y = r * CELL;
+      ctx.moveTo(0, y); ctx.lineTo(W, y);
+    }
+    ctx.stroke();
+
+    // ── 2. INTERSECTION DOTS ─────────────────────────
+    ctx.fillStyle = `rgba(${GREEN},${DOT_OP})`;
+    for (let c = 0; c <= cols; c++) {
+      for (let r = 0; r <= rows; r++) {
+        ctx.beginPath();
+        ctx.arc(c * CELL, r * CELL, DOT_R, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // ── 3. PULSE RINGS at intersections ──────────────
+    for (const p of pulses) {
+      p.life += p.speed;
+      if (p.life > 1) {
+        p.life = 0;
+        p.col = Math.floor(Math.random() * (cols - 2)) + 1;
+        p.row = Math.floor(Math.random() * (rows - 2)) + 1;
+      }
+      const t  = p.life;
+      const cx = p.col * CELL;
+      const cy = p.row * CELL;
+      const r  = t * p.maxR;
+      const op = p.bright * (1 - t) * 0.5;
+
+      // outer ring
+      ctx.strokeStyle = `rgba(${GREEN},${op})`;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // inner bright dot flash at start of cycle
+      if (t < 0.15) {
+        const dotOp = p.bright * (1 - t / 0.15) * 0.9;
+        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 6);
+        grad.addColorStop(0, `rgba(${GREEN},${dotOp})`);
+        grad.addColorStop(1, `rgba(${GREEN},0)`);
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 6, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // ── 4. HORIZONTAL SCAN LINES ─────────────────────
+    for (const s of scans) {
+      s.y += s.speed;
+      if (s.y > H + 80) s.y = -80;
+      const grad = ctx.createLinearGradient(0, s.y - 40, 0, s.y + 40);
+      grad.addColorStop(0,   `rgba(${GREEN},0)`);
+      grad.addColorStop(0.5, `rgba(${GREEN},${s.opacity})`);
+      grad.addColorStop(1,   `rgba(${GREEN},0)`);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, s.y - 40, W, 80);
+    }
+
+    // ── 5. DATA PACKET TRAILS ────────────────────────
+    for (let i = packets.length - 1; i >= 0; i--) {
+      const pk = packets[i];
+      pk.t += pk.speed;
+      if (pk.t > pk.len) {
+        packets.splice(i, 1);
+        spawnPacket();
+        continue;
+      }
+
+      const progress = pk.t / pk.len;
+      const headX = pk.horiz ? pk.x + pk.dir * pk.t          : pk.x;
+      const headY = pk.horiz ? pk.y                           : pk.y + pk.dir * pk.t;
+      const tailX = pk.horiz ? pk.x + pk.dir * Math.max(0, pk.t - 40) : pk.x;
+      const tailY = pk.horiz ? pk.y : pk.y + pk.dir * Math.max(0, pk.t - 40);
+
+      const grad = pk.horiz
+        ? ctx.createLinearGradient(tailX, headY, headX, headY)
+        : ctx.createLinearGradient(headX, tailY, headX, headY);
+
+      const fadeIn  = Math.min(1, progress * 4);
+      const fadeOut = Math.min(1, (1 - progress) * 4);
+      const op = pk.opacity * fadeIn * fadeOut;
+
+      grad.addColorStop(0, `rgba(${GREEN},0)`);
+      grad.addColorStop(1, `rgba(${GREEN},${op})`);
+
+      ctx.strokeStyle = grad;
+      ctx.lineWidth   = pk.width;
+      ctx.beginPath();
+      ctx.moveTo(tailX, tailY);
+      ctx.lineTo(headX, headY);
+      ctx.stroke();
+
+      // bright head dot
+      ctx.fillStyle = `rgba(${GREEN},${op * 1.4})`;
+      ctx.beginPath();
+      ctx.arc(headX, headY, pk.width * 0.8, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  // ── FADE: canvas fades as page scrolls ──────────────
+  function updateFade() {
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const fadeStart = window.innerHeight * 0.6;
+    const fadeEnd   = window.innerHeight * 1.8;
+    const t = Math.max(0, Math.min(1, (scrollY - fadeStart) / (fadeEnd - fadeStart)));
+    canvas.style.opacity = 1 - t * 0.85;
+  }
+
+  let animId;
+  function loop() {
+    drawGrid();
+    updateFade();
+    animId = requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('resize', () => {
+    resize();
+    initPulses();
+  });
+
+  window.addEventListener('scroll', updateFade, { passive: true });
+
+  resize();
+  initPulses();
+  initScans();
+  initPackets();
+  loop();
+})();
+</script>
 </body>
 </html>
