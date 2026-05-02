@@ -118,7 +118,11 @@ section.content-section.alt{background:var(--bg2);}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .form-submit{width:100%;padding:14px;background:var(--green);color:var(--bg);font-weight:600;font-size:15px;font-family:var(--sans);border:none;border-radius:100px;cursor:pointer;transition:background .15s,transform .1s;margin-top:.5rem;}
 .form-submit:hover{background:#86efac;transform:translateY(-1px);}
+.form-submit:disabled{opacity:.65;cursor:not-allowed;transform:none;}
 html.light .form-submit:hover{background:#15803d;}
+.form-status{display:none;margin-top:1rem;padding:1rem 1.25rem;border:1px solid var(--border2);border-radius:12px;font-size:13px;line-height:1.6;color:var(--text2);background:var(--bg3);}
+.form-status.success{display:block;border-color:var(--green);background:var(--green-dim);color:var(--text);}
+.form-status.error{display:block;border-color:#ef4444;color:var(--text);}
 @media(max-width:760px){.contact-grid{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}}
 
 </style>
@@ -181,9 +185,8 @@ html.light .form-submit:hover{background:#15803d;}
       </div>
 
       <div>
-        <form class="quote-form" name="contact" method="POST" netlify netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="contact"/>
-          <p style="display:none;"><label>Don't fill this out if you're human: <input name="bot-field"/></label></p>
+        <form class="quote-form" name="contact" method="POST" action="api/contact">
+          <p style="display:none;"><label>Don't fill this out if you're human: <input name="website" tabindex="-1" autocomplete="off"/></label></p>
           <div class="form-heading">Get a Free Quote</div>
           <div class="form-sub">Fill this out and I'll get back to you within one business day.</div>
 
@@ -212,6 +215,7 @@ html.light .form-submit:hover{background:#15803d;}
           </div>
           <div class="form-group"><label>Tell me a bit about your business</label><textarea name="message" placeholder="What do you do, where are you located, and what's your biggest challenge right now?"></textarea></div>
           <button type="submit" class="form-submit">Send My Request →</button>
+          <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
         </form>
         <div id="form-thanks" style="display:none;background:var(--green-dim);border:1px solid var(--green);border-radius:16px;padding:2.5rem;text-align:center;margin-top:1rem;">
           <p style="font-family:var(--serif);font-size:1.5rem;color:var(--text);margin-bottom:.5rem;">Message received! ✓</p>
@@ -267,6 +271,38 @@ html.light .form-submit:hover{background:#15803d;}
 </footer>
 </div>
 <script>
+// Vercel contact form
+(function(){
+  const form=document.querySelector('.quote-form');
+  const status=document.getElementById('form-status');
+  const thanks=document.getElementById('form-thanks');
+  if(!form||!status)return;
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    const button=form.querySelector('.form-submit');
+    const original=button?button.textContent:'';
+    if(button){button.disabled=true;button.textContent='Sending...';}
+    status.className='form-status';
+    status.textContent='';
+    try{
+      const res=await fetch(form.getAttribute('action'),{
+        method:'POST',
+        headers:{'Accept':'application/json'},
+        body:new FormData(form)
+      });
+      const data=await res.json().catch(()=>({}));
+      if(!res.ok)throw new Error(data.error||'The message could not be sent.');
+      form.style.display='none';
+      if(thanks)thanks.style.display='block';
+    }catch(err){
+      status.className='form-status error';
+      status.innerHTML='Something went wrong sending the form. Please email <a href="mailto:terry@groundwork-digital.ca" style="color:var(--green);">terry@groundwork-digital.ca</a> or call <a href="tel:+16132924762" style="color:var(--green);">613-292-4762</a>.';
+    }finally{
+      if(button){button.disabled=false;button.textContent=original;}
+    }
+  });
+})();
+
 /* GWD SHARED JS — paste into every page's <script> block */
 
 // ── THEME TOGGLE ──────────────────────────────────────────────
