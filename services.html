@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Home — GroundWork Digital</title>
-<meta name="description" content="GroundWork Digital helps local businesses in Gatineau, Outaouais and Pontiac get found online. Websites, SEO, Google Business, social media, apparel and more."/>
-<meta property="og:title" content="GroundWork Digital — Local Websites, SEO & Digital Marketing"/>
-<meta property="og:description" content="GroundWork Digital helps local businesses in Gatineau, the Outaouais, and Pontiac get found online, look professional, and grow."/>
+<title>Services — GroundWork Digital</title>
+<meta name="description" content="Websites, SEO, Google Business, social media, logo design, apparel and more — GroundWork Digital offers everything local businesses need."/>
+<meta property="og:title" content="Services — GroundWork Digital"/>
+<meta property="og:description" content="Websites, Google Business Profile setup, local SEO, social content, digital marketing, branding, merch, AI consulting, and strategy for local businesses."/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.groundwork-digital.ca/"/>
+<meta property="og:url" content="https://www.groundwork-digital.ca/services.html"/>
 <meta property="og:image" content="https://www.groundwork-digital.ca/terry_headshot_cropped.png"/>
 <meta property="og:site_name" content="GroundWork Digital"/>
 <meta name="twitter:card" content="summary_large_image"/>
@@ -92,64 +92,26 @@ section.content-section{padding:80px 2rem;position:relative;z-index:1;}
 section.content-section.alt{background:var(--bg2);}
 
 
-/* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:110px 2rem 80px;position:relative;}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 90% at 28% 50%,rgba(10,12,15,0) 0%,rgba(10,12,15,.55) 55%,rgba(10,12,15,.92) 100%);z-index:0;pointer-events:none;}
-html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,rgba(244,243,239,0) 0%,rgba(244,243,239,.55) 55%,rgba(244,243,239,.92) 100%);}
-.hero-inner{max-width:1000px;margin:0 auto;width:100%;position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center;}
-.hero-label{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:1.75rem;}
-.hero-label::before{content:'';width:20px;height:1px;background:var(--green);}
-.hero-h1{font-family:var(--serif);font-size:clamp(3rem,6.5vw,5rem);font-weight:400;line-height:1.05;letter-spacing:-1px;color:var(--text);margin-bottom:1.5rem;}
-.hero-h1 em{font-style:italic;color:var(--green);}
-.hero-sub{font-size:1.05rem;color:var(--text2);line-height:1.75;font-weight:300;max-width:480px;margin-bottom:2.5rem;}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;}
-.hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap;padding-top:2rem;border-top:1px solid var(--border);}
-.hstat-num{font-family:var(--serif);font-size:1.9rem;color:var(--text);line-height:1;}
-.hstat-label{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.5px;margin-top:3px;}
-.hero-photo-wrap{position:relative;flex-shrink:0;}
-.hero-photo{width:220px;height:270px;object-fit:cover;object-position:top;border-radius:14px;display:block;filter:grayscale(15%);border:1px solid var(--border2);}
-.hero-photo-card{position:absolute;bottom:-18px;left:-18px;background:var(--card-bg);border:1px solid var(--border2);border-radius:10px;padding:10px 14px;white-space:nowrap;backdrop-filter:blur(8px);}
-.hero-photo-card .name{font-size:13px;font-weight:600;color:var(--text);}
-.hero-photo-card .role{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:2px;}
-/* TICKER */
-.ticker-wrap{overflow:hidden;position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:11px 0;background:var(--bg2);}
-.ticker{display:flex;width:max-content;animation:tick 26s linear infinite;}
-.ticker-item{display:inline-flex;align-items:center;gap:18px;padding:0 36px;font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;white-space:nowrap;}
-.ticker-item::after{content:'·';color:var(--green);font-size:14px;}
-@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-/* SERVICES OVERVIEW */
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-top:2.5rem;}
-.svc-card{background:var(--bg);padding:1.75rem;display:flex;flex-direction:column;gap:.6rem;transition:background .15s;text-decoration:none;}
-.svc-card:hover{background:var(--bg2);}
-.svc-num{font-family:var(--mono);font-size:10px;color:var(--text3);}
-.svc-icon{font-size:20px;}
-.svc-card h3{font-size:15px;font-weight:600;color:var(--text);}
-.svc-card p{font-size:13px;color:var(--text2);line-height:1.6;font-weight:300;}
-.svc-badge{display:inline-block;padding:3px 10px;background:var(--green-dim);color:var(--green);font-size:10px;font-family:var(--mono);border-radius:100px;margin-top:auto;align-self:flex-start;}
-/* ABOUT STRIP */
-.about-strip{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:center;}
-.about-img{width:180px;border-radius:14px;border:1px solid var(--border2);filter:grayscale(10%);}
-.cred-pills{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem;}
-.cred-pill{font-family:var(--mono);font-size:10px;color:var(--text3);border:1px solid var(--border);border-radius:100px;padding:4px 12px;}
-/* BLOG PREVIEW */
-.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
-.blog-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;transition:border-color .15s,transform .15s;display:flex;flex-direction:column;}
-.blog-card:hover{border-color:var(--green);transform:translateY(-2px);}
-.blog-card-body{padding:1.5rem;flex:1;display:flex;flex-direction:column;}
-.blog-tag{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.8px;text-transform:uppercase;margin-bottom:.75rem;}
-.blog-card h3{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--text);line-height:1.3;margin-bottom:.75rem;}
-.blog-card p{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;flex:1;}
-.blog-read{font-family:var(--mono);font-size:11px;color:var(--green);margin-top:1.25rem;letter-spacing:.5px;}
-/* CTA BAND */
+.services-list{display:flex;flex-direction:column;gap:0;}
+.svc-row{display:grid;grid-template-columns:80px 1fr;gap:2.5rem;padding:3rem 0;border-bottom:1px solid var(--border);align-items:start;}
+.svc-row:last-child{border-bottom:none;}
+.svc-row-num{font-family:var(--serif);font-size:3.5rem;color:var(--border2);line-height:1;padding-top:.25rem;}
+.svc-row-content{}
+.svc-row-header{display:flex;align-items:center;gap:1rem;margin-bottom:.75rem;}
+.svc-row-icon{font-size:22px;}
+.svc-row h2{font-family:var(--serif);font-size:1.8rem;font-weight:400;color:var(--text);}
+.svc-row p{font-size:1rem;color:var(--text2);line-height:1.8;font-weight:300;max-width:640px;margin-bottom:1.25rem;}
+.svc-bullets{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.25rem;}
+.svc-bullet{font-size:12px;color:var(--text2);background:var(--bg3);border:1px solid var(--border);border-radius:100px;padding:4px 14px;font-family:var(--mono);}
+@media(max-width:600px){.svc-row{grid-template-columns:1fr;gap:1rem;}.svc-row-num{font-size:2rem;}}
+
 .cta-band{text-align:center;padding:100px 2rem;position:relative;}
 .cta-band::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(74,222,128,.05) 0%,transparent 70%);pointer-events:none;}
 .cta-band-inner{max-width:600px;margin:0 auto;position:relative;z-index:1;}
-.cta-band h2{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:400;letter-spacing:-.5px;color:var(--text);margin-bottom:1rem;}
+.cta-band h2{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.2rem);font-weight:400;letter-spacing:-.5px;color:var(--text);margin-bottom:1rem;}
 .cta-band h2 em{font-style:italic;color:var(--green);}
 .cta-band p{font-size:1rem;color:var(--text2);line-height:1.75;font-weight:300;margin-bottom:2.5rem;}
 .cta-band-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
-@media(max-width:860px){.hero-inner{grid-template-columns:1fr;}.hero-photo-wrap{display:none;}.services-grid{grid-template-columns:1fr 1fr;}.blog-grid{grid-template-columns:1fr;}.about-strip{grid-template-columns:1fr;}}
-@media(max-width:540px){.services-grid{grid-template-columns:1fr;}.hero{padding:90px 1.25rem 60px;}}
 
 </style>
 </head>
@@ -160,7 +122,7 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
     <div class="logo-mark">GW</div>
     <div><div class="logo-name">GroundWork</div><div class="logo-sub">Digital</div></div>
   </a>
-  <ul class="nav-links" id="nav-menu"><li><a href="index.html" class="active">Home</a></li><li><a href="services.html" class="">Services</a></li><li><a href="work.html" class="">Our Work</a></li><li><a href="blog.html" class="">Blog</a></li><li><a href="contact.html" class="">Get a Quote</a></li></ul>
+  <ul class="nav-links" id="nav-menu"><li><a href="index.html" class="">Home</a></li><li><a href="services.html" class="active">Services</a></li><li><a href="work.html" class="">Our Work</a></li><li><a href="blog.html" class="">Blog</a></li><li><a href="contact.html" class="">Get a Quote</a></li></ul>
   <div class="nav-right">
     <a href="contact.html" class="nav-cta">Free Quote</a>
     <button id="theme-toggle" aria-label="Toggle theme"><span id="theme-icon">☀</span></button>
@@ -169,131 +131,99 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
 </nav>
 <div class="page-wrap">
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-label">Gatineau · Outaouais · Pontiac</div>
-      <h1 class="hero-h1">Your business deserves<br>more than a <em>Facebook&nbsp;page.</em></h1>
-      <p class="hero-sub">GroundWork Digital helps local businesses get found online, look professional, and grow — without the tech headache. Plain language. Real results.</p>
-      <div class="hero-actions">
-        <a href="contact.html" class="btn-primary">Get a Free Quote →</a>
-        <a href="tel:+16132924762" class="btn-outline">Call 613-292-4762</a>
-        <a href="services.html" class="btn-outline">See What We Do</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hstat"><div class="hstat-num">25+</div><div class="hstat-label">Years IT Experience</div></div>
-        <div class="hstat"><div class="hstat-num">9</div><div class="hstat-label">Services Offered</div></div>
-        <div class="hstat"><div class="hstat-num">Free</div><div class="hstat-label">First Consultation</div></div>
-        <div class="hstat"><div class="hstat-num">Local</div><div class="hstat-label">Pontiac Roots</div></div>
-      </div>
-    </div>
-    <div class="hero-photo-wrap">
-      <img src="https://www.groundwork-digital.ca/terry_headshot_cropped.png" alt="Terry Bevvan" class="hero-photo"/>
-      <div class="hero-photo-card"><div class="name">Terry Bevvan</div><div class="role">Founder · Aylmer, QC</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker">
-    <span class="ticker-item">Websites &amp; Landing Pages</span><span class="ticker-item">Google Business Profile</span><span class="ticker-item">Local SEO</span><span class="ticker-item">AI Tool Integration</span><span class="ticker-item">Social Media Content</span><span class="ticker-item">Logo Design</span><span class="ticker-item">Apparel &amp; Merch</span><span class="ticker-item">Digital Marketing</span><span class="ticker-item">No Jargon. Ever.</span>
-    <span class="ticker-item">Websites &amp; Landing Pages</span><span class="ticker-item">Google Business Profile</span><span class="ticker-item">Local SEO</span><span class="ticker-item">AI Tool Integration</span><span class="ticker-item">Social Media Content</span><span class="ticker-item">Logo Design</span><span class="ticker-item">Apparel &amp; Merch</span><span class="ticker-item">Digital Marketing</span><span class="ticker-item">No Jargon. Ever.</span>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-tag">What We Do</div>
+    <h1>Every service your business needs to <em>get found, look great, and grow.</em></h1>
+    <p>Nine focused services. No confusing packages. No upselling you things you don't need. Just honest work that moves the needle for local businesses in Gatineau, the Outaouais and the Pontiac.</p>
   </div>
 </div>
-
-<!-- SERVICES -->
-<section class="content-section" id="services">
+<section class="content-section">
   <div class="container">
-    <div class="section-tag">What We Do</div>
-    <h2 class="section-heading">Everything your business needs to <em>get found.</em></h2>
-    <p style="color:var(--text2);font-size:1rem;font-weight:300;line-height:1.7;max-width:540px;margin-bottom:0">No packages. No confusing bundles. Just the services that move the needle.</p>
-    <div class="services-grid">
-      <a href="services.html#websites" class="svc-card"><div class="svc-num">01</div><div class="svc-icon">🌐</div><h3>Websites &amp; Landing Pages</h3><p>Professional sites that work on every device and turn visitors into customers.</p><span class="svc-badge">Most Popular</span></a>
-      <a href="services.html#google" class="svc-card"><div class="svc-num">02</div><div class="svc-icon">📍</div><h3>Google Business Profile</h3><p>Show up on maps and local search. Fast setup, lasting results.</p><span class="svc-badge">Quick Win</span></a>
-      <a href="services.html#seo" class="svc-card"><div class="svc-num">03</div><div class="svc-icon">🔎</div><h3>Local SEO</h3><p>Get found by people searching near you — ahead of your competitors.</p><span class="svc-badge">Long-Term</span></a>
-      <a href="services.html#social" class="svc-card"><div class="svc-num">04</div><div class="svc-icon">📣</div><h3>Social Media Content</h3><p>Regular posts that keep your audience engaged and your brand top of mind.</p><span class="svc-badge">Recurring</span></a>
-      <a href="services.html#marketing" class="svc-card"><div class="svc-num">05</div><div class="svc-icon">📈</div><h3>Digital Marketing</h3><p>Targeted campaigns that reach the right people at the right moment.</p><span class="svc-badge">Growth</span></a>
-      <a href="services.html#logo" class="svc-card"><div class="svc-num">06</div><div class="svc-icon">✏️</div><h3>Logo &amp; Brand Design</h3><p>A mark that means something — clean, memorable, yours.</p><span class="svc-badge">Identity</span></a>
-      <a href="services.html#apparel" class="svc-card"><div class="svc-num">07</div><div class="svc-icon">👕</div><h3>Apparel &amp; Merch</h3><p>Custom branded gear via Printify &amp; Etsy. Wear your brand proudly.</p><span class="svc-badge">New</span></a>
-      <a href="services.html#ai" class="svc-card"><div class="svc-num">08</div><div class="svc-icon">🤖</div><h3>AI Tool Consulting</h3><p>Practical AI that saves time and money. No hype — just what works for you.</p><span class="svc-badge">Future-Ready</span></a>
-      <a href="services.html#strategy" class="svc-card"><div class="svc-num">09</div><div class="svc-icon">💬</div><h3>Digital Strategy</h3><p>A clear plan built around your business — no jargon, no fluff.</p><span class="svc-badge">Start Here</span></a>
+    <div class="services-list">
+<div class="svc-row" id="websites">
+  <div class="svc-row-num">01</div>
+  <div class="svc-row-content">
+    <div class="svc-row-header"><span class="svc-row-icon">🌐</span><h2>Websites &amp; Landing Pages</h2></div>
+    <p>Your website is your hardest-working employee — available 24/7, never takes a day off, and reaches customers you'd never find otherwise. I build clean, fast, mobile-first websites that are designed to convert visitors into calls and walk-ins. No bloated themes, no cookie-cutter templates — every site is custom-built to reflect your business.</p>
+    <div class="svc-bullets"><span class="svc-bullet">Custom Design</span><span class="svc-bullet">Mobile-First</span><span class="svc-bullet">Fast Loading</span><span class="svc-bullet">SEO-Ready</span><span class="svc-bullet">Contact Forms</span><span class="svc-bullet">Google Analytics Setup</span></div>
+    <a href="contact.html" class="btn-primary">Get a Quote →</a>
+  </div>
+</div><div class="svc-row" id="google">
+  <div class="svc-row-num">02</div>
+  <div class="svc-row-content">
+    <div class="svc-row-header"><span class="svc-row-icon">📍</span><h2>Google Business Profile</h2></div>
+    <p>When someone types 'plumber near me' or 'restaurant in Gatineau,' Google Maps is what they see first. A fully optimized Google Business Profile is often the single highest-ROI thing a local business can do. I set it up right, fill in all the details that most businesses miss, and optimize it so you show up when it matters.</p>
+    <div class="svc-bullets"><span class="svc-bullet">Full Setup</span><span class="svc-bullet">Photo Optimization</span><span class="svc-bullet">Service Descriptions</span><span class="svc-bullet">Review Strategy</span><span class="svc-bullet">Map Rankings</span><span class="svc-bullet">Monthly Updates</span></div>
+    <a href="contact.html" class="btn-primary">Get a Quote →</a>
+  </div>
+</div><div class="svc-row" id="seo">
+  <div class="svc-row-num">03</div>
+  <div class="svc-row-content">
+    <div class="svc-row-header"><span class="svc-row-icon">🔎</span><h2>Local SEO</h2></div>
+    <p>Search engine optimization sounds technical — and it is — but the concept is simple: make sure Google knows who you are, where you are, and what you do, so it sends you customers instead of sending them to your competitor down the street. I focus on the local signals that actually move the needle for small businesses in the Outaouais.</p>
+    <div class="svc-bullets"><span class="svc-bullet">Keyword Research</span><span class="svc-bullet">On-Page Optimization</span><span class="svc-bullet">Local Citations</span><span class="svc-bullet">Google Search Console</span><span class="svc-bullet">Monthly Reporting</span><span class="svc-bullet">Competitor Analysis</span></div>
+    <a href="contact.html" class="btn-primary">Get a Quote →</a>
+  </div>
+</div><div class="svc-row" id="social">
+  <div class="svc-row-num">04</div>
+  <div class="svc-row-content">
+    <div class="svc-row-header"><span class="svc-row-icon">📣</span><h2>Social Media Content</h2></div>
+    <p>An inactive Facebook or Instagram page tells potential customers you might not be in business anymore. Consistent, professional posts keep you top-of-mind and build the kind of trust that turns followers into customers. I write it, design it, and schedule it — you just stay focused on running your business.</p>
+    <div class="svc-bullets"><span class="svc-bullet">Content Strategy</span><span class="svc-bullet">Graphic Design</span><span class="svc-bullet">Copywriting</span><span class="svc-bullet">Scheduling</span><span class="svc-bullet">Platform Management</span><span class="svc-bullet">Bilingual EN/FR</span></div>
+    <a href="contact.html" class="btn-primary">Get a Quote →</a>
+  </div>
+</div><div class="svc-row" id="marketing">
+  <div class="svc-row-num">05</div>
+  <div class="svc-row-content">
+    <div class="svc-row-header"><span class="svc-row-icon">📈</span><h2>Digital Marketing</h2></div>
+    <p>Beyond organic search and social media, targeted digital advertising lets you reach exactly the right people at exactly the right moment. Whether it's Google Ads, Facebook/Instagram ads, or a full campaign strategy — I build campaigns that are accountable, trackable, and built around your budget.</p>
+    <div class="svc-bullets"><span class="svc-bullet">Google Ads</span><span class="svc-bullet">Facebook & Instagram Ads</span><span class="svc-bullet">Campaign Strategy</span><span class="svc-bullet">Budget Management</span><span class="svc-bullet">A/B Testing</span><span class="svc-bullet">Monthly Reporting</span></div>
+    <a href="contact.html" class="btn-primary">Get a Quote →</a>
+  </div>
+</div><div class="svc-row" id="logo">
+  <div class="svc-row-num">06</div>
+  <div class="svc-row-content">
+    <div class="svc-row-header"><span class="svc-row-icon">✏️</span><h2>Logo &amp; Brand Design</h2></div>
+    <p>Your logo is the first thing people see — and often the last thing business owners think about carefully. A strong logo isn't just a pretty mark; it's a signal of professionalism and trust. I create clean, distinctive logos and basic brand identities that work across your website, social media, and any merch you produce.</p>
+    <div class="svc-bullets"><span class="svc-bullet">Logo Design</span><span class="svc-bullet">Colour Palette</span><span class="svc-bullet">Typography</span><span class="svc-bullet">Brand Guidelines</span><span class="svc-bullet">File Formats for Web & Print</span><span class="svc-bullet">Revision Rounds</span></div>
+    <a href="contact.html" class="btn-primary">Get a Quote →</a>
+  </div>
+</div><div class="svc-row" id="apparel">
+  <div class="svc-row-num">07</div>
+  <div class="svc-row-content">
+    <div class="svc-row-header"><span class="svc-row-icon">👕</span><h2>Apparel &amp; Merch</h2></div>
+    <p>Branded apparel is walking advertising — and with print-on-demand through Printify, there's no inventory risk and no minimum orders. Whether it's uniforms for your team, branded merch for your customers, or a full Etsy storefront for your brand, I set it up, design it, and get it running. You just collect the orders.</p>
+    <div class="svc-bullets"><span class="svc-bullet">Custom Apparel Design</span><span class="svc-bullet">Printify Integration</span><span class="svc-bullet">Etsy Storefront Setup</span><span class="svc-bullet">T-Shirts, Hoodies, Hats</span><span class="svc-bullet">No Minimum Orders</span><span class="svc-bullet">On-Demand Fulfillment</span></div>
+    <a href="contact.html" class="btn-primary">Get a Quote →</a>
+  </div>
+</div><div class="svc-row" id="ai">
+  <div class="svc-row-num">08</div>
+  <div class="svc-row-content">
+    <div class="svc-row-header"><span class="svc-row-icon">🤖</span><h2>AI Tool Consulting</h2></div>
+    <p>Everyone's talking about AI — but nobody's explaining what it actually means for a small local business. I cut through the noise and show you the specific tools that can save you real time and money: automated replies, content drafting, scheduling, customer communication. Nothing theoretical. Just what works for your specific situation.</p>
+    <div class="svc-bullets"><span class="svc-bullet">AI Tool Audit</span><span class="svc-bullet">Custom Recommendations</span><span class="svc-bullet">Setup & Training</span><span class="svc-bullet">Automation Workflows</span><span class="svc-bullet">ChatGPT for Business</span><span class="svc-bullet">Ongoing Support</span></div>
+    <a href="contact.html" class="btn-primary">Get a Quote →</a>
+  </div>
+</div><div class="svc-row" id="strategy">
+  <div class="svc-row-num">09</div>
+  <div class="svc-row-content">
+    <div class="svc-row-header"><span class="svc-row-icon">💬</span><h2>Digital Strategy Consult</h2></div>
+    <p>Not sure where to start? That's exactly what this is for. We sit down together — in person or on a call — and map out your entire digital situation: what's working, what's missing, and what the clearest path forward looks like for your specific business. You'll leave with a prioritized action plan, not a sales pitch.</p>
+    <div class="svc-bullets"><span class="svc-bullet">Business Review</span><span class="svc-bullet">Digital Audit</span><span class="svc-bullet">Priority Roadmap</span><span class="svc-bullet">Tool Recommendations</span><span class="svc-bullet">Budget Planning</span><span class="svc-bullet">No Obligation</span></div>
+    <a href="contact.html" class="btn-primary">Get a Quote →</a>
+  </div>
+</div>
     </div>
-    <div style="margin-top:2rem"><a href="services.html" class="btn-outline">View All Services →</a></div>
   </div>
 </section>
-
-<!-- ABOUT -->
-<section class="content-section alt" id="about">
-  <div class="container">
-    <div class="section-tag">Who Is Terry?</div>
-    <div class="about-strip">
-      <div>
-        <img src="https://www.groundwork-digital.ca/terry_headshot_cropped.png" alt="Terry Bevvan" class="about-img"/>
-        <div class="cred-pills">
-          <span class="cred-pill">Bell Canada · 10 yrs</span>
-          <span class="cred-pill">House of Commons · 15 yrs</span>
-          <span class="cred-pill">Aylmer, QC</span>
-        </div>
-      </div>
-      <div>
-        <h2 class="section-heading">Not a city agency.<br><em>Local through and through.</em></h2>
-        <p style="font-size:1rem;color:var(--text2);line-height:1.8;font-weight:300;margin-bottom:1rem;">I grew up in the Pontiac. My family is still there. After 25+ years in IT — at Bell Canada and the House of Commons — I now bring those skills to help small businesses across the Outaouais get the digital presence they deserve.</p>
-        <p style="font-size:1rem;color:var(--text2);line-height:1.8;font-weight:300;margin-bottom:2rem;">You're not dealing with a faceless agency. You're working with someone who knows the region, speaks both languages, and genuinely wants to see local businesses thrive.</p>
-        <a href="contact.html" class="btn-primary">Work With Terry →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BLOG PREVIEW -->
-<section class="content-section" id="blog">
-  <div class="container">
-    <div class="section-tag">From the Blog</div>
-    <h2 class="section-heading">Insights to help your <em>business grow.</em></h2>
-    <div class="blog-grid">
-      <a href="blog.html#why-website" class="blog-card">
-        <div class="blog-card-body">
-          <div class="blog-tag">Websites</div>
-          <h3>Why Every Local Business Needs a Website in 2026</h3>
-          <p>Your Facebook page isn't a website. Here's the real difference — and why it matters more than you think.</p>
-          <span class="blog-read">Read more →</span>
-        </div>
-      </a>
-      <a href="blog.html#what-is-seo" class="blog-card">
-        <div class="blog-card-body">
-          <div class="blog-tag">SEO</div>
-          <h3>What Is SEO — And Why Should a Local Business Care?</h3>
-          <p>Plain-language breakdown of what search engine optimization actually means for a small business in the Outaouais.</p>
-          <span class="blog-read">Read more →</span>
-        </div>
-      </a>
-      <a href="blog.html#invisible-online" class="blog-card">
-        <div class="blog-card-body">
-          <div class="blog-tag">Digital Presence</div>
-          <h3>You're Invisible Online — And It's Costing You Customers</h3>
-          <p>How to find out if your business is searchable — and what to do if it isn't.</p>
-          <span class="blog-read">Read more →</span>
-        </div>
-      </a>
-    </div>
-    <div style="margin-top:2rem"><a href="blog.html" class="btn-outline">View All Posts →</a></div>
-  </div>
-</section>
-
-<!-- CTA BAND -->
 <section class="cta-band">
   <div class="cta-band-inner">
-    <h2>Ready to stop being <em>invisible?</em></h2>
-    <p>Book a free 30-minute consultation. We'll figure out exactly what your business needs — no obligation, no hard sell.</p>
-    <div class="cta-band-btns">
-      <a href="contact.html" class="btn-primary">Book Your Free Chat →</a>
-      <a href="tel:+16132924762" class="btn-outline">Call 613-292-4762</a>
-    </div>
+    <h2>Not sure which service <em>you need?</em></h2>
+    <p>Book a free strategy call. We'll figure it out together — no obligation, no pressure.</p>
+    <div class="cta-band-btns"><a href="contact.html" class="btn-primary">Book Free Strategy Call →</a></div>
   </div>
 </section>
-
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">

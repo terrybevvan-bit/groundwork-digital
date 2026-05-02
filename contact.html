@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Home — GroundWork Digital</title>
-<meta name="description" content="GroundWork Digital helps local businesses in Gatineau, Outaouais and Pontiac get found online. Websites, SEO, Google Business, social media, apparel and more."/>
-<meta property="og:title" content="GroundWork Digital — Local Websites, SEO & Digital Marketing"/>
-<meta property="og:description" content="GroundWork Digital helps local businesses in Gatineau, the Outaouais, and Pontiac get found online, look professional, and grow."/>
+<title>Get a Quote — GroundWork Digital</title>
+<meta name="description" content="Get a free quote from GroundWork Digital — websites, SEO, Google Business, social media, logo design and more for local businesses in the Outaouais."/>
+<meta property="og:title" content="Get a Quote — GroundWork Digital"/>
+<meta property="og:description" content="Request a free quote from GroundWork Digital for websites, SEO, Google Business Profile, social media, branding, AI consulting, and more."/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.groundwork-digital.ca/"/>
+<meta property="og:url" content="https://www.groundwork-digital.ca/contact.html"/>
 <meta property="og:image" content="https://www.groundwork-digital.ca/terry_headshot_cropped.png"/>
 <meta property="og:site_name" content="GroundWork Digital"/>
 <meta name="twitter:card" content="summary_large_image"/>
@@ -92,64 +92,34 @@ section.content-section{padding:80px 2rem;position:relative;z-index:1;}
 section.content-section.alt{background:var(--bg2);}
 
 
-/* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:110px 2rem 80px;position:relative;}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 90% at 28% 50%,rgba(10,12,15,0) 0%,rgba(10,12,15,.55) 55%,rgba(10,12,15,.92) 100%);z-index:0;pointer-events:none;}
-html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,rgba(244,243,239,0) 0%,rgba(244,243,239,.55) 55%,rgba(244,243,239,.92) 100%);}
-.hero-inner{max-width:1000px;margin:0 auto;width:100%;position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center;}
-.hero-label{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:1.75rem;}
-.hero-label::before{content:'';width:20px;height:1px;background:var(--green);}
-.hero-h1{font-family:var(--serif);font-size:clamp(3rem,6.5vw,5rem);font-weight:400;line-height:1.05;letter-spacing:-1px;color:var(--text);margin-bottom:1.5rem;}
-.hero-h1 em{font-style:italic;color:var(--green);}
-.hero-sub{font-size:1.05rem;color:var(--text2);line-height:1.75;font-weight:300;max-width:480px;margin-bottom:2.5rem;}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;}
-.hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap;padding-top:2rem;border-top:1px solid var(--border);}
-.hstat-num{font-family:var(--serif);font-size:1.9rem;color:var(--text);line-height:1;}
-.hstat-label{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.5px;margin-top:3px;}
-.hero-photo-wrap{position:relative;flex-shrink:0;}
-.hero-photo{width:220px;height:270px;object-fit:cover;object-position:top;border-radius:14px;display:block;filter:grayscale(15%);border:1px solid var(--border2);}
-.hero-photo-card{position:absolute;bottom:-18px;left:-18px;background:var(--card-bg);border:1px solid var(--border2);border-radius:10px;padding:10px 14px;white-space:nowrap;backdrop-filter:blur(8px);}
-.hero-photo-card .name{font-size:13px;font-weight:600;color:var(--text);}
-.hero-photo-card .role{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:2px;}
-/* TICKER */
-.ticker-wrap{overflow:hidden;position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:11px 0;background:var(--bg2);}
-.ticker{display:flex;width:max-content;animation:tick 26s linear infinite;}
-.ticker-item{display:inline-flex;align-items:center;gap:18px;padding:0 36px;font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;white-space:nowrap;}
-.ticker-item::after{content:'·';color:var(--green);font-size:14px;}
-@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-/* SERVICES OVERVIEW */
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-top:2.5rem;}
-.svc-card{background:var(--bg);padding:1.75rem;display:flex;flex-direction:column;gap:.6rem;transition:background .15s;text-decoration:none;}
-.svc-card:hover{background:var(--bg2);}
-.svc-num{font-family:var(--mono);font-size:10px;color:var(--text3);}
-.svc-icon{font-size:20px;}
-.svc-card h3{font-size:15px;font-weight:600;color:var(--text);}
-.svc-card p{font-size:13px;color:var(--text2);line-height:1.6;font-weight:300;}
-.svc-badge{display:inline-block;padding:3px 10px;background:var(--green-dim);color:var(--green);font-size:10px;font-family:var(--mono);border-radius:100px;margin-top:auto;align-self:flex-start;}
-/* ABOUT STRIP */
-.about-strip{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:center;}
-.about-img{width:180px;border-radius:14px;border:1px solid var(--border2);filter:grayscale(10%);}
-.cred-pills{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem;}
-.cred-pill{font-family:var(--mono);font-size:10px;color:var(--text3);border:1px solid var(--border);border-radius:100px;padding:4px 12px;}
-/* BLOG PREVIEW */
-.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
-.blog-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;transition:border-color .15s,transform .15s;display:flex;flex-direction:column;}
-.blog-card:hover{border-color:var(--green);transform:translateY(-2px);}
-.blog-card-body{padding:1.5rem;flex:1;display:flex;flex-direction:column;}
-.blog-tag{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.8px;text-transform:uppercase;margin-bottom:.75rem;}
-.blog-card h3{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--text);line-height:1.3;margin-bottom:.75rem;}
-.blog-card p{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;flex:1;}
-.blog-read{font-family:var(--mono);font-size:11px;color:var(--green);margin-top:1.25rem;letter-spacing:.5px;}
-/* CTA BAND */
-.cta-band{text-align:center;padding:100px 2rem;position:relative;}
-.cta-band::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(74,222,128,.05) 0%,transparent 70%);pointer-events:none;}
-.cta-band-inner{max-width:600px;margin:0 auto;position:relative;z-index:1;}
-.cta-band h2{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:400;letter-spacing:-.5px;color:var(--text);margin-bottom:1rem;}
-.cta-band h2 em{font-style:italic;color:var(--green);}
-.cta-band p{font-size:1rem;color:var(--text2);line-height:1.75;font-weight:300;margin-bottom:2.5rem;}
-.cta-band-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
-@media(max-width:860px){.hero-inner{grid-template-columns:1fr;}.hero-photo-wrap{display:none;}.services-grid{grid-template-columns:1fr 1fr;}.blog-grid{grid-template-columns:1fr;}.about-strip{grid-template-columns:1fr;}}
-@media(max-width:540px){.services-grid{grid-template-columns:1fr;}.hero{padding:90px 1.25rem 60px;}}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start;margin-top:2rem;}
+.contact-info h3{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--text);margin-bottom:1rem;}
+.contact-info p{font-size:.97rem;color:var(--text2);line-height:1.8;font-weight:300;margin-bottom:2rem;}
+.contact-methods{display:flex;flex-direction:column;gap:1px;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem;}
+.contact-method{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;background:var(--bg2);text-decoration:none;transition:background .15s;}
+.contact-method:hover{background:var(--bg3);}
+.contact-method-icon{font-size:18px;flex-shrink:0;}
+.contact-method-text{font-size:13px;color:var(--text2);}
+.contact-method-text strong{display:block;font-size:14px;color:var(--text);font-weight:600;margin-bottom:2px;}
+.why-list{list-style:none;display:flex;flex-direction:column;gap:.7rem;}
+.why-list li{display:flex;align-items:flex-start;gap:.75rem;font-size:13px;color:var(--text2);line-height:1.6;}
+.why-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:5px;}
+/* FORM */
+.quote-form{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2.5rem;}
+.form-heading{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--text);margin-bottom:.5rem;}
+.form-sub{font-size:13px;color:var(--text3);margin-bottom:2rem;}
+.form-group{margin-bottom:1.25rem;}
+.form-group label{display:block;font-size:12px;font-family:var(--mono);color:var(--text3);letter-spacing:.5px;text-transform:uppercase;margin-bottom:.5rem;}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:9px;padding:11px 14px;font-size:14px;color:var(--text);font-family:var(--sans);outline:none;transition:border-color .15s;}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--text3);}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--green);}
+.form-group select option{background:var(--bg3);}
+.form-group textarea{resize:vertical;min-height:120px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-submit{width:100%;padding:14px;background:var(--green);color:var(--bg);font-weight:600;font-size:15px;font-family:var(--sans);border:none;border-radius:100px;cursor:pointer;transition:background .15s,transform .1s;margin-top:.5rem;}
+.form-submit:hover{background:#86efac;transform:translateY(-1px);}
+html.light .form-submit:hover{background:#15803d;}
+@media(max-width:760px){.contact-grid{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}}
 
 </style>
 </head>
@@ -160,7 +130,7 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
     <div class="logo-mark">GW</div>
     <div><div class="logo-name">GroundWork</div><div class="logo-sub">Digital</div></div>
   </a>
-  <ul class="nav-links" id="nav-menu"><li><a href="index.html" class="active">Home</a></li><li><a href="services.html" class="">Services</a></li><li><a href="work.html" class="">Our Work</a></li><li><a href="blog.html" class="">Blog</a></li><li><a href="contact.html" class="">Get a Quote</a></li></ul>
+  <ul class="nav-links" id="nav-menu"><li><a href="index.html" class="">Home</a></li><li><a href="services.html" class="">Services</a></li><li><a href="work.html" class="">Our Work</a></li><li><a href="blog.html" class="">Blog</a></li><li><a href="contact.html" class="active">Get a Quote</a></li></ul>
   <div class="nav-right">
     <a href="contact.html" class="nav-cta">Free Quote</a>
     <button id="theme-toggle" aria-label="Toggle theme"><span id="theme-icon">☀</span></button>
@@ -169,131 +139,89 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
 </nav>
 <div class="page-wrap">
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-label">Gatineau · Outaouais · Pontiac</div>
-      <h1 class="hero-h1">Your business deserves<br>more than a <em>Facebook&nbsp;page.</em></h1>
-      <p class="hero-sub">GroundWork Digital helps local businesses get found online, look professional, and grow — without the tech headache. Plain language. Real results.</p>
-      <div class="hero-actions">
-        <a href="contact.html" class="btn-primary">Get a Free Quote →</a>
-        <a href="tel:+16132924762" class="btn-outline">Call 613-292-4762</a>
-        <a href="services.html" class="btn-outline">See What We Do</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hstat"><div class="hstat-num">25+</div><div class="hstat-label">Years IT Experience</div></div>
-        <div class="hstat"><div class="hstat-num">9</div><div class="hstat-label">Services Offered</div></div>
-        <div class="hstat"><div class="hstat-num">Free</div><div class="hstat-label">First Consultation</div></div>
-        <div class="hstat"><div class="hstat-num">Local</div><div class="hstat-label">Pontiac Roots</div></div>
-      </div>
-    </div>
-    <div class="hero-photo-wrap">
-      <img src="https://www.groundwork-digital.ca/terry_headshot_cropped.png" alt="Terry Bevvan" class="hero-photo"/>
-      <div class="hero-photo-card"><div class="name">Terry Bevvan</div><div class="role">Founder · Aylmer, QC</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker">
-    <span class="ticker-item">Websites &amp; Landing Pages</span><span class="ticker-item">Google Business Profile</span><span class="ticker-item">Local SEO</span><span class="ticker-item">AI Tool Integration</span><span class="ticker-item">Social Media Content</span><span class="ticker-item">Logo Design</span><span class="ticker-item">Apparel &amp; Merch</span><span class="ticker-item">Digital Marketing</span><span class="ticker-item">No Jargon. Ever.</span>
-    <span class="ticker-item">Websites &amp; Landing Pages</span><span class="ticker-item">Google Business Profile</span><span class="ticker-item">Local SEO</span><span class="ticker-item">AI Tool Integration</span><span class="ticker-item">Social Media Content</span><span class="ticker-item">Logo Design</span><span class="ticker-item">Apparel &amp; Merch</span><span class="ticker-item">Digital Marketing</span><span class="ticker-item">No Jargon. Ever.</span>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-tag">Get in Touch</div>
+    <h1>Let's figure out what<br>your business <em>actually needs.</em></h1>
+    <p>No obligation, no hard sell. Just an honest conversation about where you are, where you want to be, and the clearest path to get there.</p>
   </div>
 </div>
-
-<!-- SERVICES -->
-<section class="content-section" id="services">
+<section class="content-section">
   <div class="container">
-    <div class="section-tag">What We Do</div>
-    <h2 class="section-heading">Everything your business needs to <em>get found.</em></h2>
-    <p style="color:var(--text2);font-size:1rem;font-weight:300;line-height:1.7;max-width:540px;margin-bottom:0">No packages. No confusing bundles. Just the services that move the needle.</p>
-    <div class="services-grid">
-      <a href="services.html#websites" class="svc-card"><div class="svc-num">01</div><div class="svc-icon">🌐</div><h3>Websites &amp; Landing Pages</h3><p>Professional sites that work on every device and turn visitors into customers.</p><span class="svc-badge">Most Popular</span></a>
-      <a href="services.html#google" class="svc-card"><div class="svc-num">02</div><div class="svc-icon">📍</div><h3>Google Business Profile</h3><p>Show up on maps and local search. Fast setup, lasting results.</p><span class="svc-badge">Quick Win</span></a>
-      <a href="services.html#seo" class="svc-card"><div class="svc-num">03</div><div class="svc-icon">🔎</div><h3>Local SEO</h3><p>Get found by people searching near you — ahead of your competitors.</p><span class="svc-badge">Long-Term</span></a>
-      <a href="services.html#social" class="svc-card"><div class="svc-num">04</div><div class="svc-icon">📣</div><h3>Social Media Content</h3><p>Regular posts that keep your audience engaged and your brand top of mind.</p><span class="svc-badge">Recurring</span></a>
-      <a href="services.html#marketing" class="svc-card"><div class="svc-num">05</div><div class="svc-icon">📈</div><h3>Digital Marketing</h3><p>Targeted campaigns that reach the right people at the right moment.</p><span class="svc-badge">Growth</span></a>
-      <a href="services.html#logo" class="svc-card"><div class="svc-num">06</div><div class="svc-icon">✏️</div><h3>Logo &amp; Brand Design</h3><p>A mark that means something — clean, memorable, yours.</p><span class="svc-badge">Identity</span></a>
-      <a href="services.html#apparel" class="svc-card"><div class="svc-num">07</div><div class="svc-icon">👕</div><h3>Apparel &amp; Merch</h3><p>Custom branded gear via Printify &amp; Etsy. Wear your brand proudly.</p><span class="svc-badge">New</span></a>
-      <a href="services.html#ai" class="svc-card"><div class="svc-num">08</div><div class="svc-icon">🤖</div><h3>AI Tool Consulting</h3><p>Practical AI that saves time and money. No hype — just what works for you.</p><span class="svc-badge">Future-Ready</span></a>
-      <a href="services.html#strategy" class="svc-card"><div class="svc-num">09</div><div class="svc-icon">💬</div><h3>Digital Strategy</h3><p>A clear plan built around your business — no jargon, no fluff.</p><span class="svc-badge">Start Here</span></a>
-    </div>
-    <div style="margin-top:2rem"><a href="services.html" class="btn-outline">View All Services →</a></div>
-  </div>
-</section>
+    <div class="contact-grid">
 
-<!-- ABOUT -->
-<section class="content-section alt" id="about">
-  <div class="container">
-    <div class="section-tag">Who Is Terry?</div>
-    <div class="about-strip">
+      <div class="contact-info">
+        <h3>How can I help?</h3>
+        <p>Whether you need a new website, want to show up on Google, or aren't sure where to start — book a free 30-minute call and we'll figure it out together. I work with businesses of all sizes across Gatineau, the Outaouais and the Pontiac.</p>
+
+        <div class="contact-methods">
+          <a href="mailto:terry@groundwork-digital.ca" class="contact-method">
+            <span class="contact-method-icon">✉️</span>
+            <div class="contact-method-text"><strong>Email Terry</strong>terry@groundwork-digital.ca</div>
+          </a>
+          <a href="tel:+16132924762" class="contact-method">
+            <span class="contact-method-icon">📞</span>
+            <div class="contact-method-text"><strong>Call or Text</strong>613-292-4762</div>
+          </a>
+          <div class="contact-method">
+            <span class="contact-method-icon">📍</span>
+            <div class="contact-method-text"><strong>Based in</strong>Aylmer, Quebec · Serving the Outaouais &amp; Pontiac</div>
+          </div>
+        </div>
+
+        <h3 style="margin-bottom:1rem;">Why work with GroundWork?</h3>
+        <ul class="why-list">
+          <li>You talk to the person actually doing the work — not an account manager</li>
+          <li>25+ years of real IT experience behind every project</li>
+          <li>Local — I grew up in the Pontiac and know the region</li>
+          <li>Bilingual — English and French, no problem</li>
+          <li>Plain language — no jargon, ever</li>
+          <li>Results-focused — more calls, more walk-ins, measurable growth</li>
+        </ul>
+      </div>
+
       <div>
-        <img src="https://www.groundwork-digital.ca/terry_headshot_cropped.png" alt="Terry Bevvan" class="about-img"/>
-        <div class="cred-pills">
-          <span class="cred-pill">Bell Canada · 10 yrs</span>
-          <span class="cred-pill">House of Commons · 15 yrs</span>
-          <span class="cred-pill">Aylmer, QC</span>
+        <form class="quote-form" name="contact" method="POST" netlify netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact"/>
+          <p style="display:none;"><label>Don't fill this out if you're human: <input name="bot-field"/></label></p>
+          <div class="form-heading">Get a Free Quote</div>
+          <div class="form-sub">Fill this out and I'll get back to you within one business day.</div>
+
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" name="first" placeholder="Jean" required/></div>
+            <div class="form-group"><label>Last Name</label><input type="text" name="last" placeholder="Tremblay" required/></div>
+          </div>
+          <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="jean@monentreprise.ca" required/></div>
+          <div class="form-group"><label>Phone (optional)</label><input type="tel" name="phone" placeholder="819-555-0123"/></div>
+          <div class="form-group"><label>Business Name</label><input type="text" name="business" placeholder="Votre Entreprise Inc."/></div>
+          <div class="form-group">
+            <label>What do you need?</label>
+            <select name="service">
+              <option value="">— Select a service —</option>
+              <option>Website / Landing Page</option>
+              <option>Google Business Profile</option>
+              <option>Local SEO</option>
+              <option>Social Media Content</option>
+              <option>Digital Marketing</option>
+              <option>Logo &amp; Brand Design</option>
+              <option>Apparel &amp; Merch</option>
+              <option>AI Tool Consulting</option>
+              <option>Digital Strategy Consult</option>
+              <option>Not sure — let's talk</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Tell me a bit about your business</label><textarea name="message" placeholder="What do you do, where are you located, and what's your biggest challenge right now?"></textarea></div>
+          <button type="submit" class="form-submit">Send My Request →</button>
+        </form>
+        <div id="form-thanks" style="display:none;background:var(--green-dim);border:1px solid var(--green);border-radius:16px;padding:2.5rem;text-align:center;margin-top:1rem;">
+          <p style="font-family:var(--serif);font-size:1.5rem;color:var(--text);margin-bottom:.5rem;">Message received! ✓</p>
+          <p style="font-size:14px;color:var(--text2);">I'll be in touch within one business day. You can also reach me directly at <a href="tel:+16132924762" style="color:var(--green);">613-292-4762</a>.</p>
         </div>
       </div>
-      <div>
-        <h2 class="section-heading">Not a city agency.<br><em>Local through and through.</em></h2>
-        <p style="font-size:1rem;color:var(--text2);line-height:1.8;font-weight:300;margin-bottom:1rem;">I grew up in the Pontiac. My family is still there. After 25+ years in IT — at Bell Canada and the House of Commons — I now bring those skills to help small businesses across the Outaouais get the digital presence they deserve.</p>
-        <p style="font-size:1rem;color:var(--text2);line-height:1.8;font-weight:300;margin-bottom:2rem;">You're not dealing with a faceless agency. You're working with someone who knows the region, speaks both languages, and genuinely wants to see local businesses thrive.</p>
-        <a href="contact.html" class="btn-primary">Work With Terry →</a>
-      </div>
+
     </div>
   </div>
 </section>
-
-<!-- BLOG PREVIEW -->
-<section class="content-section" id="blog">
-  <div class="container">
-    <div class="section-tag">From the Blog</div>
-    <h2 class="section-heading">Insights to help your <em>business grow.</em></h2>
-    <div class="blog-grid">
-      <a href="blog.html#why-website" class="blog-card">
-        <div class="blog-card-body">
-          <div class="blog-tag">Websites</div>
-          <h3>Why Every Local Business Needs a Website in 2026</h3>
-          <p>Your Facebook page isn't a website. Here's the real difference — and why it matters more than you think.</p>
-          <span class="blog-read">Read more →</span>
-        </div>
-      </a>
-      <a href="blog.html#what-is-seo" class="blog-card">
-        <div class="blog-card-body">
-          <div class="blog-tag">SEO</div>
-          <h3>What Is SEO — And Why Should a Local Business Care?</h3>
-          <p>Plain-language breakdown of what search engine optimization actually means for a small business in the Outaouais.</p>
-          <span class="blog-read">Read more →</span>
-        </div>
-      </a>
-      <a href="blog.html#invisible-online" class="blog-card">
-        <div class="blog-card-body">
-          <div class="blog-tag">Digital Presence</div>
-          <h3>You're Invisible Online — And It's Costing You Customers</h3>
-          <p>How to find out if your business is searchable — and what to do if it isn't.</p>
-          <span class="blog-read">Read more →</span>
-        </div>
-      </a>
-    </div>
-    <div style="margin-top:2rem"><a href="blog.html" class="btn-outline">View All Posts →</a></div>
-  </div>
-</section>
-
-<!-- CTA BAND -->
-<section class="cta-band">
-  <div class="cta-band-inner">
-    <h2>Ready to stop being <em>invisible?</em></h2>
-    <p>Book a free 30-minute consultation. We'll figure out exactly what your business needs — no obligation, no hard sell.</p>
-    <div class="cta-band-btns">
-      <a href="contact.html" class="btn-primary">Book Your Free Chat →</a>
-      <a href="tel:+16132924762" class="btn-outline">Call 613-292-4762</a>
-    </div>
-  </div>
-</section>
-
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">

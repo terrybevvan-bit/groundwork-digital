@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://groundwork-digital.ca/sitemap.xml
+Sitemap: https://www.groundwork-digital.ca/sitemap.xml

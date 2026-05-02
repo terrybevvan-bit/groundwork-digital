@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Blog — GroundWork Digital</title>
+<meta name="description" content="Plain-language articles on websites, SEO, digital marketing, and AI for local businesses in Gatineau, Outaouais and Pontiac."/>
+<meta property="og:title" content="Blog — GroundWork Digital"/>
+<meta property="og:description" content="Plain-language articles on websites, SEO, digital marketing, AI tools, and practical online growth for local businesses."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.groundwork-digital.ca/blog.html"/>
+<meta property="og:image" content="https://www.groundwork-digital.ca/terry_headshot_cropped.png"/>
+<meta property="og:site_name" content="GroundWork Digital"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+:root{
+  --bg:#0a0c0f;--bg2:#10131a;--bg3:#171b24;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.14);
+  --green:#4ade80;--green-dim:rgba(74,222,128,0.10);--green-rgb:74,222,128;
+  --text:#f2f0ec;--text2:#9a9790;--text3:#5a5854;
+  --nav-bg:rgba(10,12,15,0.90);--card-bg:rgba(16,19,26,0.95);
+  --serif:'Instrument Serif',serif;--sans:'Bricolage Grotesque',sans-serif;--mono:'DM Mono',monospace;
+}
+html.light{
+  --bg:#f4f3ef;--bg2:#eceae4;--bg3:#e2ded6;
+  --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.16);
+  --green:#16a34a;--green-dim:rgba(22,163,74,0.10);--green-rgb:22,163,74;
+  --text:#141210;--text2:#4a4640;--text3:#9a9690;
+  --nav-bg:rgba(244,243,239,0.90);--card-bg:rgba(236,234,228,0.95);
+}
+html.transitioning,html.transitioning *{transition:background-color .3s ease,color .3s ease,border-color .3s ease !important;}
+#grid-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.5;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;background:var(--nav-bg);border-bottom:1px solid var(--border);backdrop-filter:blur(14px);}
+.nav-logo{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.logo-mark{width:38px;height:38px;background:#080908;border:1px solid var(--green);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:17px;font-weight:700;color:var(--text);line-height:1;flex-shrink:0;position:relative;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(var(--green-rgb),.12);}
+.logo-mark::before,.logo-mark::after{content:'';position:absolute;left:6px;right:6px;height:1px;background:var(--green);opacity:.75;}
+.logo-mark::before{top:37%;}
+.logo-mark::after{bottom:31%;opacity:.35;}
+.logo-name{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--text);line-height:.95;}
+.logo-sub{font-family:var(--mono);font-size:9px;color:var(--green);letter-spacing:2.2px;text-transform:uppercase;margin-top:3px;}
+.nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none;}
+.nav-links a{font-size:12px;color:var(--text2);text-decoration:none;transition:color .15s;letter-spacing:.1px;}
+.nav-links a:hover,.nav-links a.active{color:var(--green);}
+.nav-right{display:flex;align-items:center;gap:.75rem;}
+.nav-cta{padding:8px 20px;background:var(--green);color:var(--bg) !important;font-weight:600 !important;font-size:12px !important;border-radius:100px;text-decoration:none;transition:background .15s;}
+.nav-cta:hover{background:#86efac;}
+html.light .nav-cta:hover{background:#15803d;}
+#theme-toggle{width:34px;height:34px;border-radius:8px;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;}
+#theme-toggle:hover{border-color:var(--green);color:var(--green);}
+#nav-burger{display:none;background:none;border:1px solid var(--border2);border-radius:7px;width:36px;height:36px;cursor:pointer;color:var(--text2);font-size:18px;align-items:center;justify-content:center;}
+@media(max-width:820px){.nav-links{display:none;}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:64px;left:0;right:0;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:1.5rem 2rem;gap:1.25rem;z-index:199;}#nav-burger{display:flex;}nav{padding:0 1.25rem;}}
+
+footer{position:relative;z-index:1;background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2rem 2rem;}
+.footer-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;}
+.footer-brand .logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
+.footer-brand p{font-size:13px;color:var(--text3);line-height:1.7;max-width:240px;}
+.footer-col h4{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.footer-col ul li a{font-size:13px;color:var(--text2);text-decoration:none;transition:color .15s;}
+.footer-col ul li a:hover{color:var(--green);}
+.footer-bottom{max-width:1000px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text3);flex-wrap:wrap;gap:.5rem;}
+@media(max-width:700px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem;}.footer-brand{grid-column:1/-1;}}
+
+/* UTILS */
+.page-wrap{position:relative;z-index:1;}
+.container{max-width:1000px;margin:0 auto;padding:0 2rem;}
+.section-tag{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:1rem;}
+.section-tag::before{content:'';width:18px;height:1px;background:var(--green);}
+.section-heading{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:400;line-height:1.1;letter-spacing:-.4px;color:var(--text);margin-bottom:1.5rem;}
+.section-heading em{font-style:italic;color:var(--green);}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--green);color:var(--bg);font-weight:600;font-size:14px;border-radius:100px;text-decoration:none;transition:background .15s,transform .1s;}
+.btn-primary:hover{background:#86efac;transform:translateY(-1px);}
+html.light .btn-primary:hover{background:#15803d;}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border:1px solid var(--border2);color:var(--text2);font-size:14px;border-radius:100px;text-decoration:none;transition:all .15s;}
+.btn-outline:hover{border-color:var(--green);color:var(--green);}
+/* PAGE HERO (non-index) */
+.page-hero{padding:130px 2rem 80px;position:relative;z-index:1;}
+.page-hero-inner{max-width:1000px;margin:0 auto;}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4rem);font-weight:400;line-height:1.07;letter-spacing:-.8px;color:var(--text);margin-bottom:1.25rem;}
+.page-hero h1 em{font-style:italic;color:var(--green);}
+.page-hero p{font-size:1.05rem;color:var(--text2);line-height:1.8;max-width:580px;font-weight:300;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 100% at 20% 50%,rgba(10,12,15,0) 0%,rgba(10,12,15,.7) 70%,rgba(10,12,15,.95) 100%);pointer-events:none;}
+html.light .page-hero::before{background:radial-gradient(ellipse 80% 100% at 20% 50%,rgba(244,243,239,0) 0%,rgba(244,243,239,.7) 70%,rgba(244,243,239,.95) 100%);}
+section.content-section{padding:80px 2rem;position:relative;z-index:1;}
+section.content-section.alt{background:var(--bg2);}
+
+
+.blog-index{display:grid;grid-template-columns:2fr 1fr;gap:3rem;margin-top:2.5rem;}
+.blog-main{}
+.blog-sidebar{}
+.blog-post{margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid var(--border);}
+.blog-post:last-child{border-bottom:none;}
+.post-meta{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+.post-tag{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.8px;text-transform:uppercase;background:var(--green-dim);border-radius:100px;padding:3px 12px;}
+.post-date{font-family:var(--mono);font-size:11px;color:var(--text3);}
+.post-read-time{font-family:var(--mono);font-size:11px;color:var(--text3);}
+.blog-post h2{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;color:var(--text);line-height:1.2;margin-bottom:1rem;}
+.blog-post h2 a{color:inherit;text-decoration:none;transition:color .15s;}
+.blog-post h2 a:hover{color:var(--green);}
+.post-intro{font-size:1rem;color:var(--text2);line-height:1.8;font-weight:300;margin-bottom:1.5rem;}
+.post-body{font-size:.97rem;color:var(--text2);line-height:1.85;font-weight:300;}
+.post-body p{margin-bottom:1.2rem;}
+.post-body h3{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--text);margin:2rem 0 .75rem;}
+.post-body ul{padding-left:1.5rem;margin-bottom:1.2rem;}
+.post-body ul li{margin-bottom:.5rem;color:var(--text2);}
+.post-body strong{color:var(--text);font-weight:600;}
+.post-body blockquote{border-left:2px solid var(--green);padding:.75rem 1.25rem;background:var(--green-dim);border-radius:0 8px 8px 0;margin:1.5rem 0;font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--text);}
+.sidebar-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;}
+.sidebar-card h4{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem;}
+.sidebar-links{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.sidebar-links a{font-size:13px;color:var(--text2);text-decoration:none;transition:color .15s;}
+.sidebar-links a:hover{color:var(--green);}
+@media(max-width:760px){.blog-index{grid-template-columns:1fr;}.blog-sidebar{display:none;}}
+
+</style>
+</head>
+<body>
+<canvas id="grid-canvas"></canvas>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark">GW</div>
+    <div><div class="logo-name">GroundWork</div><div class="logo-sub">Digital</div></div>
+  </a>
+  <ul class="nav-links" id="nav-menu"><li><a href="index.html" class="">Home</a></li><li><a href="services.html" class="">Services</a></li><li><a href="work.html" class="">Our Work</a></li><li><a href="blog.html" class="active">Blog</a></li><li><a href="contact.html" class="">Get a Quote</a></li></ul>
+  <div class="nav-right">
+    <a href="contact.html" class="nav-cta">Free Quote</a>
+    <button id="theme-toggle" aria-label="Toggle theme"><span id="theme-icon">☀</span></button>
+    <button id="nav-burger" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+</nav>
+<div class="page-wrap">
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-tag">The Blog</div>
+    <h1>Insights that help your<br>business <em>get found and grow.</em></h1>
+    <p>Plain-language articles on websites, SEO, digital marketing, and AI — written for local business owners who don't have time for tech jargon.</p>
+  </div>
+</div>
+<section class="content-section">
+  <div class="container">
+    <div class="blog-index">
+
+      <div class="blog-main">
+
+        <!-- POST 1 -->
+        <article class="blog-post" id="why-website">
+          <div class="post-meta">
+            <span class="post-tag">Websites</span>
+            <span class="post-date">May 2026</span>
+            <span class="post-read-time">5 min read</span>
+          </div>
+          <h2><a href="#why-website">Why Every Local Business Needs a Website in 2026</a></h2>
+          <p class="post-intro">Your Facebook page is not a website. It never was. And in 2026, the difference between having one and not having one is the difference between being in business and being invisible.</p>
+          <div class="post-body">
+            <p>I hear it all the time from local business owners across the Pontiac and Outaouais: <strong>"I have Facebook, that's enough."</strong> I understand the logic — Facebook is free, you already know how to use it, and your existing customers follow you there. But here's what that thinking is costing you.</p>
+            <h3>Google doesn't show Facebook pages in local search</h3>
+            <p>When someone opens Google and types "electrician near Shawville" or "best poutine Gatineau," they see a list of websites. They see Google Maps results. They do not see your Facebook page — unless you're running paid ads. Organic search, the free traffic that comes to you every day while you sleep, requires a website.</p>
+            <p>Think about your own behaviour. When you need to find a local service you've never used before, what do you do? You Google it. And you click on the results that have a real website — not a Facebook link. Your potential customers do the exact same thing.</p>
+            <h3>Facebook controls your audience. You don't.</h3>
+            <p>Here's the uncomfortable truth about Facebook: it's someone else's platform. Facebook decides which of your followers actually see your posts (typically 2–5% of them, thanks to their algorithm). Facebook can change the rules overnight. Facebook can suspend your account. Facebook can — and does — reduce organic reach every single year to push you toward paid advertising.</p>
+            <blockquote>Your website is the one piece of digital real estate that you actually own. Nobody can take it from you, change the rules on you, or bury your content.</blockquote>
+            <p>A website is yours. Your domain, your content, your visitors. When someone finds you through Google and lands on your website, that's a relationship that exists entirely outside of any social platform's control.</p>
+            <h3>A website builds trust in ways social media can't</h3>
+            <p>There's a reason that when you look up a contractor or a professional service, you instinctively feel more confident when they have a proper website. It signals permanence, professionalism, and investment. A business with a website looks established. A business with only a Facebook page looks like a side hustle — even if it's been running for twenty years.</p>
+            <p>Your website is where you can control your entire story: your services, your pricing, your photos, your testimonials, your story. No algorithm throttling your message. No competing posts in a feed. Just your business, presented exactly how you want it.</p>
+            <h3>The cost of not having one is higher than the cost of building one</h3>
+            <p>Every day you're not findable on Google, someone who needs your service is calling your competitor instead. That's not a hypothetical — it's happening right now. A professional one-page website can be built and live in days, not months. And once it's there, it works for you every single hour of every single day.</p>
+            <p>If you're a local business owner in the Outaouais or Pontiac without a website, or with a website you're embarrassed to share — let's fix that. <a href="contact.html" style="color:var(--green);">Book a free chat</a> and we'll figure out exactly what you need.</p>
+          </div>
+        </article>
+
+        <!-- POST 2 -->
+        <article class="blog-post" id="what-is-seo">
+          <div class="post-meta">
+            <span class="post-tag">SEO</span>
+            <span class="post-date">April 2026</span>
+            <span class="post-read-time">6 min read</span>
+          </div>
+          <h2><a href="#what-is-seo">What Is SEO — And Why Should a Local Business Care?</a></h2>
+          <p class="post-intro">SEO stands for Search Engine Optimization. Three words that have somehow become the most over-explained, under-understood concept in all of digital marketing. Let me break it down the way I'd explain it to my neighbour over a coffee.</p>
+          <div class="post-body">
+            <p>Every day, millions of people type questions and searches into Google. <strong>"Plumber in Gatineau."</strong> "Best breakfast Shawville." "Accountant near me." Google's job is to show the most relevant, trustworthy results at the top of the page. SEO is the process of making sure your business shows up in those results — and shows up ahead of your competitors.</p>
+            <h3>How Google decides who shows up first</h3>
+            <p>Google uses hundreds of signals to rank websites. But for a local business, the most important ones are surprisingly straightforward:</p>
+            <ul>
+              <li><strong>Relevance</strong> — Does your website actually talk about the service someone searched for?</li>
+              <li><strong>Location</strong> — Are you in the area they're searching in? Is that clear on your site and your Google listing?</li>
+              <li><strong>Authority</strong> — Do other websites link to yours? Do you have consistent business information across the web?</li>
+              <li><strong>Trust</strong> — Do you have Google reviews? Are they recent? Are they good?</li>
+            </ul>
+            <p>None of these are mysterious. They're just things most local businesses haven't taken the time to set up properly.</p>
+            <h3>Local SEO vs. general SEO</h3>
+            <p>When people talk about SEO for a small local business, they mostly mean <em>local SEO</em> — optimizing for searches in your specific geographic area. You're not trying to rank number one in all of Canada for "electrician." You're trying to rank in the top three results when someone in Pontiac searches "electrician near Fort-Coulonge."</p>
+            <blockquote>Local SEO is not about competing with everyone. It's about being the obvious choice in your backyard.</blockquote>
+            <p>That's a much more achievable goal — and for most local businesses in the Outaouais and Pontiac, the competition isn't doing it well. That means opportunity.</p>
+            <h3>What local SEO actually involves</h3>
+            <p>The core of local SEO for a small business comes down to a few key things:</p>
+            <ul>
+              <li>A properly built website that mentions your services, your location, and your service area clearly</li>
+              <li>A fully optimized Google Business Profile with updated hours, photos, and services</li>
+              <li>Consistent business name, address, and phone number across directories like Yelp, Yellow Pages, and others</li>
+              <li>A steady stream of genuine Google reviews</li>
+              <li>Content (even just a blog post here and there) that answers questions your customers are actually asking</li>
+            </ul>
+            <p>None of this requires a degree in computer science. It requires attention to detail and someone who knows which levers to pull.</p>
+            <h3>How long does SEO take?</h3>
+            <p>Honest answer: it depends. For a brand new website with no history, expect 3–6 months before you start seeing meaningful movement in search rankings. For a business that already has some online presence and just needs it cleaned up and optimized, you can see results in weeks.</p>
+            <p>The important thing to understand is that SEO is cumulative. The work you do today compounds over time. Unlike paid advertising, which stops the moment you stop paying, SEO builds a foundation that keeps working for you.</p>
+            <p>Ready to find out where your business stands in local search? <a href="contact.html" style="color:var(--green);">Book a free audit</a> — I'll show you exactly what Google sees when it looks at your business, and what we can do about it.</p>
+          </div>
+        </article>
+
+        <!-- POST 3 -->
+        <article class="blog-post" id="invisible-online">
+          <div class="post-meta">
+            <span class="post-tag">Digital Presence</span>
+            <span class="post-date">March 2026</span>
+            <span class="post-read-time">4 min read</span>
+          </div>
+          <h2><a href="#invisible-online">You're Invisible Online — And It's Costing You Customers Right Now</a></h2>
+          <p class="post-intro">How to find out in five minutes whether your business is findable online — and what to do if it isn't.</p>
+          <div class="post-body">
+            <p>Here's a quick test. Open a new browser tab — private/incognito mode, so your own browsing history doesn't influence the results. Type in the kind of search your ideal customer would use to find you. <strong>Something like "[your service] [your town]."</strong> Now look at the results.</p>
+            <p>Are you on the first page? Are you in the Google Maps results at the top? Are you anywhere in the top ten?</p>
+            <p>If the answer is no — you're invisible. And every day that's true, customers who need exactly what you offer are finding someone else.</p>
+            <h3>Why "word of mouth is enough" is a trap</h3>
+            <p>Word of mouth is powerful. It's the foundation of most successful local businesses. But here's what it can't do: it can't reach the person who just moved to town and doesn't know anyone yet. It can't reach the customer who lost your number. It can't reach the person at 10pm on a Sunday who needs your service and is searching Google from their couch.</p>
+            <blockquote>"I know a guy" only works if people can find the guy when they need him.</blockquote>
+            <p>A strong online presence doesn't replace word of mouth — it multiplies it. When someone recommends you and the other person Googles your name, what do they find? A professional website and a polished Google listing — or nothing?</p>
+            <h3>The three layers of online visibility</h3>
+            <p>For most local businesses, getting found online comes down to three layers:</p>
+            <ul>
+              <li><strong>Google Search</strong> — When someone searches for what you do, does your website appear?</li>
+              <li><strong>Google Maps</strong> — Does your business show up in the map pack when someone searches locally?</li>
+              <li><strong>Your Website</strong> — When someone finds you, does what they see build trust and get them to call?</li>
+            </ul>
+            <p>Most local businesses are missing at least two of the three. Many are missing all three. The good news: each one is fixable, and the order matters. Google Business Profile first (fast results), then your website (medium-term), then SEO (long-term compounding).</p>
+            <h3>What to do right now</h3>
+            <p>Start with the test I described above. Then check whether your Google Business Profile is claimed and complete. Then look at your website — if you have one — on your phone. Does it load fast? Is your phone number clickable? Is it embarrassing or is it something you'd confidently send to a potential client?</p>
+            <p>If any of those answers are uncomfortable, that's the gap. And that gap is customers going to someone else.</p>
+            <p>I offer a free 30-minute consultation where we walk through exactly this — your current visibility, what's missing, and what the most practical first step is for your specific situation. <a href="contact.html" style="color:var(--green);">Book your free session here.</a></p>
+          </div>
+        </article>
+
+        <!-- POST 4 -->
+        <article class="blog-post" id="google-business-profile">
+          <div class="post-meta">
+            <span class="post-tag">Google Business</span>
+            <span class="post-date">May 2026</span>
+            <span class="post-read-time">5 min read</span>
+          </div>
+          <h2><a href="#google-business-profile">Your Google Business Profile Is Often More Important Than Your Homepage</a></h2>
+          <p class="post-intro">For a local business, the first impression often happens on Google Maps before anyone ever clicks your website. That small profile can decide whether someone calls you or keeps scrolling.</p>
+          <div class="post-body">
+            <p>When someone searches for a local service, Google usually shows a map pack before the regular website results. That means your Google Business Profile is not a side project. It is one of the most visible pieces of your online presence.</p>
+            <h3>What customers see first</h3>
+            <p>Before they read your About page, people see your reviews, hours, photos, service categories, location, and phone number. If those details are incomplete or out of date, it creates friction at the exact moment someone is ready to act.</p>
+            <p>A complete profile answers the basic questions quickly: Are you open? Do you serve my area? Do other people trust you? Can I call from my phone right now?</p>
+            <h3>The common mistakes</h3>
+            <ul>
+              <li>Wrong or missing service categories</li>
+              <li>No recent photos</li>
+              <li>Old hours, especially around holidays</li>
+              <li>Services listed vaguely or not listed at all</li>
+              <li>No process for asking happy customers for reviews</li>
+            </ul>
+            <blockquote>A good Google Business Profile reduces doubt before a customer reaches your website.</blockquote>
+            <h3>Start with the basics</h3>
+            <p>Make sure the name, address, phone number, website link, hours, services, and service area are accurate. Then add real photos: your storefront, your team, your work, your vehicle, your products, or anything that proves you are a real local business.</p>
+            <p>After that, build a simple review habit. Ask satisfied customers soon after the job is done, make the link easy, and respond professionally when reviews come in. You do not need hundreds of reviews to look credible. You need recent, genuine proof.</p>
+            <p>If your profile has been claimed but ignored, that is usually one of the fastest digital wins available. <a href="contact.html" style="color:var(--green);">Book a free review</a> and I can show you what is missing.</p>
+          </div>
+        </article>
+
+        <!-- POST 5 -->
+        <article class="blog-post" id="ai-tools-small-business">
+          <div class="post-meta">
+            <span class="post-tag">AI Tools</span>
+            <span class="post-date">May 2026</span>
+            <span class="post-read-time">5 min read</span>
+          </div>
+          <h2><a href="#ai-tools-small-business">Practical AI Tools for Small Businesses: What Is Actually Worth Your Time?</a></h2>
+          <p class="post-intro">AI can save time, but only when it is attached to a real workflow. The goal is not to chase every new tool. The goal is to remove repetitive work from your week.</p>
+          <div class="post-body">
+            <p>Most small business owners do not need a complicated AI strategy. They need a few practical uses that save time without creating new problems. If a tool does not help you write faster, respond faster, organize information, or make better decisions, it is probably noise.</p>
+            <h3>Where AI helps first</h3>
+            <ul>
+              <li>Drafting social posts from notes, photos, or promotions</li>
+              <li>Turning rough ideas into website copy or email drafts</li>
+              <li>Summarizing long documents, reviews, or customer feedback</li>
+              <li>Creating checklists and repeatable process templates</li>
+              <li>Brainstorming blog topics based on real customer questions</li>
+            </ul>
+            <p>These are low-risk uses because the business owner still reviews the output. AI gives you a first draft. You bring the judgment, local knowledge, and final approval.</p>
+            <h3>Where to be careful</h3>
+            <p>Do not let AI publish directly to your website, send customer messages, make legal or financial claims, or invent facts about your business. Treat it like a fast assistant, not an authority.</p>
+            <blockquote>The best AI setup is boring: it saves an hour, repeats reliably, and does not create cleanup work.</blockquote>
+            <h3>Start with one workflow</h3>
+            <p>Pick one task you avoid every week. Maybe it is writing Facebook posts, answering common email questions, updating product descriptions, or turning project photos into short captions. Build a simple prompt or template around that task and test it for a month.</p>
+            <p>If it saves time and the quality is acceptable, keep it. If it creates more editing than it saves, drop it. The point is practical return, not novelty.</p>
+            <p>Want to find one AI workflow that makes sense for your business? <a href="contact.html" style="color:var(--green);">Book a quick consult</a> and we will keep it grounded in real work.</p>
+          </div>
+        </article>
+
+      </div><!-- /.blog-main -->
+
+      <!-- SIDEBAR -->
+      <aside class="blog-sidebar">
+        <div class="sidebar-card">
+          <h4>All Posts</h4>
+          <ul class="sidebar-links">
+            <li><a href="#why-website">Why Every Local Business Needs a Website</a></li>
+            <li><a href="#what-is-seo">What Is SEO and Why Should I Care?</a></li>
+            <li><a href="#invisible-online">You're Invisible Online</a></li>
+            <li><a href="#google-business-profile">Your Google Business Profile Matters</a></li>
+            <li><a href="#ai-tools-small-business">Practical AI Tools for Small Businesses</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-card">
+          <h4>Topics</h4>
+          <ul class="sidebar-links">
+            <li><a href="#why-website">Websites</a></li>
+            <li><a href="#what-is-seo">SEO</a></li>
+            <li><a href="#invisible-online">Digital Presence</a></li>
+            <li><a href="#google-business-profile">Google Business</a></li>
+            <li><a href="#ai-tools-small-business">AI Tools</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-card">
+          <h4>Free Consultation</h4>
+          <p style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:1rem;">Have a question about your own situation? Book a free 30-minute chat.</p>
+          <a href="contact.html" class="btn-primary" style="font-size:13px;padding:10px 20px;">Book Free Chat →</a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-wrap">
+        <div class="logo-mark">GW</div>
+        <div><div class="logo-name">GroundWork</div><div class="logo-sub">Digital</div></div>
+      </div>
+      <p>Helping local businesses get found, look great, and grow — without the tech headache.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="services.html#websites">Websites</a></li>
+        <li><a href="services.html#seo">Local SEO</a></li>
+        <li><a href="services.html#google">Google Business</a></li>
+        <li><a href="services.html#social">Social Media</a></li>
+        <li><a href="services.html#logo">Logo Design</a></li>
+        <li><a href="services.html#apparel">Apparel &amp; Merch</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="index.html#about">About Terry</a></li>
+        <li><a href="work.html">Our Work</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get in Touch</h4>
+      <ul>
+        <li><a href="mailto:terry@groundwork-digital.ca">terry@groundwork-digital.ca</a></li>
+        <li><a href="tel:+16132924762">613-292-4762</a></li>
+        <li><a href="contact.html">Free Consultation</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 GroundWork Digital · Aylmer, Quebec</span>
+    <span>Built with ❤ in the Outaouais</span>
+  </div>
+</footer>
+</div>
+<script>
+/* GWD SHARED JS — paste into every page's <script> block */
+
+// ── THEME TOGGLE ──────────────────────────────────────────────
+(function(){
+  const h=document.documentElement,btn=document.getElementById('theme-toggle'),icon=document.getElementById('theme-icon');
+  const SUN='☀',MOON='☾';
+  if(localStorage.getItem('gwd-theme')==='light'){h.classList.add('light');if(icon)icon.textContent=MOON;}
+  else{if(icon)icon.textContent=SUN;}
+  if(btn)btn.addEventListener('click',function(){
+    h.classList.add('transitioning');
+    setTimeout(()=>h.classList.remove('transitioning'),400);
+    const isLight=h.classList.toggle('light');
+    if(icon)icon.textContent=isLight?MOON:SUN;
+    localStorage.setItem('gwd-theme',isLight?'light':'dark');
+    if(window.gwdGridColor)window.gwdGridColor();
+  });
+})();
+
+// ── MOBILE NAV ────────────────────────────────────────────────
+(function(){
+  const burger=document.getElementById('nav-burger'),menu=document.getElementById('nav-menu');
+  if(burger&&menu)burger.addEventListener('click',function(){
+    const open=menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open);
+  });
+  // close on link click
+  if(menu)menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+})();
+
+// ── ANIMATED GRID CANVAS ──────────────────────────────────────
+(function(){
+  const canvas=document.getElementById('grid-canvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const CELL=48,DOT_R=1.5,LINE_OP=0.045,DOT_OP=0.18,NUM_PULSES=18,NUM_SCANS=3,NUM_PACKETS=12;
+  let W,H,cols,rows;
+  function getGreen(){return getComputedStyle(document.documentElement).getPropertyValue('--green-rgb').trim()||'74,222,128';}
+  let GREEN=getGreen();
+  window.gwdGridColor=function(){GREEN=getGreen();};
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;cols=Math.ceil(W/CELL)+2;rows=Math.ceil(H/CELL)+2;}
+  const pulses=[],scans=[],packets=[];
+  function initPulses(){pulses.length=0;for(let i=0;i<NUM_PULSES;i++)pulses.push({col:Math.floor(Math.random()*(cols-2))+1,row:Math.floor(Math.random()*(rows-2))+1,life:Math.random(),speed:.003+Math.random()*.004,maxR:18+Math.random()*28,bright:.5+Math.random()*.5});}
+  function initScans(){scans.length=0;for(let i=0;i<NUM_SCANS;i++)scans.push({y:Math.random()*H,speed:.15+Math.random()*.25,opacity:.03+Math.random()*.04});}
+  function spawnPacket(){const h2=Math.random()>.5,col=Math.floor(Math.random()*(cols-2))+1,row=Math.floor(Math.random()*(rows-2))+1;packets.push({horiz:h2,x:col*CELL,y:row*CELL,t:0,len:(2+Math.floor(Math.random()*5))*CELL,speed:.6+Math.random()*1.2,opacity:.35+Math.random()*.45,width:2+Math.random()*2,dir:Math.random()>.5?1:-1});}
+  function initPackets(){packets.length=0;for(let i=0;i<NUM_PACKETS;i++)spawnPacket();}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle=`rgba(${GREEN},${LINE_OP})`;ctx.lineWidth=.5;ctx.beginPath();
+    for(let c=0;c<=cols;c++){ctx.moveTo(c*CELL,0);ctx.lineTo(c*CELL,H);}
+    for(let r=0;r<=rows;r++){ctx.moveTo(0,r*CELL);ctx.lineTo(W,r*CELL);}
+    ctx.stroke();
+    ctx.fillStyle=`rgba(${GREEN},${DOT_OP})`;
+    for(let c=0;c<=cols;c++)for(let r=0;r<=rows;r++){ctx.beginPath();ctx.arc(c*CELL,r*CELL,DOT_R,0,Math.PI*2);ctx.fill();}
+    for(const p of pulses){
+      p.life+=p.speed;if(p.life>1){p.life=0;p.col=Math.floor(Math.random()*(cols-2))+1;p.row=Math.floor(Math.random()*(rows-2))+1;}
+      const cx=p.col*CELL,cy=p.row*CELL,r=p.life*p.maxR,op=p.bright*(1-p.life)*.5;
+      ctx.strokeStyle=`rgba(${GREEN},${op})`;ctx.lineWidth=1;ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.stroke();
+      if(p.life<.15){const dop=p.bright*(1-p.life/.15)*.9;const g=ctx.createRadialGradient(cx,cy,0,cx,cy,6);g.addColorStop(0,`rgba(${GREEN},${dop})`);g.addColorStop(1,`rgba(${GREEN},0)`);ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,6,0,Math.PI*2);ctx.fill();}
+    }
+    for(const s of scans){s.y+=s.speed;if(s.y>H+80)s.y=-80;const g=ctx.createLinearGradient(0,s.y-40,0,s.y+40);g.addColorStop(0,`rgba(${GREEN},0)`);g.addColorStop(.5,`rgba(${GREEN},${s.opacity})`);g.addColorStop(1,`rgba(${GREEN},0)`);ctx.fillStyle=g;ctx.fillRect(0,s.y-40,W,80);}
+    for(let i=packets.length-1;i>=0;i--){
+      const pk=packets[i];pk.t+=pk.speed;if(pk.t>pk.len){packets.splice(i,1);spawnPacket();continue;}
+      const prog=pk.t/pk.len,hx=pk.horiz?pk.x+pk.dir*pk.t:pk.x,hy=pk.horiz?pk.y:pk.y+pk.dir*pk.t,tx=pk.horiz?pk.x+pk.dir*Math.max(0,pk.t-40):pk.x,ty=pk.horiz?pk.y:pk.y+pk.dir*Math.max(0,pk.t-40);
+      const g=pk.horiz?ctx.createLinearGradient(tx,hy,hx,hy):ctx.createLinearGradient(hx,ty,hx,hy);
+      const fi=Math.min(1,prog*4),fo=Math.min(1,(1-prog)*4),op=pk.opacity*fi*fo;
+      g.addColorStop(0,`rgba(${GREEN},0)`);g.addColorStop(1,`rgba(${GREEN},${op})`);
+      ctx.strokeStyle=g;ctx.lineWidth=pk.width;ctx.beginPath();ctx.moveTo(tx,ty);ctx.lineTo(hx,hy);ctx.stroke();
+      ctx.fillStyle=`rgba(${GREEN},${op*1.4})`;ctx.beginPath();ctx.arc(hx,hy,pk.width*.8,0,Math.PI*2);ctx.fill();
+    }
+    const sy=window.scrollY||0,fs=window.innerHeight*.6,fe=window.innerHeight*1.8;
+    canvas.style.opacity=1-Math.max(0,Math.min(1,(sy-fs)/(fe-fs)))*.85;
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',()=>{resize();initPulses();});
+  resize();initPulses();initScans();initPackets();draw();
+})();
+
+</script>
+</body>
+</html>
