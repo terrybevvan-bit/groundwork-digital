@@ -95,6 +95,17 @@ section.content-section.alt{background:var(--bg2);}
 .services-list{display:flex;flex-direction:column;gap:0;}
 .svc-row{display:grid;grid-template-columns:80px 1fr;gap:2.5rem;padding:3rem 0;border-bottom:1px solid var(--border);align-items:start;}
 .svc-row:last-child{border-bottom:none;}
+.phase-divider{display:flex;align-items:center;gap:1rem;padding:2.5rem 0 0;}
+.phase-divider::after{content:'';flex:1;height:1px;background:var(--border);}
+.phase-tag{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;white-space:nowrap;}
+.phase-name{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;}
+.start-here-box{background:var(--green-dim);border:1px solid rgba(var(--green-rgb),.2);border-radius:14px;padding:1.5rem 2rem;display:flex;align-items:center;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap;}
+.start-here-box .sh-icon{font-size:1.75rem;flex-shrink:0;}
+.start-here-box .sh-body{flex:1;min-width:220px;}
+.start-here-box .sh-label{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.35rem;}
+.start-here-box .sh-text{font-size:.95rem;color:var(--text2);line-height:1.65;font-weight:300;}
+.svc-row.strategy-highlight .svc-row-num{color:var(--green);opacity:.7;}
+@media(max-width:600px){.start-here-box{flex-direction:column;align-items:flex-start;}.start-here-box .btn-primary{width:100%;justify-content:center;}}
 .svc-row-num{font-family:var(--serif);font-size:3.5rem;color:var(--border2);line-height:1;padding-top:.25rem;}
 .svc-row-content{}
 .svc-row-header{display:flex;align-items:center;gap:1rem;margin-bottom:.75rem;}
@@ -140,7 +151,16 @@ section.content-section.alt{background:var(--bg2);}
 </div>
 <section class="content-section">
   <div class="container">
+    <div class="start-here-box">
+      <div class="sh-icon">💬</div>
+      <div class="sh-body">
+        <div class="sh-label">Recommended First Step</div>
+        <div class="sh-text">Not sure which services you need — or in what order? Start with a free Digital Strategy Consult. We'll map out your priorities so you invest in the right things first.</div>
+      </div>
+      <a href="#strategy" class="btn-primary">Start Here →</a>
+    </div>
     <div class="services-list">
+<div class="phase-divider"><span class="phase-tag">Phase 1</span><span class="phase-name">Get Found</span></div>
 <div class="svc-row" id="websites">
   <div class="svc-row-num">01</div>
   <div class="svc-row-content">
@@ -165,7 +185,8 @@ section.content-section.alt{background:var(--bg2);}
     <div class="svc-bullets"><span class="svc-bullet">Keyword Research</span><span class="svc-bullet">On-Page Optimization</span><span class="svc-bullet">Local Citations</span><span class="svc-bullet">Google Search Console</span><span class="svc-bullet">Monthly Reporting</span><span class="svc-bullet">Competitor Analysis</span></div>
     <a href="contact.html" class="btn-primary">Get a Quote →</a>
   </div>
-</div><div class="svc-row" id="social">
+</div><div class="phase-divider"><span class="phase-tag">Phase 2</span><span class="phase-name">Grow</span></div>
+<div class="svc-row" id="social">
   <div class="svc-row-num">04</div>
   <div class="svc-row-content">
     <div class="svc-row-header"><span class="svc-row-icon">📣</span><h2>Social Media Content</h2></div>
@@ -189,7 +210,8 @@ section.content-section.alt{background:var(--bg2);}
     <div class="svc-bullets"><span class="svc-bullet">Logo Design</span><span class="svc-bullet">Colour Palette</span><span class="svc-bullet">Typography</span><span class="svc-bullet">Brand Guidelines</span><span class="svc-bullet">File Formats for Web & Print</span><span class="svc-bullet">Revision Rounds</span></div>
     <a href="contact.html" class="btn-primary">Get a Quote →</a>
   </div>
-</div><div class="svc-row" id="apparel">
+</div><div class="phase-divider"><span class="phase-tag">Phase 3</span><span class="phase-name">Optimize</span></div>
+<div class="svc-row" id="apparel">
   <div class="svc-row-num">07</div>
   <div class="svc-row-content">
     <div class="svc-row-header"><span class="svc-row-icon">👕</span><h2>Apparel &amp; Merch</h2></div>
@@ -205,7 +227,8 @@ section.content-section.alt{background:var(--bg2);}
     <div class="svc-bullets"><span class="svc-bullet">AI Tool Audit</span><span class="svc-bullet">Custom Recommendations</span><span class="svc-bullet">Setup & Training</span><span class="svc-bullet">Automation Workflows</span><span class="svc-bullet">ChatGPT for Business</span><span class="svc-bullet">Ongoing Support</span></div>
     <a href="contact.html" class="btn-primary">Get a Quote →</a>
   </div>
-</div><div class="svc-row" id="strategy">
+</div><div class="phase-divider"><span class="phase-tag">Or, Start Here</span><span class="phase-name">Recommended Entry Point</span></div>
+<div class="svc-row strategy-highlight" id="strategy">
   <div class="svc-row-num">09</div>
   <div class="svc-row-content">
     <div class="svc-row-header"><span class="svc-row-icon">💬</span><h2>Digital Strategy Consult</h2></div>
