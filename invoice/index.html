@@ -62,7 +62,8 @@ h1{
   flex-wrap:wrap;
   justify-content:flex-end;
 }
-button{
+button,
+.button-link{
   border:0;
   border-radius:12px;
   padding:12px 14px;
@@ -70,8 +71,13 @@ button{
   cursor:pointer;
   background:#27272a;
   color:white;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
 }
-button:hover{filter:brightness(1.1)}
+button:hover,
+.button-link:hover{filter:brightness(1.1)}
 .btn-gold{
   background:var(--gold);
   color:#111;
@@ -414,6 +420,7 @@ input[type="checkbox"]{
   </div>
 
   <div class="header-actions">
+    <a class="button-link" href="/">Back to Home</a>
     <button onclick="copyInvoiceText()">Copy Invoice Text</button>
     <button class="btn-gold" onclick="window.print()">Print / Save PDF</button>
     <button onclick="toggleCopyBox()">Show Copy/Paste Invoice</button>
