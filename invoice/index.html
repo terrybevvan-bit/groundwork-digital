@@ -242,9 +242,26 @@ input[type="checkbox"]{
   padding-bottom:20px;
   border-bottom:1px solid #e5e7eb;
 }
+.invoice-brand{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+}
+.invoice-logo{
+  width:54px;
+  height:54px;
+  border-radius:10px;
+  flex:0 0 auto;
+}
 .invoice h2{
   font-size:32px;
   margin:8px 0 2px;
+}
+.invoice-contact{
+  color:#71717a;
+  font-size:13px;
+  line-height:1.5;
+  margin-top:4px;
 }
 .small-label{
   font-size:11px;
@@ -354,6 +371,7 @@ input[type="checkbox"]{
   .app{padding:14px}
   h1{font-size:32px}
   .form-grid,.addon-grid,.invoice-meta{grid-template-columns:1fr}
+  .invoice-brand{flex-direction:column}
 }
 @media print{
   body{background:white}
@@ -470,11 +488,18 @@ input[type="checkbox"]{
 <aside class="invoice" id="invoicePreview">
 
   <div class="invoice-top">
-    <div>
-      <div class="small-label">Quote / Invoice</div>
-      <h2>Groundwork Digital</h2>
-      <div style="color:#71717a;font-size:14px">Modern websites for local businesses</div>
-      <div style="color:#71717a;font-size:13px;margin-top:4px">https://groundwork-digital.ca/</div>
+    <div class="invoice-brand">
+      <img class="invoice-logo" src="../favicon.svg" alt="GroundWork Digital logo">
+      <div>
+        <div class="small-label">Quote / Invoice</div>
+        <h2>Groundwork Digital</h2>
+        <div style="color:#71717a;font-size:14px">Modern websites for local businesses</div>
+        <div class="invoice-contact">
+          <div>https://groundwork-digital.ca/</div>
+          <div>613-292-4762</div>
+          <div>terry@groundwork-digital.ca</div>
+        </div>
+      </div>
     </div>
 
     <div class="invoice-number">
@@ -946,6 +971,9 @@ function renderInvoice(){
 function buildInvoiceText(calc, termsText){
   return [
     "Groundwork Digital — Quote / Invoice",
+    "Phone: 613-292-4762",
+    "Email: terry@groundwork-digital.ca",
+    "Website: https://groundwork-digital.ca/",
     `Invoice #: ${state.invoiceNumber}`,
     `Date: ${state.invoiceDate}`,
     state.dueDate ? `Due Date: ${state.dueDate}` : null,
