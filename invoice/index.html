@@ -626,6 +626,13 @@ const STORAGE_KEY = "groundwork_quote_invoice_standalone_v2_no_discount";
 
 const packages = [
   {
+    id:"addons-only",
+    name:"Add-Ons Only / Existing Client",
+    price:0,
+    description:"Use this when the base website/page is already done and you only need to invoice extra work.",
+    addonsOnly:true
+  },
+  {
     id:"starter-landing",
     name:"Starter Landing Page",
     price:895,
@@ -742,7 +749,7 @@ function renderOptions(){
         <div style="flex:1">
           <div class="option-title">
             <span>${pkg.name}</span>
-            <span class="price">${money(pkg.price)}</span>
+            <span class="price">${pkg.addonsOnly ? "Add-ons only" : money(pkg.price)}</span>
           </div>
           <p>${pkg.description}</p>
         </div>
@@ -847,7 +854,8 @@ function calculate(){
     };
   }).filter(Boolean);
 
-  const beforePercent = pkg.price + flatLines.reduce((sum, item) => sum + item.lineTotal, 0);
+  const packageTotal = pkg.addonsOnly ? 0 : pkg.price;
+  const beforePercent = packageTotal + flatLines.reduce((sum, item) => sum + item.lineTotal, 0);
 
   const percentLines = Object.keys(state.selectedAddOns).map(id => {
     const addon = addOns.find(a => a.id === id);
@@ -912,7 +920,7 @@ function renderInvoice(){
   el("previewDue").textContent = state.dueDate || "Upon approval";
 
   el("invoiceLines").innerHTML = [
-    `
+    calc.pkg.addonsOnly ? "" : `
       <tr>
         <td>
           <strong>${calc.pkg.name}</strong>
@@ -982,7 +990,7 @@ function buildInvoiceText(calc, termsText){
     state.clientEmail ? `Email: ${state.clientEmail}` : null,
     state.clientPhone ? `Phone: ${state.clientPhone}` : null,
     "",
-    `Selected Package: ${calc.pkg.name} — ${money(calc.pkg.price)}`,
+    calc.pkg.addonsOnly ? "Invoice Type: Add-ons only" : `Selected Package: ${calc.pkg.name} — ${money(calc.pkg.price)}`,
     ...calc.lines.map(item => `${item.name}${item.qty > 1 ? ` x ${item.qty}` : ""} — ${money(item.lineTotal)}`),
     `Subtotal: ${money(calc.subtotal)}`,
     state.applyTaxes ? `GST: ${money(calc.gst)}` : null,
@@ -1017,6 +1025,13 @@ function setPackage(id){
   state.selectedPackage = id;
   renderOptions();
   renderInvoice();
+
+  if(id === "addons-only"){
+    el("addons").scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+  }
 }
 
 function setMonthly(id){
