@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /invoice
+Disallow: /invoice/
 
 Sitemap: https://www.groundwork-digital.ca/sitemap.xml

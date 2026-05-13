@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Groundwork Digital Quote & Invoice Generator</title>
+
+<style>
+:root{
+  --bg:#09090b;
+  --panel:#18181b;
+  --border:#27272a;
+  --text:#f4f4f5;
+  --muted:#a1a1aa;
+  --gold:#facc15;
+  --red:#ef4444;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+.app{
+  max-width:1400px;
+  margin:0 auto;
+  padding:28px;
+}
+.header{
+  background:linear-gradient(135deg,#18181b,#0f0f12);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:24px;
+  margin-bottom:24px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:flex-end;
+}
+.eyebrow{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:.22em;
+  font-size:12px;
+  font-weight:800;
+}
+h1{
+  margin:8px 0;
+  font-size:42px;
+  line-height:1;
+}
+.header p{
+  color:var(--muted);
+  margin:0;
+  line-height:1.5;
+}
+.header-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+button{
+  border:0;
+  border-radius:12px;
+  padding:12px 14px;
+  font-weight:800;
+  cursor:pointer;
+  background:#27272a;
+  color:white;
+}
+button:hover{filter:brightness(1.1)}
+.btn-gold{
+  background:var(--gold);
+  color:#111;
+}
+.btn-danger{
+  background:transparent;
+  border:1px solid rgba(239,68,68,.55);
+  color:#fca5a5;
+}
+.status{
+  display:inline-block;
+  margin-top:12px;
+  border:1px solid rgba(250,204,21,.35);
+  background:rgba(250,204,21,.1);
+  color:#fde68a;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+}
+.grid{
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:24px;
+  align-items:start;
+}
+.card{
+  background:rgba(24,24,27,.78);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:20px;
+  margin-bottom:18px;
+}
+.card h2{
+  margin:0 0 14px;
+  font-size:22px;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.full{grid-column:1/-1}
+input,select,textarea{
+  width:100%;
+  border:1px solid #3f3f46;
+  background:#09090b;
+  color:#fff;
+  border-radius:12px;
+  padding:12px;
+  font-size:14px;
+  outline:none;
+}
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--gold);
+}
+input[type="radio"],
+input[type="checkbox"]{
+  width:16px;
+  height:16px;
+  min-width:16px;
+  margin:2px 0 0;
+  padding:0;
+  accent-color:var(--gold);
+}
+.auth-locked .app{
+  display:none;
+}
+.password-screen{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:24px;
+}
+.auth-unlocked .password-screen{
+  display:none;
+}
+.password-panel{
+  width:min(100%,420px);
+  background:rgba(24,24,27,.88);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:24px;
+}
+.password-panel h1{
+  margin:8px 0 10px;
+  font-size:30px;
+}
+.password-panel p{
+  color:var(--muted);
+  line-height:1.5;
+  margin:0 0 18px;
+}
+.password-panel form{
+  display:grid;
+  gap:12px;
+}
+.password-error{
+  min-height:18px;
+  color:#fca5a5;
+  font-size:13px;
+}
+.option{
+  border:1px solid var(--border);
+  background:#09090b;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:10px;
+}
+.option.selected{
+  border-color:var(--gold);
+  background:rgba(250,204,21,.08);
+}
+.option label{
+  display:flex;
+  gap:12px;
+  cursor:pointer;
+}
+.option-title{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  font-weight:900;
+}
+.price{
+  color:var(--gold);
+  white-space:nowrap;
+}
+.option p{
+  color:var(--muted);
+  margin:6px 0 0;
+  font-size:13px;
+  line-height:1.45;
+}
+.addon-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+.qty-row{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin-top:10px;
+  color:var(--muted);
+  font-size:12px;
+}
+.qty-row input{
+  max-width:90px;
+  padding:8px;
+}
+.invoice{
+  background:white;
+  color:#111;
+  border-radius:22px;
+  padding:28px;
+  position:sticky;
+  top:18px;
+}
+.invoice-top{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  padding-bottom:20px;
+  border-bottom:1px solid #e5e7eb;
+}
+.invoice h2{
+  font-size:32px;
+  margin:8px 0 2px;
+}
+.small-label{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  color:#71717a;
+  font-weight:900;
+}
+.invoice-number{
+  background:#09090b;
+  color:white;
+  border-radius:14px;
+  padding:12px 16px;
+  text-align:right;
+  min-width:155px;
+}
+.invoice-meta{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+  padding:20px 0;
+  border-bottom:1px solid #e5e7eb;
+}
+.invoice table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+.invoice th{
+  text-align:left;
+  color:#71717a;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-size:11px;
+  padding:12px 0;
+  border-bottom:1px solid #e5e7eb;
+}
+.invoice td{
+  padding:13px 0;
+  border-bottom:1px solid #f1f5f9;
+  vertical-align:top;
+}
+.right{text-align:right}
+.line-desc{
+  color:#71717a;
+  font-size:12px;
+  line-height:1.45;
+  margin-top:4px;
+}
+.totals{
+  max-width:360px;
+  margin-left:auto;
+  padding-top:16px;
+  font-size:14px;
+}
+.total-row{
+  display:flex;
+  justify-content:space-between;
+  padding:6px 0;
+}
+.grand{
+  border-top:1px solid #e5e7eb;
+  margin-top:8px;
+  padding-top:12px;
+  font-size:22px;
+  font-weight:900;
+}
+.terms{
+  margin-top:20px;
+  background:#09090b;
+  color:white;
+  border-radius:18px;
+  padding:16px;
+}
+.term-boxes{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+.term-box{
+  background:rgba(255,255,255,.1);
+  border-radius:14px;
+  padding:12px;
+}
+.notes{
+  margin-top:18px;
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  padding:14px;
+}
+.footer-note{
+  margin-top:18px;
+  border-top:1px solid #e5e7eb;
+  padding-top:14px;
+  color:#71717a;
+  font-size:12px;
+  line-height:1.5;
+}
+@media(max-width:1000px){
+  .grid{grid-template-columns:1fr}
+  .invoice{position:relative;top:0}
+  .header{flex-direction:column;align-items:flex-start}
+  .header-actions{justify-content:flex-start}
+}
+@media(max-width:720px){
+  .app{padding:14px}
+  h1{font-size:32px}
+  .form-grid,.addon-grid,.invoice-meta{grid-template-columns:1fr}
+}
+@media print{
+  body{background:white}
+  .no-print{display:none!important}
+  .app{max-width:none;padding:0}
+  .grid{display:block}
+  .invoice{
+    display:block;
+    position:static;
+    box-shadow:none;
+    border-radius:0;
+    padding:0;
+  }
+  @page{margin:.5in}
+}
+</style>
+</head>
+
+<body class="auth-locked">
+<div class="password-screen no-print" id="passwordScreen">
+  <div class="password-panel">
+    <div class="eyebrow">Groundwork Digital</div>
+    <h1>Invoice Access</h1>
+    <p>Enter the password to open the invoice generator.</p>
+    <form id="passwordForm">
+      <input id="invoicePassword" type="password" placeholder="Password" autocomplete="current-password" />
+      <button class="btn-gold" type="submit">Open Invoice Generator</button>
+      <div class="password-error" id="passwordError" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+<div class="app">
+
+<header class="header no-print">
+  <div>
+    <div class="eyebrow">Groundwork Digital</div>
+    <h1>Quote & Invoice Generator</h1>
+    <p>Select packages, add-ons, monthly care, taxes, and payment terms. Autosaves in this browser.</p>
+    <span class="status" id="saveStatus">Autosave ready</span>
+  </div>
+
+  <div class="header-actions">
+    <button onclick="copyInvoiceText()">Copy Invoice Text</button>
+    <button class="btn-gold" onclick="window.print()">Print / Save PDF</button>
+    <button onclick="toggleCopyBox()">Show Copy/Paste Invoice</button>
+    <button onclick="downloadBackup()">Download Backup</button>
+    <button class="btn-danger" onclick="resetAll()">Reset</button>
+  </div>
+</header>
+
+<div class="grid">
+
+<main class="no-print">
+
+  <section class="card" id="copyBox" style="display:none">
+    <h2>Copy/Paste Invoice Backup</h2>
+    <p style="color:#a1a1aa;margin-top:-4px">
+      Fallback if you want to paste into Word, Google Docs, Gmail, or another invoice system.
+    </p>
+    <textarea id="invoiceTextBox" readonly onclick="this.select()"></textarea>
+  </section>
+
+  <section class="card">
+    <h2>Client Details</h2>
+    <div class="form-grid">
+      <input id="clientName" placeholder="Client name" />
+      <input id="businessName" placeholder="Business name" />
+      <input id="clientEmail" placeholder="Email" />
+      <input id="clientPhone" placeholder="Phone" />
+      <input id="clientAddress" class="full" placeholder="Address / notes" />
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Website Package</h2>
+    <div id="packages"></div>
+  </section>
+
+  <section class="card">
+    <h2>Add-Ons</h2>
+    <div class="addon-grid" id="addons"></div>
+  </section>
+
+  <section class="card">
+    <h2>Monthly Care Plan</h2>
+    <div id="monthlyPlans"></div>
+  </section>
+
+  <section class="card">
+    <h2>Invoice Settings</h2>
+    <div class="form-grid">
+      <input id="invoiceNumber" placeholder="Invoice number" />
+      <input id="invoiceDate" type="date" />
+      <input id="dueDate" type="date" />
+
+      <select id="paymentTerms">
+        <option value="50-50">50% deposit / 50% on launch</option>
+        <option value="full">Due in full</option>
+        <option value="custom">Custom payment terms</option>
+      </select>
+
+      <label style="display:flex;gap:10px;align-items:center;border:1px solid #3f3f46;background:#09090b;border-radius:12px;padding:12px">
+        <input id="applyTaxes" type="checkbox" style="width:auto" />
+        Apply GST/QST
+      </label>
+
+      <input id="customTerms" class="full" placeholder="Custom payment terms" style="display:none" />
+      <textarea id="notes" class="full" placeholder="Invoice notes / scope notes"></textarea>
+    </div>
+  </section>
+
+</main>
+
+<aside class="invoice" id="invoicePreview">
+
+  <div class="invoice-top">
+    <div>
+      <div class="small-label">Quote / Invoice</div>
+      <h2>Groundwork Digital</h2>
+      <div style="color:#71717a;font-size:14px">Modern websites for local businesses</div>
+      <div style="color:#71717a;font-size:13px;margin-top:4px">https://groundwork-digital.ca/</div>
+    </div>
+
+    <div class="invoice-number">
+      <div style="color:#a1a1aa;font-size:12px">Invoice #</div>
+      <strong id="previewInvoiceNumber">—</strong>
+    </div>
+  </div>
+
+  <div class="invoice-meta">
+    <div>
+      <div class="small-label">Bill To</div>
+      <div style="margin-top:8px;font-weight:900" id="previewClient">Client / Business Name</div>
+      <div id="previewClientExtra" style="color:#52525b;font-size:14px;line-height:1.5;margin-top:4px"></div>
+    </div>
+
+    <div>
+      <div class="small-label">Details</div>
+      <div style="margin-top:8px;font-size:14px;line-height:1.6">
+        <div><strong>Date:</strong> <span id="previewDate">—</span></div>
+        <div><strong>Due:</strong> <span id="previewDue">Upon approval</span></div>
+        <div><strong>Currency:</strong> CAD</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:16px 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th class="right">Amount</th>
+        </tr>
+      </thead>
+      <tbody id="invoiceLines"></tbody>
+    </table>
+  </div>
+
+  <div class="totals">
+    <div class="total-row">
+      <span>Subtotal</span>
+      <strong id="subtotal">$0.00</strong>
+    </div>
+
+    <div class="total-row" id="gstRow" style="display:none">
+      <span>GST 5%</span>
+      <strong id="gst">$0.00</strong>
+    </div>
+
+    <div class="total-row" id="qstRow" style="display:none">
+      <span>QST 9.975%</span>
+      <strong id="qst">$0.00</strong>
+    </div>
+
+    <div class="total-row grand">
+      <span>Total</span>
+      <span id="total">$0.00</span>
+    </div>
+
+    <div id="monthlyPreview" style="display:none;background:#f4f4f5;border-radius:14px;padding:12px;margin-top:12px;font-size:14px"></div>
+  </div>
+
+  <div class="terms">
+    <div class="small-label" style="color:#a1a1aa">Payment Terms</div>
+    <div style="margin-top:8px;font-weight:900" id="previewTerms">50% deposit / 50% on launch</div>
+
+    <div class="term-boxes" id="depositBoxes">
+      <div class="term-box">
+        <div style="color:#a1a1aa;font-size:13px">Deposit Due</div>
+        <div style="font-weight:900;font-size:20px" id="deposit">$0.00</div>
+      </div>
+      <div class="term-box">
+        <div style="color:#a1a1aa;font-size:13px">Balance</div>
+        <div style="font-weight:900;font-size:20px" id="balance">$0.00</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes" id="notesPreviewBox" style="display:none">
+    <div class="small-label">Notes</div>
+    <div id="notesPreview" style="margin-top:8px;font-size:14px;line-height:1.55;white-space:pre-wrap"></div>
+  </div>
+
+  <div class="footer-note">
+    This quote is valid for 14 days unless otherwise stated. Final timeline begins after approval, required content/assets are provided, and deposit is received.
+  </div>
+
+</aside>
+
+</div>
+</div>
+
+<script>
+const INVOICE_PASSWORD = "Canada2026?";
+const INVOICE_AUTH_KEY = "groundwork_invoice_access";
+
+function unlockInvoice(){
+  document.body.classList.remove("auth-locked");
+  document.body.classList.add("auth-unlocked");
+}
+
+if(sessionStorage.getItem(INVOICE_AUTH_KEY) === "true"){
+  unlockInvoice();
+}
+
+document.getElementById("passwordForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const passwordInput = document.getElementById("invoicePassword");
+  const error = document.getElementById("passwordError");
+
+  if(passwordInput.value === INVOICE_PASSWORD){
+    sessionStorage.setItem(INVOICE_AUTH_KEY, "true");
+    passwordInput.value = "";
+    error.textContent = "";
+    unlockInvoice();
+    return;
+  }
+
+  error.textContent = "Incorrect password.";
+  passwordInput.select();
+});
+
+const STORAGE_KEY = "groundwork_quote_invoice_standalone_v2_no_discount";
+
+const packages = [
+  {
+    id:"starter-landing",
+    name:"Starter Landing Page",
+    price:895,
+    description:"1-page mobile-friendly website with contact form, Google Maps, social links, basic SEO, and 1 revision round."
+  },
+  {
+    id:"local-launch",
+    name:"Local Launch Website",
+    price:1495,
+    description:"3-page website: Home, Services, Contact. Includes mobile design, Google Maps, basic SEO, launch support, and 2 revisions."
+  },
+  {
+    id:"small-business",
+    name:"Small Business Website",
+    price:2250,
+    description:"5-page business website with About, Services, Gallery/Portfolio, Contact, FAQ option, SEO setup, and analytics setup."
+  },
+  {
+    id:"inventory-static",
+    name:"Website + Static Inventory / Showroom",
+    price:3500,
+    description:"Business website with inventory/listings page, categories, filters, inquiry buttons, and mobile-friendly showroom layout."
+  },
+  {
+    id:"inventory-sheet",
+    name:"Website + Google Sheet Inventory",
+    price:4500,
+    description:"Inventory/showroom website connected to a simple Google Sheet so the client can update listings without code."
+  },
+  {
+    id:"inventory-admin",
+    name:"Website + Admin Inventory System",
+    price:6500,
+    description:"Inventory website with backend/admin-style listing management. Starting price; final quote may vary."
+  },
+  {
+    id:"premium-conversion",
+    name:"Premium / Conversion Website",
+    price:4500,
+    description:"6–10 page website with stronger branding, improved copy structure, lead-generation sections, and service-area SEO."
+  },
+  {
+    id:"ecommerce-booking",
+    name:"E-Commerce / Booking Website",
+    price:5500,
+    description:"Store or booking setup with payments, product/service setup, policy pages, notifications, and basic automation."
+  },
+  {
+    id:"custom-web-app",
+    name:"Custom Web App",
+    price:7500,
+    description:"Custom app-style build. Starting price only; final scope depends on functionality."
+  }
+];
+
+const addOns = [
+  {id:"extra-page",name:"Extra Page",price:250,unit:"per page",qty:true},
+  {id:"bilingual-toggle",name:"Bilingual FR/EN Toggle Setup",price:750,unit:"flat",qty:false},
+  {id:"extra-language",name:"Additional Language Beyond FR/EN",price:650,unit:"per language",qty:true},
+  {id:"translation-cleanup",name:"Translation Cleanup / Review",price:250,unit:"per 5 pages",qty:true},
+  {id:"logo-cleanup",name:"Simple Logo Cleanup",price:300,unit:"flat",qty:false},
+  {id:"full-logo",name:"Full Logo Package",price:900,unit:"flat",qty:false},
+  {id:"copywriting",name:"Copywriting Per Page",price:175,unit:"per page",qty:true},
+  {id:"blog",name:"Blog Article",price:250,unit:"per article",qty:true},
+  {id:"gbp",name:"Google Business Profile Setup",price:375,unit:"flat",qty:false},
+  {id:"booking",name:"Booking System Setup",price:700,unit:"flat",qty:false},
+  {id:"product-upload",name:"E-Commerce Product Upload",price:15,unit:"per product",qty:true},
+  {id:"rush",name:"Rush Delivery",price:.35,unit:"+35%",percent:true,qty:false}
+];
+
+const monthlyPlans = [
+  {id:"none",name:"No Monthly Plan",price:0,description:"No recurring care plan selected."},
+  {id:"basic-care",name:"Basic Care Plan",price:99,description:"Small updates, basic monitoring, backup/check-in, and minor support."},
+  {id:"inventory-care",name:"Inventory Care Plan",price:199,description:"Basic care plus monthly inventory/listing updates, photo swaps, and price/status changes."},
+  {id:"growth-care",name:"Growth Care Plan",price:350,description:"Care plan plus SEO updates, new landing pages, blog/article publishing, and Google Business support."}
+];
+
+const defaultState = () => ({
+  clientName:"",
+  businessName:"",
+  clientEmail:"",
+  clientPhone:"",
+  clientAddress:"",
+  invoiceNumber:`GWD-${new Date().getFullYear()}-${Math.floor(Math.random()*9000)+1000}`,
+  invoiceDate:new Date().toISOString().slice(0,10),
+  dueDate:"",
+  selectedPackage:"local-launch",
+  selectedAddOns:{},
+  monthlyPlan:"none",
+  paymentTerms:"50-50",
+  customTerms:"",
+  applyTaxes:false,
+  notes:""
+});
+
+let state = defaultState();
+
+function money(value){
+  return new Intl.NumberFormat("en-CA",{
+    style:"currency",
+    currency:"CAD"
+  }).format(value || 0);
+}
+
+function el(id){
+  return document.getElementById(id);
+}
+
+function renderOptions(){
+  el("packages").innerHTML = packages.map(pkg => `
+    <div class="option ${state.selectedPackage === pkg.id ? "selected" : ""}">
+      <label>
+        <input type="radio" name="package" ${state.selectedPackage === pkg.id ? "checked" : ""} onchange="setPackage('${pkg.id}')">
+        <div style="flex:1">
+          <div class="option-title">
+            <span>${pkg.name}</span>
+            <span class="price">${money(pkg.price)}</span>
+          </div>
+          <p>${pkg.description}</p>
+        </div>
+      </label>
+    </div>
+  `).join("");
+
+  el("addons").innerHTML = addOns.map(addon => {
+    const selected = !!state.selectedAddOns[addon.id];
+    const qty = state.selectedAddOns[addon.id]?.qty || 1;
+
+    return `
+      <div class="option ${selected ? "selected" : ""}">
+        <label>
+          <input type="checkbox" ${selected ? "checked" : ""} onchange="toggleAddon('${addon.id}')">
+          <div style="flex:1">
+            <div class="option-title">
+              <span>${addon.name}</span>
+              <span class="price">${addon.percent ? addon.unit : money(addon.price)}</span>
+            </div>
+            <p>${addon.unit}</p>
+          </div>
+        </label>
+
+        ${selected && addon.qty ? `
+          <div class="qty-row">
+            <span>Quantity</span>
+            <input type="number" min="1" value="${qty}" onchange="setAddonQty('${addon.id}', this.value)">
+          </div>
+        ` : ""}
+      </div>
+    `;
+  }).join("");
+
+  el("monthlyPlans").innerHTML = monthlyPlans.map(plan => `
+    <div class="option ${state.monthlyPlan === plan.id ? "selected" : ""}">
+      <label>
+        <input type="radio" name="monthly" ${state.monthlyPlan === plan.id ? "checked" : ""} onchange="setMonthly('${plan.id}')">
+        <div style="flex:1">
+          <div class="option-title">
+            <span>${plan.name}</span>
+            <span class="price">${plan.price ? money(plan.price) + "/mo" : "$0"}</span>
+          </div>
+          <p>${plan.description}</p>
+        </div>
+      </label>
+    </div>
+  `).join("");
+}
+
+function collectForm(){
+  [
+    "clientName",
+    "businessName",
+    "clientEmail",
+    "clientPhone",
+    "clientAddress",
+    "invoiceNumber",
+    "invoiceDate",
+    "dueDate",
+    "paymentTerms",
+    "customTerms",
+    "notes"
+  ].forEach(id => state[id] = el(id).value);
+
+  state.applyTaxes = el("applyTaxes").checked;
+}
+
+function applyStateToForm(){
+  [
+    "clientName",
+    "businessName",
+    "clientEmail",
+    "clientPhone",
+    "clientAddress",
+    "invoiceNumber",
+    "invoiceDate",
+    "dueDate",
+    "paymentTerms",
+    "customTerms",
+    "notes"
+  ].forEach(id => el(id).value = state[id] || "");
+
+  el("applyTaxes").checked = !!state.applyTaxes;
+  el("customTerms").style.display = state.paymentTerms === "custom" ? "block" : "none";
+}
+
+function calculate(){
+  const pkg = packages.find(p => p.id === state.selectedPackage) || packages[0];
+  const monthly = monthlyPlans.find(p => p.id === state.monthlyPlan) || monthlyPlans[0];
+
+  const flatLines = Object.keys(state.selectedAddOns).map(id => {
+    const addon = addOns.find(a => a.id === id);
+    if(!addon || addon.percent) return null;
+
+    const qty = addon.qty ? Number(state.selectedAddOns[id].qty || 1) : 1;
+
+    return {
+      ...addon,
+      qty,
+      lineTotal:addon.price * qty
+    };
+  }).filter(Boolean);
+
+  const beforePercent = pkg.price + flatLines.reduce((sum, item) => sum + item.lineTotal, 0);
+
+  const percentLines = Object.keys(state.selectedAddOns).map(id => {
+    const addon = addOns.find(a => a.id === id);
+    if(!addon || !addon.percent) return null;
+
+    return {
+      ...addon,
+      qty:1,
+      lineTotal:beforePercent * addon.price
+    };
+  }).filter(Boolean);
+
+  const lines = [...flatLines, ...percentLines];
+
+  const subtotal = Math.max(
+    0,
+    beforePercent + percentLines.reduce((sum, item) => sum + item.lineTotal, 0)
+  );
+
+  const gst = state.applyTaxes ? subtotal * 0.05 : 0;
+  const qst = state.applyTaxes ? subtotal * 0.09975 : 0;
+  const total = subtotal + gst + qst;
+
+  const deposit = state.paymentTerms === "50-50"
+    ? total * 0.5
+    : state.paymentTerms === "full"
+      ? total
+      : 0;
+
+  const balance = total - deposit;
+
+  return {
+    pkg,
+    monthly,
+    lines,
+    subtotal,
+    gst,
+    qst,
+    total,
+    deposit,
+    balance
+  };
+}
+
+function renderInvoice(){
+  collectForm();
+
+  const calc = calculate();
+  const client = state.businessName || state.clientName || "Client / Business Name";
+
+  const extra = [
+    state.clientName && state.businessName ? `Attn: ${state.clientName}` : "",
+    state.clientEmail,
+    state.clientPhone,
+    state.clientAddress
+  ].filter(Boolean).join("<br>");
+
+  el("previewInvoiceNumber").textContent = state.invoiceNumber || "—";
+  el("previewClient").textContent = client;
+  el("previewClientExtra").innerHTML = extra;
+  el("previewDate").textContent = state.invoiceDate || "—";
+  el("previewDue").textContent = state.dueDate || "Upon approval";
+
+  el("invoiceLines").innerHTML = [
+    `
+      <tr>
+        <td>
+          <strong>${calc.pkg.name}</strong>
+          <div class="line-desc">${calc.pkg.description}</div>
+        </td>
+        <td class="right"><strong>${money(calc.pkg.price)}</strong></td>
+      </tr>
+    `,
+    ...calc.lines.map(item => `
+      <tr>
+        <td>
+          <strong>${item.name}</strong>${item.qty > 1 ? ` × ${item.qty}` : ""}
+          <div class="line-desc">${item.percent ? "Percentage add-on" : item.unit}</div>
+        </td>
+        <td class="right"><strong>${money(item.lineTotal)}</strong></td>
+      </tr>
+    `)
+  ].join("");
+
+  el("subtotal").textContent = money(calc.subtotal);
+  el("gst").textContent = money(calc.gst);
+  el("qst").textContent = money(calc.qst);
+  el("total").textContent = money(calc.total);
+
+  el("gstRow").style.display = state.applyTaxes ? "flex" : "none";
+  el("qstRow").style.display = state.applyTaxes ? "flex" : "none";
+
+  if(calc.monthly.price > 0){
+    el("monthlyPreview").style.display = "block";
+    el("monthlyPreview").innerHTML = `<strong>Monthly care:</strong> ${calc.monthly.name} — ${money(calc.monthly.price)}/month`;
+  } else {
+    el("monthlyPreview").style.display = "none";
+  }
+
+  const termsText = state.paymentTerms === "custom"
+    ? (state.customTerms || "Custom terms")
+    : el("paymentTerms").selectedOptions[0].textContent;
+
+  el("previewTerms").textContent = termsText;
+  el("depositBoxes").style.display = state.paymentTerms === "50-50" ? "grid" : "none";
+  el("deposit").textContent = money(calc.deposit);
+  el("balance").textContent = money(calc.balance);
+
+  if(state.notes){
+    el("notesPreviewBox").style.display = "block";
+    el("notesPreview").textContent = state.notes;
+  } else {
+    el("notesPreviewBox").style.display = "none";
+  }
+
+  el("invoiceTextBox").value = buildInvoiceText(calc, termsText);
+
+  saveDraft();
+}
+
+function buildInvoiceText(calc, termsText){
+  return [
+    "Groundwork Digital — Quote / Invoice",
+    `Invoice #: ${state.invoiceNumber}`,
+    `Date: ${state.invoiceDate}`,
+    state.dueDate ? `Due Date: ${state.dueDate}` : null,
+    "",
+    `Client: ${state.businessName || state.clientName || "Client Name"}`,
+    state.clientEmail ? `Email: ${state.clientEmail}` : null,
+    state.clientPhone ? `Phone: ${state.clientPhone}` : null,
+    "",
+    `Selected Package: ${calc.pkg.name} — ${money(calc.pkg.price)}`,
+    ...calc.lines.map(item => `${item.name}${item.qty > 1 ? ` x ${item.qty}` : ""} — ${money(item.lineTotal)}`),
+    `Subtotal: ${money(calc.subtotal)}`,
+    state.applyTaxes ? `GST: ${money(calc.gst)}` : null,
+    state.applyTaxes ? `QST: ${money(calc.qst)}` : null,
+    `Total: ${money(calc.total)}`,
+    calc.monthly.price ? `Monthly Plan: ${calc.monthly.name} — ${money(calc.monthly.price)}/month` : null,
+    `Payment Terms: ${termsText}`,
+    state.paymentTerms === "50-50" ? `Deposit Due: ${money(calc.deposit)}` : null,
+    state.paymentTerms === "50-50" ? `Balance Due On Launch: ${money(calc.balance)}` : null,
+    state.notes ? `Notes: ${state.notes}` : null
+  ].filter(value => value !== null).join("\n");
+}
+
+function saveDraft(){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  el("saveStatus").textContent = "Autosaved";
+}
+
+function loadDraft(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      state = {
+        ...defaultState(),
+        ...JSON.parse(raw)
+      };
+    }
+  }catch(error){}
+}
+
+function setPackage(id){
+  state.selectedPackage = id;
+  renderOptions();
+  renderInvoice();
+}
+
+function setMonthly(id){
+  state.monthlyPlan = id;
+  renderOptions();
+  renderInvoice();
+}
+
+function toggleAddon(id){
+  if(state.selectedAddOns[id]){
+    delete state.selectedAddOns[id];
+  } else {
+    state.selectedAddOns[id] = {qty:1};
+  }
+
+  renderOptions();
+  renderInvoice();
+}
+
+function setAddonQty(id, qty){
+  state.selectedAddOns[id] = {
+    qty:Math.max(1, Number(qty) || 1)
+  };
+
+  renderInvoice();
+}
+
+function toggleCopyBox(){
+  const box = el("copyBox");
+  box.style.display = box.style.display === "none" ? "block" : "none";
+  renderInvoice();
+}
+
+function copyInvoiceText(){
+  renderInvoice();
+
+  const text = el("invoiceTextBox").value;
+
+  navigator.clipboard.writeText(text).then(() => {
+    alert("Invoice text copied.");
+  }).catch(() => {
+    toggleCopyBox();
+    el("invoiceTextBox").select();
+    alert("Clipboard blocked. The copy/paste invoice box is now open.");
+  });
+}
+
+function downloadBackup(){
+  renderInvoice();
+
+  const blob = new Blob([JSON.stringify(state, null, 2)], {
+    type:"application/json"
+  });
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+
+  a.href = url;
+  a.download = `${state.invoiceNumber || "Groundwork-Digital-Quote"}-backup.json`;
+
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+
+  URL.revokeObjectURL(url);
+}
+
+function resetAll(){
+  const ok = confirm("Clear this quote and start over?");
+  if(!ok) return;
+
+  localStorage.removeItem(STORAGE_KEY);
+  state = defaultState();
+
+  applyStateToForm();
+  renderOptions();
+  renderInvoice();
+
+  el("saveStatus").textContent = "Draft cleared";
+}
+
+function attachListeners(){
+  [
+    "clientName",
+    "businessName",
+    "clientEmail",
+    "clientPhone",
+    "clientAddress",
+    "invoiceNumber",
+    "invoiceDate",
+    "dueDate",
+    "paymentTerms",
+    "customTerms",
+    "notes"
+  ].forEach(id => {
+    el(id).addEventListener("input", () => {
+      if(id === "paymentTerms"){
+        el("customTerms").style.display = el("paymentTerms").value === "custom" ? "block" : "none";
+      }
+      renderInvoice();
+    });
+
+    el(id).addEventListener("change", () => {
+      if(id === "paymentTerms"){
+        el("customTerms").style.display = el("paymentTerms").value === "custom" ? "block" : "none";
+      }
+      renderInvoice();
+    });
+  });
+
+  el("applyTaxes").addEventListener("change", renderInvoice);
+}
+
+loadDraft();
+renderOptions();
+applyStateToForm();
+attachListeners();
+renderInvoice();
+</script>
+
+</body>
+</html>
