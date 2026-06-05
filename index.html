@@ -135,6 +135,17 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
 .about-img{width:220px;border-radius:16px;border:1px solid var(--border2);filter:grayscale(5%);}
 .cred-pills{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem;}
 .cred-pill{font-family:var(--mono);font-size:10px;color:var(--text3);border:1px solid var(--border);border-radius:100px;padding:4px 12px;}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
+.work-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;transition:border-color .2s,transform .15s;display:flex;flex-direction:column;}
+.work-card:hover{border-color:var(--green);transform:translateY(-3px);}
+.work-card-thumb{height:180px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:3rem;border-bottom:1px solid var(--border);}
+.work-card-body{padding:1.5rem;flex:1;display:flex;flex-direction:column;}
+.work-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem;}
+.work-tag{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.5px;text-transform:uppercase;}
+.work-card h3{font-family:var(--serif);font-size:1.25rem;font-weight:400;color:var(--text);margin-bottom:.6rem;}
+.work-card p{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;flex:1;}
+.work-card-link{font-family:var(--mono);font-size:11px;color:var(--green);margin-top:1rem;letter-spacing:.5px;}
+@media(max-width:860px){.work-grid{grid-template-columns:1fr 1fr;}}@media(max-width:640px){.work-grid{grid-template-columns:1fr;}}
 /* BLOG PREVIEW */
 .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
 .blog-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;transition:border-color .15s,transform .15s;display:flex;flex-direction:column;}
@@ -254,6 +265,45 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
         <a href="contact.html" class="btn-primary">Work With Terry →</a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- WORK COMPLETED -->
+<section class="content-section" id="work">
+  <div class="container">
+    <div class="section-tag">Work Completed</div>
+    <h2 class="section-heading">Recent work that shows what we deliver.</h2>
+    <p style="color:var(--text2);font-size:1rem;font-weight:300;line-height:1.7;max-width:620px;margin-bottom:1.5rem;">Here are a few examples of the kind of local business work GroundWork Digital completes: websites, branding, Google Business profiles, and launch-ready digital marketing.</p>
+    <div class="work-grid">
+      <article class="work-card">
+        <div class="work-card-thumb">🌲</div>
+        <div class="work-card-body">
+          <div class="work-tags"><span class="work-tag">Website</span><span class="work-tag">Design</span></div>
+          <h3>Boisfort.ca</h3>
+          <p>First completed client site for a local business. Clean layout, mobile-friendly design, and a polished online presence for the Boisfort team.</p>
+          <span class="work-card-link">Client deliverable</span>
+        </div>
+      </article>
+      <article class="work-card">
+        <div class="work-card-thumb">📍</div>
+        <div class="work-card-body">
+          <div class="work-tags"><span class="work-tag">Local SEO</span><span class="work-tag">Maps</span></div>
+          <h3>Google Business setup</h3>
+          <p>Optimized business profile listings for local visibility, helping clients show up in maps and search with accurate service details and strong local signals.</p>
+          <span class="work-card-link">Client-approved setup</span>
+        </div>
+      </article>
+      <article class="work-card">
+        <div class="work-card-thumb">✏️</div>
+        <div class="work-card-body">
+          <div class="work-tags"><span class="work-tag">Branding</span><span class="work-tag">Identity</span></div>
+          <h3>Logo &amp; visual refresh</h3>
+          <p>Refined brands that look professional on websites, social, and print — creating a consistent identity that local customers trust.</p>
+          <span class="work-card-link">Creative direction</span>
+        </div>
+      </article>
+    </div>
+    <div style="margin-top:2rem"><a href="work.html" class="btn-outline">See More Case Studies →</a></div>
   </div>
 </section>
 
