@@ -100,6 +100,7 @@ section.content-section.alt{background:var(--bg2);}
 .work-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;transition:border-color .2s,transform .15s;display:flex;flex-direction:column;}
 .work-card:hover{border-color:var(--green);transform:translateY(-3px);}
 .work-card-thumb{height:200px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:3rem;border-bottom:1px solid var(--border);}
+.work-card-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
 .work-card-body{padding:1.5rem;flex:1;display:flex;flex-direction:column;}
 .work-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem;}
 .work-tag{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.5px;text-transform:uppercase;}
@@ -141,7 +142,7 @@ section.content-section.alt{background:var(--bg2);}
   <div class="container">
     <div class="work-grid">
       <a class="work-card" href="https://boisfort.ca" target="_blank" rel="noopener">
-        <div class="work-card-thumb">🌲</div>
+        <div class="work-card-thumb"><img src="images/boisfortscreenshot.png" alt="Boisfort.ca website screenshot" loading="lazy"/></div>
         <div class="work-card-body">
           <div class="work-tags"><span class="work-tag">Website</span><span class="work-tag">Design</span></div>
           <h3>Boisfort.ca</h3>

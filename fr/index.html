@@ -137,6 +137,7 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
 .work-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;transition:border-color .2s,transform .15s;display:flex;flex-direction:column;}
 .work-card:hover{border-color:var(--green);transform:translateY(-3px);}
 .work-card-thumb{height:180px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:3rem;border-bottom:1px solid var(--border);}
+.work-card-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
 .work-card-body{padding:1.5rem;flex:1;display:flex;flex-direction:column;}
 .work-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem;}
 .work-tag{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.5px;text-transform:uppercase;}
@@ -274,7 +275,7 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
     <p style="color:var(--text2);font-size:1rem;font-weight:300;line-height:1.7;max-width:620px;margin-bottom:1.5rem;">Voici quelques exemples du travail local que GroundWork Digital réalise : sites Web, image de marque, profils Google Business et marketing numérique prêts au lancement.</p>
     <div class="work-grid">
       <a class="work-card" href="https://boisfort.ca" target="_blank" rel="noopener">
-        <div class="work-card-thumb">🌲</div>
+        <div class="work-card-thumb"><img src="/images/boisfortscreenshot.png" alt="Capture d'écran du site Boisfort.ca" loading="lazy"/></div>
         <div class="work-card-body">
           <div class="work-tags"><span class="work-tag">Site Web</span><span class="work-tag">Design</span></div>
           <h3>Boisfort.ca</h3>
