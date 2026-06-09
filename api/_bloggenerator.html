@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Blog Post Generator — GroundWork Digital</title>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
 <style>
 :root {
   --bg:        #0c0c0e;
@@ -20,16 +20,21 @@
   --text2:     #a0a0a8;
   --text3:     #606068;
   --white:     #ffffff;
+  --sans:      'Manrope',sans-serif;
+  --display:   'Space Grotesk',sans-serif;
+  --mono:      'JetBrains Mono',monospace;
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{
-  font-family:'Outfit',sans-serif;
+  font-family:var(--sans);
   background:var(--bg);
   color:var(--text);
   min-height:100vh;
   overflow-x:hidden;
+  font-size:15px;
+  font-weight:500;
 }
 
 /* noise */
@@ -50,7 +55,7 @@ header{
 }
 .logo{
   display:flex;align-items:center;gap:10px;
-  font-family:'Outfit',sans-serif;font-size:0.9rem;font-weight:600;
+  font-family:var(--display);font-size:0.98rem;font-weight:700;
   color:var(--text);letter-spacing:0.3px;text-decoration:none;
 }
 .logo-mark{
@@ -59,7 +64,7 @@ header{
   font-size:10px;font-weight:700;color:#000;letter-spacing:-0.5px;
 }
 .header-tag{
-  font-family:'DM Mono',monospace;font-size:10px;
+  font-family:var(--mono);font-size:10px;font-weight:600;
   color:var(--green);letter-spacing:1.5px;text-transform:uppercase;
 }
 
@@ -82,21 +87,23 @@ header{
 }
 
 .sidebar-title{
-  font-family:'Instrument Serif',serif;
-  font-size:1.5rem;
+  font-family:var(--display);
+  font-size:2rem;
+  font-weight:700;
   color:var(--text);
-  line-height:1.2;
+  line-height:1.04;
+  letter-spacing:-0.02em;
 }
 .sidebar-title span{color:var(--green);}
 
 .sidebar-sub{
-  font-size:12px;color:var(--text3);line-height:1.7;margin-top:-0.75rem;
+  font-size:13px;color:var(--text2);line-height:1.7;margin-top:-0.65rem;font-weight:500;
 }
 
 /* field */
 .field-label{
-  font-family:'DM Mono',monospace;
-  font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  font-family:var(--mono);
+  font-size:10px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;
   color:var(--text3);margin-bottom:6px;
 }
 
@@ -106,8 +113,9 @@ textarea, input[type=text], select{
   border:1px solid var(--border);
   border-radius:8px;
   color:var(--text);
-  font-family:'Outfit',sans-serif;
-  font-size:13px;
+  font-family:var(--sans);
+  font-size:14px;
+  font-weight:600;
   padding:0.65rem 0.85rem;
   outline:none;
   transition:border-color 0.2s;
@@ -121,7 +129,7 @@ select option{background:var(--bg3);}
 .chips{display:flex;flex-wrap:wrap;gap:6px;}
 .chip{
   padding:4px 10px;border-radius:20px;
-  font-size:11px;font-weight:500;
+  font-size:12px;font-weight:700;
   border:1px solid var(--border);
   background:var(--bg3);color:var(--text2);
   cursor:pointer;transition:all 0.15s;
@@ -133,13 +141,13 @@ select option{background:var(--bg3);}
 .tone-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
 .tone-btn{
   padding:8px 10px;border-radius:8px;
-  font-size:11px;font-weight:500;text-align:left;
+  font-size:12px;font-weight:600;text-align:left;
   border:1px solid var(--border);
   background:var(--bg3);color:var(--text2);
   cursor:pointer;transition:all 0.15s;
   line-height:1.4;
 }
-.tone-btn .tone-name{display:block;color:var(--text);font-size:12px;margin-bottom:2px;}
+.tone-btn .tone-name{display:block;color:var(--text);font-size:13px;font-weight:800;margin-bottom:2px;}
 .tone-btn .tone-desc{display:block;font-size:10px;color:var(--text3);}
 .tone-btn:hover{border-color:var(--border2);}
 .tone-btn.active{background:var(--green-glow);border-color:var(--green);}
@@ -152,7 +160,7 @@ select option{background:var(--bg3);}
   border:1px solid var(--border);background:var(--bg3);
   color:var(--text2);font-size:11px;cursor:pointer;transition:all 0.15s;
 }
-.len-btn .len-val{display:block;font-family:'DM Mono',monospace;font-size:13px;color:var(--text);font-weight:500;}
+.len-btn .len-val{display:block;font-family:var(--mono);font-size:14px;color:var(--text);font-weight:600;}
 .len-btn:hover{border-color:var(--border2);}
 .len-btn.active{background:var(--green-glow);border-color:var(--green);}
 .len-btn.active .len-val{color:var(--green);}
@@ -161,7 +169,7 @@ select option{background:var(--bg3);}
 .gen-btn{
   width:100%;padding:0.875rem;
   background:var(--green);color:#000;
-  font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;
+  font-family:var(--display);font-size:15px;font-weight:700;
   border:none;border-radius:10px;cursor:pointer;
   transition:all 0.2s;letter-spacing:0.2px;
   margin-top:0.25rem;
@@ -199,7 +207,7 @@ select option{background:var(--bg3);}
   flex-shrink:0;
 }
 .output-label{
-  font-family:'DM Mono',monospace;font-size:10px;
+  font-family:var(--mono);font-size:10px;font-weight:600;
   letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);
 }
 .output-actions{display:flex;gap:8px;}
@@ -240,7 +248,7 @@ select option{background:var(--bg3);}
   display:flex;align-items:center;justify-content:center;
   font-size:28px;
 }
-.empty-title{font-family:'Instrument Serif',serif;font-size:1.4rem;color:var(--text2);}
+.empty-title{font-family:var(--display);font-size:1.55rem;font-weight:700;color:var(--text2);line-height:1.15;}
 .empty-sub{font-size:13px;color:var(--text3);max-width:300px;line-height:1.7;}
 
 /* rendered article */
@@ -248,34 +256,35 @@ select option{background:var(--bg3);}
   display:flex;align-items:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;
 }
 .meta-tag{
-  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;
+  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;
   text-transform:uppercase;color:var(--green);
   background:var(--green-glow);border:1px solid var(--border2);
   padding:3px 10px;border-radius:20px;
 }
-.meta-date{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);}
-.meta-read{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);}
+.meta-date{font-family:var(--mono);font-size:11px;color:var(--text3);}
+.meta-read{font-family:var(--mono);font-size:11px;color:var(--text3);}
 
 .article-title{
-  font-family:'Instrument Serif',serif;
-  font-size:2.2rem;line-height:1.2;color:var(--text);
+  font-family:var(--display);
+  font-size:2.55rem;font-weight:700;line-height:1.08;color:var(--text);
+  letter-spacing:-0.03em;
   margin-bottom:0.75rem;
 }
 .article-excerpt{
-  font-size:15px;color:var(--text2);line-height:1.8;
+  font-size:16px;color:var(--text2);line-height:1.75;font-weight:600;
   border-left:3px solid var(--green);padding-left:1rem;
   margin-bottom:2rem;
 }
 .article-body{
-  font-size:14.5px;line-height:1.85;color:var(--text2);
+  font-size:15.5px;line-height:1.85;color:var(--text2);font-weight:500;
 }
 .article-body h2{
-  font-family:'Instrument Serif',serif;
-  font-size:1.4rem;color:var(--text);margin:2rem 0 0.75rem;
+  font-family:var(--display);
+  font-size:1.55rem;font-weight:700;color:var(--text);margin:2rem 0 0.75rem;
 }
 .article-body h3{
-  font-family:'Outfit',sans-serif;font-weight:600;
-  font-size:1rem;color:var(--text);margin:1.5rem 0 0.5rem;
+  font-family:var(--sans);font-weight:800;
+  font-size:1.05rem;color:var(--text);margin:1.5rem 0 0.5rem;
 }
 .article-body p{margin-bottom:1rem;}
 .article-body ul, .article-body ol{
@@ -305,8 +314,8 @@ select option{background:var(--bg3);}
 
 /* markdown / raw tab */
 .raw-output{
-  font-family:'DM Mono',monospace;
-  font-size:12px;line-height:1.8;
+  font-family:var(--mono);
+  font-size:12.5px;line-height:1.8;font-weight:500;
   color:var(--text2);
   white-space:pre-wrap;
   word-break:break-word;
@@ -319,7 +328,7 @@ select option{background:var(--bg3);}
   border-radius:10px;padding:1.25rem;
 }
 .seo-card-label{
-  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;
+  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;
   text-transform:uppercase;color:var(--text3);margin-bottom:8px;
 }
 .seo-card-value{font-size:13.5px;color:var(--text);line-height:1.6;}
@@ -346,7 +355,7 @@ select option{background:var(--bg3);}
 
 /* char counter */
 .char-count{
-  font-family:'DM Mono',monospace;font-size:10px;
+  font-family:var(--mono);font-size:10px;font-weight:600;
   color:var(--text3);text-align:right;margin-top:4px;
 }
 
