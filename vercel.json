@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/admin", "destination": "/api/admin-page" },
+    { "source": "/admin/", "destination": "/api/admin-page" },
+    { "source": "/bloggenerator", "destination": "/api/bloggenerator-page" },
+    { "source": "/bloggenerator/", "destination": "/api/bloggenerator-page" }
+  ]
+}

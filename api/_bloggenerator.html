@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Blog Post Generator — GroundWork Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:        #0c0c0e;
+  --bg2:       #111113;
+  --bg3:       #18181b;
+  --bg4:       #222226;
+  --border:    rgba(255,255,255,0.07);
+  --border2:   rgba(74,222,128,0.2);
+  --green:     #4ade80;
+  --green-dim: #22c55e;
+  --green-glow:rgba(74,222,128,0.12);
+  --text:      #f0f0f0;
+  --text2:     #a0a0a8;
+  --text3:     #606068;
+  --white:     #ffffff;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* noise */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:0.5;
+}
+
+/* ── HEADER ── */
+header{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:60px;
+  background:rgba(12,12,14,0.9);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
+}
+.logo{
+  display:flex;align-items:center;gap:10px;
+  font-family:'Outfit',sans-serif;font-size:0.9rem;font-weight:600;
+  color:var(--text);letter-spacing:0.3px;text-decoration:none;
+}
+.logo-mark{
+  width:30px;height:30px;background:var(--green);
+  border-radius:7px;display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;color:#000;letter-spacing:-0.5px;
+}
+.header-tag{
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--green);letter-spacing:1.5px;text-transform:uppercase;
+}
+
+/* ── LAYOUT ── */
+.app{
+  display:grid;
+  grid-template-columns:400px 1fr;
+  height:calc(100vh - 60px);
+}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  background:var(--bg2);
+  border-right:1px solid var(--border);
+  overflow-y:auto;
+  padding:1.5rem;
+  display:flex;
+  flex-direction:column;
+  gap:1.25rem;
+}
+
+.sidebar-title{
+  font-family:'Instrument Serif',serif;
+  font-size:1.5rem;
+  color:var(--text);
+  line-height:1.2;
+}
+.sidebar-title span{color:var(--green);}
+
+.sidebar-sub{
+  font-size:12px;color:var(--text3);line-height:1.7;margin-top:-0.75rem;
+}
+
+/* field */
+.field-label{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--text3);margin-bottom:6px;
+}
+
+textarea, input[type=text], select{
+  width:100%;
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:8px;
+  color:var(--text);
+  font-family:'Outfit',sans-serif;
+  font-size:13px;
+  padding:0.65rem 0.85rem;
+  outline:none;
+  transition:border-color 0.2s;
+  resize:none;
+}
+textarea:focus, input:focus, select:focus{border-color:var(--border2);}
+textarea{min-height:80px;line-height:1.6;}
+select option{background:var(--bg3);}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{
+  padding:4px 10px;border-radius:20px;
+  font-size:11px;font-weight:500;
+  border:1px solid var(--border);
+  background:var(--bg3);color:var(--text2);
+  cursor:pointer;transition:all 0.15s;
+}
+.chip:hover{border-color:var(--border2);color:var(--text);}
+.chip.active{background:var(--green-glow);border-color:var(--green);color:var(--green);}
+
+/* tone row */
+.tone-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.tone-btn{
+  padding:8px 10px;border-radius:8px;
+  font-size:11px;font-weight:500;text-align:left;
+  border:1px solid var(--border);
+  background:var(--bg3);color:var(--text2);
+  cursor:pointer;transition:all 0.15s;
+  line-height:1.4;
+}
+.tone-btn .tone-name{display:block;color:var(--text);font-size:12px;margin-bottom:2px;}
+.tone-btn .tone-desc{display:block;font-size:10px;color:var(--text3);}
+.tone-btn:hover{border-color:var(--border2);}
+.tone-btn.active{background:var(--green-glow);border-color:var(--green);}
+.tone-btn.active .tone-name{color:var(--green);}
+
+/* length */
+.length-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.len-btn{
+  padding:8px;border-radius:8px;text-align:center;
+  border:1px solid var(--border);background:var(--bg3);
+  color:var(--text2);font-size:11px;cursor:pointer;transition:all 0.15s;
+}
+.len-btn .len-val{display:block;font-family:'DM Mono',monospace;font-size:13px;color:var(--text);font-weight:500;}
+.len-btn:hover{border-color:var(--border2);}
+.len-btn.active{background:var(--green-glow);border-color:var(--green);}
+.len-btn.active .len-val{color:var(--green);}
+
+/* generate button */
+.gen-btn{
+  width:100%;padding:0.875rem;
+  background:var(--green);color:#000;
+  font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;
+  border:none;border-radius:10px;cursor:pointer;
+  transition:all 0.2s;letter-spacing:0.2px;
+  margin-top:0.25rem;
+}
+.gen-btn:hover{background:#6ee7a0;transform:translateY(-1px);box-shadow:0 8px 24px rgba(74,222,128,0.25);}
+.gen-btn:disabled{background:var(--bg4);color:var(--text3);cursor:not-allowed;transform:none;box-shadow:none;}
+
+.gen-btn.loading{
+  background:var(--bg4);color:var(--green);
+  position:relative;overflow:hidden;
+}
+.gen-btn.loading::after{
+  content:'';position:absolute;top:0;left:-100%;
+  width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(74,222,128,0.15),transparent);
+  animation:shimmer 1.2s infinite;
+}
+@keyframes shimmer{to{left:100%;}}
+
+/* divider */
+.divider{height:1px;background:var(--border);margin:0 -1.5rem;}
+
+/* ── OUTPUT PANE ── */
+.output-pane{
+  display:flex;flex-direction:column;
+  background:var(--bg);
+  overflow:hidden;
+}
+
+/* toolbar */
+.output-toolbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.875rem 1.5rem;
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.output-label{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);
+}
+.output-actions{display:flex;gap:8px;}
+.action-btn{
+  padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;
+  border:1px solid var(--border);background:var(--bg3);color:var(--text2);
+  cursor:pointer;transition:all 0.15s;display:flex;align-items:center;gap:6px;
+}
+.action-btn:hover{border-color:var(--border2);color:var(--text);}
+.action-btn.primary{background:var(--green-glow);border-color:var(--green);color:var(--green);}
+.action-btn:disabled{opacity:0.3;cursor:not-allowed;}
+
+/* tabs */
+.output-tabs{
+  display:flex;gap:0;
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.tab{
+  padding:0.7rem 1.25rem;font-size:12px;font-weight:500;
+  color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;
+  transition:all 0.15s;
+}
+.tab:hover{color:var(--text2);}
+.tab.active{color:var(--green);border-bottom-color:var(--green);}
+
+/* content area */
+.output-scroll{flex:1;overflow-y:auto;padding:2rem 2.5rem;}
+
+/* empty state */
+.empty-state{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  height:100%;gap:1rem;text-align:center;
+}
+.empty-icon{
+  width:64px;height:64px;border-radius:16px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;
+}
+.empty-title{font-family:'Instrument Serif',serif;font-size:1.4rem;color:var(--text2);}
+.empty-sub{font-size:13px;color:var(--text3);max-width:300px;line-height:1.7;}
+
+/* rendered article */
+.article-meta{
+  display:flex;align-items:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;
+}
+.meta-tag{
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--green);
+  background:var(--green-glow);border:1px solid var(--border2);
+  padding:3px 10px;border-radius:20px;
+}
+.meta-date{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);}
+.meta-read{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);}
+
+.article-title{
+  font-family:'Instrument Serif',serif;
+  font-size:2.2rem;line-height:1.2;color:var(--text);
+  margin-bottom:0.75rem;
+}
+.article-excerpt{
+  font-size:15px;color:var(--text2);line-height:1.8;
+  border-left:3px solid var(--green);padding-left:1rem;
+  margin-bottom:2rem;
+}
+.article-body{
+  font-size:14.5px;line-height:1.85;color:var(--text2);
+}
+.article-body h2{
+  font-family:'Instrument Serif',serif;
+  font-size:1.4rem;color:var(--text);margin:2rem 0 0.75rem;
+}
+.article-body h3{
+  font-family:'Outfit',sans-serif;font-weight:600;
+  font-size:1rem;color:var(--text);margin:1.5rem 0 0.5rem;
+}
+.article-body p{margin-bottom:1rem;}
+.article-body ul, .article-body ol{
+  margin:0.5rem 0 1rem 1.5rem;
+}
+.article-body li{margin-bottom:0.4rem;}
+.article-body strong{color:var(--text);font-weight:600;}
+.article-body a{color:var(--green);text-decoration:none;}
+.article-body blockquote{
+  border-left:3px solid var(--green);padding:0.75rem 1rem;
+  background:var(--bg3);border-radius:0 8px 8px 0;
+  margin:1.25rem 0;color:var(--text);font-style:italic;
+}
+.article-cta{
+  margin-top:2.5rem;padding:1.5rem;
+  background:var(--green-glow);border:1px solid var(--border2);
+  border-radius:12px;
+}
+.article-cta p{color:var(--text);font-weight:500;margin-bottom:0.75rem;}
+.article-cta a{
+  display:inline-block;padding:8px 18px;
+  background:var(--green);color:#000;
+  border-radius:6px;font-weight:700;font-size:13px;
+  text-decoration:none;
+}
+.article-cta a:hover{background:#6ee7a0;}
+
+/* markdown / raw tab */
+.raw-output{
+  font-family:'DM Mono',monospace;
+  font-size:12px;line-height:1.8;
+  color:var(--text2);
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+/* SEO tab */
+.seo-grid{display:flex;flex-direction:column;gap:1rem;}
+.seo-card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:10px;padding:1.25rem;
+}
+.seo-card-label{
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--text3);margin-bottom:8px;
+}
+.seo-card-value{font-size:13.5px;color:var(--text);line-height:1.6;}
+.seo-card-value.green{color:var(--green);}
+.seo-keywords{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.seo-kw{
+  padding:4px 10px;border-radius:20px;font-size:11px;
+  background:var(--bg4);border:1px solid var(--border);color:var(--text2);
+}
+
+/* loading dots */
+.loading-msg{
+  display:flex;align-items:center;gap:12px;
+  color:var(--text3);font-size:13px;font-style:italic;
+}
+.dot-anim{display:inline-flex;gap:4px;}
+.dot-anim span{
+  width:5px;height:5px;border-radius:50%;background:var(--green);
+  animation:bounce 1.2s infinite;
+}
+.dot-anim span:nth-child(2){animation-delay:0.2s;}
+.dot-anim span:nth-child(3){animation-delay:0.4s;}
+@keyframes bounce{0%,80%,100%{transform:scale(0.6);opacity:0.4;}40%{transform:scale(1);opacity:1;}}
+
+/* char counter */
+.char-count{
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--text3);text-align:right;margin-top:4px;
+}
+
+/* toast */
+.toast{
+  position:fixed;bottom:1.5rem;right:1.5rem;z-index:999;
+  background:var(--bg3);border:1px solid var(--green);
+  color:var(--green);padding:10px 16px;border-radius:8px;
+  font-size:13px;font-weight:500;
+  transform:translateY(80px);opacity:0;
+  transition:all 0.3s;pointer-events:none;
+}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* scrollbar */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px;}
+
+/* responsive */
+@media(max-width:900px){
+  .app{grid-template-columns:1fr;grid-template-rows:auto 1fr;}
+  .sidebar{max-height:50vh;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">GW</div>
+    GroundWork Digital
+  </div>
+  <div class="header-tag">Blog Generator</div>
+</header>
+
+<div class="app">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+
+    <div>
+      <div class="sidebar-title">Generate a<br><span>blog post.</span></div>
+      <div class="sidebar-sub" style="margin-top:8px;">AI-powered content for your groundwork-digital.ca blog.</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- TOPIC -->
+    <div>
+      <div class="field-label">What's it about?</div>
+      <textarea id="topic" placeholder="e.g. Why local Pontiac businesses need a website in 2025, not just a Facebook page…" rows="3" oninput="updateCount()"></textarea>
+      <div class="char-count" id="char-count">0 / 300</div>
+    </div>
+
+    <!-- QUICK IDEAS -->
+    <div>
+      <div class="field-label">Quick ideas</div>
+      <div class="chips" id="idea-chips">
+        <div class="chip" onclick="setIdea('Why every local business needs a website, not just a Facebook page')">📍 Website vs Facebook</div>
+        <div class="chip" onclick="setIdea('How Google Business Profile helps local businesses get found')">🔍 Google Business 101</div>
+        <div class="chip" onclick="setIdea('5 signs your small business is invisible online')">🚨 Invisible online</div>
+        <div class="chip" onclick="setIdea('What a website actually costs for a small business in the Pontiac in 2025')">💰 Website cost breakdown</div>
+        <div class="chip" onclick="setIdea('Behind the scenes: building a restaurant website from scratch')">🍽️ Behind the scenes</div>
+        <div class="chip" onclick="setIdea('How a trades business in the Outaouais doubled their calls with a simple website')">🔨 Trades success story</div>
+        <div class="chip" onclick="setIdea('The difference between a cheap website and a good website')">✅ Cheap vs good website</div>
+        <div class="chip" onclick="setIdea('What Terry learned from 25 years in IT that he now brings to local businesses')">👋 Terry\'s story</div>
+      </div>
+    </div>
+
+    <!-- TONE -->
+    <div>
+      <div class="field-label">Tone</div>
+      <div class="tone-grid" id="tone-grid">
+        <button class="tone-btn active" onclick="setTone(this,'friendly')">
+          <span class="tone-name">Friendly & Local</span>
+          <span class="tone-desc">Warm, Pontiac neighbour</span>
+        </button>
+        <button class="tone-btn" onclick="setTone(this,'expert')">
+          <span class="tone-name">Expert Insight</span>
+          <span class="tone-desc">25 yrs IT credibility</span>
+        </button>
+        <button class="tone-btn" onclick="setTone(this,'story')">
+          <span class="tone-name">Story-Driven</span>
+          <span class="tone-desc">Client journey narrative</span>
+        </button>
+        <button class="tone-btn" onclick="setTone(this,'direct')">
+          <span class="tone-name">Direct & Punchy</span>
+          <span class="tone-desc">No fluff, real talk</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- LENGTH -->
+    <div>
+      <div class="field-label">Post length</div>
+      <div class="length-row" id="length-row">
+        <button class="len-btn" onclick="setLen(this,'short')">
+          <span class="len-val">~400</span>words
+        </button>
+        <button class="len-btn active" onclick="setLen(this,'medium')">
+          <span class="len-val">~800</span>words
+        </button>
+        <button class="len-btn" onclick="setLen(this,'long')">
+          <span class="len-val">~1,400</span>words
+        </button>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div>
+      <div class="field-label">Call to action</div>
+      <select id="cta">
+        <option value="consult">Book a free consultation</option>
+        <option value="contact">Get in touch with Terry</option>
+        <option value="website">Visit groundwork-digital.ca</option>
+        <option value="none">No explicit CTA</option>
+      </select>
+    </div>
+
+    <!-- GENERATE -->
+    <button class="gen-btn" id="gen-btn" onclick="generate()">
+      ✦ Generate Blog Post
+    </button>
+
+    <div style="font-size:11px;color:var(--text3);text-align:center;line-height:1.7;">
+      Powered by Claude · groundwork-digital.ca
+    </div>
+
+  </aside>
+
+  <!-- ── OUTPUT PANE ── -->
+  <main class="output-pane">
+
+    <div class="output-toolbar">
+      <div class="output-label" id="status-label">Ready</div>
+      <div class="output-actions">
+        <button class="action-btn" id="copy-btn" onclick="copyContent()" disabled>
+          📋 Copy
+        </button>
+        <button class="action-btn primary" id="save-btn" onclick="savePost()" disabled>
+          ↓ Save .txt
+        </button>
+      </div>
+    </div>
+
+    <div class="output-tabs" id="output-tabs" style="display:none;">
+      <div class="tab active" onclick="switchTab('preview',this)">Preview</div>
+      <div class="tab" onclick="switchTab('markdown',this)">Markdown</div>
+      <div class="tab" onclick="switchTab('seo',this)">SEO Notes</div>
+    </div>
+
+    <div class="output-scroll" id="output-scroll">
+      <div class="empty-state" id="empty-state">
+        <div class="empty-icon">✦</div>
+        <div class="empty-title">Your blog post<br>will appear here.</div>
+        <div class="empty-sub">Fill in the details on the left and click Generate to create a ready-to-publish blog post for groundwork-digital.ca.</div>
+      </div>
+
+      <!-- preview -->
+      <div id="tab-preview" style="display:none;"></div>
+      <!-- markdown -->
+      <div id="tab-markdown" style="display:none;" class="raw-output"></div>
+      <!-- seo -->
+      <div id="tab-seo" style="display:none;"></div>
+    </div>
+
+  </main>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let currentTone = 'friendly';
+let currentLen = 'medium';
+let generatedMarkdown = '';
+let generatedSEO = null;
+
+function updateCount(){
+  const v = document.getElementById('topic').value.length;
+  document.getElementById('char-count').textContent = `${v} / 300`;
+}
+
+function setIdea(text){
+  document.getElementById('topic').value = text;
+  updateCount();
+}
+
+function setTone(btn, val){
+  currentTone = val;
+  document.querySelectorAll('.tone-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function setLen(btn, val){
+  currentLen = val;
+  document.querySelectorAll('.len-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function switchTab(name, el){
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tab-preview').style.display = name === 'preview' ? 'block' : 'none';
+  document.getElementById('tab-markdown').style.display = name === 'markdown' ? 'block' : 'none';
+  document.getElementById('tab-seo').style.display = name === 'seo' ? 'block' : 'none';
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function copyContent(){
+  navigator.clipboard.writeText(generatedMarkdown).then(() => showToast('Copied to clipboard!'));
+}
+
+function savePost(){
+  if(!generatedMarkdown) return;
+  const blob = new Blob([generatedMarkdown], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'gwd-blog-post.txt';
+  a.click();
+  showToast('Saved!');
+}
+
+const toneInstructions = {
+  friendly: "Tone: warm, approachable, conversational. Write like a friendly neighbour giving honest advice over coffee. First-person from Terry's perspective. Relatable, never condescending.",
+  expert:   "Tone: authoritative but approachable. Lean into Terry's 25+ years of IT experience at Bell Canada and the House of Commons. Position him as the credible local expert. Facts and insights-forward.",
+  story:    "Tone: narrative and story-driven. Open with a real-feeling client scenario (fictional but believable — e.g., a Shawville restaurant, a Pontiac contractor). Walk through their journey. End with resolution and takeaway.",
+  direct:   "Tone: direct, punchy, no fluff. Short sentences. Bold statements. Real talk. No corporate-speak. Terry tells it straight."
+};
+
+const lengthInstructions = {
+  short:  "Length: approximately 400 words. Tight and punchy. 1–2 sections with H2 headings.",
+  medium: "Length: approximately 800 words. Well-structured with 3–4 H2 sections, intro paragraph, and conclusion.",
+  long:   "Length: approximately 1,400 words. Comprehensive deep-dive with 5–6 H2 sections, sub-points, examples, and a detailed conclusion."
+};
+
+const ctaInstructions = {
+  consult: "End with a CTA to book a free consultation with Terry at GroundWork Digital.",
+  contact: "End with a CTA encouraging readers to reach out to Terry directly at terry@groundwork-digital.ca.",
+  website: "End with a CTA to visit groundwork-digital.ca to learn more.",
+  none:    "No explicit CTA — end with a thoughtful closing statement."
+};
+
+async function generate(){
+  const topic = document.getElementById('topic').value.trim();
+  if(!topic){ showToast('Please enter a topic first'); return; }
+
+  const btn = document.getElementById('gen-btn');
+  btn.disabled = true;
+  btn.textContent = '';
+  btn.classList.add('loading');
+  btn.innerHTML = '<div class="loading-msg"><div class="dot-anim"><span></span><span></span><span></span></div> Writing your post…</div>';
+
+  document.getElementById('status-label').textContent = 'Generating…';
+  document.getElementById('empty-state').style.display = 'none';
+  document.getElementById('output-tabs').style.display = 'none';
+  document.getElementById('tab-preview').style.display = 'none';
+  document.getElementById('tab-preview').innerHTML = '<div class="loading-msg" style="margin-top:3rem;"><div class="dot-anim"><span></span><span></span><span></span></div> Writing…</div>';
+  document.getElementById('tab-preview').style.display = 'block';
+
+  const prompt = `You are writing a blog post for Terry Bevvan's website: GroundWork Digital (groundwork-digital.ca).
+
+About Terry / GWD:
+- Terry Bevvan, founder of GroundWork Digital, based in Aylmer, Quebec
+- 25+ years in IT (Bell Canada, House of Commons)
+- Helps local businesses in the Pontiac (MRC des Collines-de-l'Outaouais), Outaouais, Gatineau–Ottawa region get online
+- Services: websites, Google Business Profiles, Facebook pages, social media management
+- Pricing: starts at $299 for a basic site; "Get Online" bundle at $499
+- Voice: honest, direct, local. Never salesy or corporate. The guy from the Pontiac helping Pontiac businesses.
+
+TOPIC: ${topic}
+
+${toneInstructions[currentTone]}
+${lengthInstructions[currentLen]}
+${ctaInstructions[document.getElementById('cta').value]}
+
+FORMAT REQUIREMENTS — respond with valid JSON only, no markdown fences, no preamble:
+{
+  "title": "The blog post title",
+  "excerpt": "A 1–2 sentence compelling intro / summary (shown under the title)",
+  "category": "One of: Tips & Advice | Behind the Scenes | Local Business | Web Design | Success Stories | Getting Online",
+  "readTime": "e.g. 4 min read",
+  "body": "The full blog post body in Markdown format. Use ## for H2 headings, ### for H3. Use **bold** for emphasis. Use > for pull quotes. Use - for bullet lists where helpful.",
+  "seoTitle": "SEO-optimised title tag (under 60 chars)",
+  "seoDescription": "Meta description (under 155 chars)",
+  "seoKeywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5"],
+  "slug": "url-slug-for-this-post"
+}`;
+
+  try {
+    const res = await fetch('/api/blog-generator', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        prompt
+      })
+    });
+
+    const data = await res.json();
+
+    if(!res.ok){
+      throw new Error(data.error || 'Blog generation failed');
+    }
+
+    const raw = data.content.map(b => b.text || '').join('').trim()
+      .replace(/^```json\s*/,'').replace(/```\s*$/,'');
+
+    const post = JSON.parse(raw);
+    generatedMarkdown = `# ${post.title}\n\n*${post.excerpt}*\n\n${post.body}`;
+    generatedSEO = post;
+
+    renderPreview(post);
+    renderMarkdown(post);
+    renderSEO(post);
+
+    document.getElementById('output-tabs').style.display = 'flex';
+    document.getElementById('status-label').textContent = post.readTime + ' · ' + post.category;
+    document.getElementById('copy-btn').disabled = false;
+    document.getElementById('save-btn').disabled = false;
+
+    // Switch to preview tab
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(t => t.classList.remove('active'));
+    tabs[0].classList.add('active');
+    document.getElementById('tab-preview').style.display = 'block';
+    document.getElementById('tab-markdown').style.display = 'none';
+    document.getElementById('tab-seo').style.display = 'none';
+
+  } catch(err) {
+    document.getElementById('tab-preview').innerHTML = `<div style="color:#f87171;padding:2rem;">Something went wrong: ${err.message}</div>`;
+    document.getElementById('status-label').textContent = 'Error';
+  }
+
+  btn.disabled = false;
+  btn.classList.remove('loading');
+  btn.innerHTML = '✦ Generate Blog Post';
+}
+
+function renderPreview(post){
+  const date = new Date().toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'});
+  const bodyHtml = markdownToHtml(post.body);
+
+  document.getElementById('tab-preview').innerHTML = `
+    <div class="article-meta">
+      <span class="meta-tag">${post.category}</span>
+      <span class="meta-date">${date}</span>
+      <span class="meta-read">· ${post.readTime}</span>
+    </div>
+    <h1 class="article-title">${post.title}</h1>
+    <p class="article-excerpt">${post.excerpt}</p>
+    <div class="article-body">${bodyHtml}</div>
+    <div class="article-cta">
+      <p>Ready to get your business online? Terry offers a free, no-obligation consultation.</p>
+      <a href="https://groundwork-digital.ca" target="_blank">Let's talk → groundwork-digital.ca</a>
+    </div>
+  `;
+}
+
+function renderMarkdown(post){
+  document.getElementById('tab-markdown').textContent = generatedMarkdown;
+}
+
+function renderSEO(post){
+  document.getElementById('tab-seo').innerHTML = `
+    <div class="seo-grid">
+      <div class="seo-card">
+        <div class="seo-card-label">SEO Title (${post.seoTitle.length} chars)</div>
+        <div class="seo-card-value">${post.seoTitle}</div>
+      </div>
+      <div class="seo-card">
+        <div class="seo-card-label">Meta Description (${post.seoDescription.length} chars)</div>
+        <div class="seo-card-value">${post.seoDescription}</div>
+      </div>
+      <div class="seo-card">
+        <div class="seo-card-label">URL Slug</div>
+        <div class="seo-card-value green">/${post.slug}/</div>
+      </div>
+      <div class="seo-card">
+        <div class="seo-card-label">Target Keywords</div>
+        <div class="seo-keywords">${(post.seoKeywords||[]).map(k=>`<span class="seo-kw">${k}</span>`).join('')}</div>
+      </div>
+    </div>
+  `;
+}
+
+// Simple markdown → HTML converter
+function markdownToHtml(md){
+  if(!md) return '';
+  return md
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^\> (.+)$/gm, '<blockquote>$1</blockquote>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
+    .replace(/^- (.+)$/gm, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
+    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/^(?!<[h|u|b|l])(.+)$/gm, (m) => m.startsWith('<') ? m : m)
+    .split('\n')
+    .map(line => {
+      if(line.startsWith('<h2') || line.startsWith('<h3') || line.startsWith('<ul') || line.startsWith('<li') || line.startsWith('<blockquote') || line.startsWith('</')) return line;
+      if(line.trim() === '') return '';
+      return `<p>${line}</p>`;
+    })
+    .filter(l => l !== '<p></p>' && l !== '')
+    .join('\n');
+}
+</script>
+
+</body>
+</html>
