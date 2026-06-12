@@ -339,6 +339,35 @@ select option{background:var(--bg3);}
   background:var(--bg4);border:1px solid var(--border);color:var(--text2);
 }
 
+/* LinkedIn tab */
+.linkedin-wrap{display:flex;flex-direction:column;gap:1rem;}
+.linkedin-card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:10px;padding:1.25rem;
+}
+.linkedin-meta{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;margin-bottom:0.9rem;flex-wrap:wrap;
+}
+.linkedin-label{
+  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--text3);
+}
+.linkedin-count{
+  font-family:var(--mono);font-size:11px;font-weight:600;color:var(--green);
+}
+.linkedin-count.warn{color:#fbbf24;}
+.linkedin-count.over{color:#f87171;}
+.linkedin-post{
+  width:100%;min-height:360px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:8px;padding:1rem;
+  color:var(--text);font-family:var(--sans);
+  font-size:15px;line-height:1.7;font-weight:600;
+  white-space:pre-wrap;resize:vertical;
+}
+.linkedin-help{font-size:12px;color:var(--text3);line-height:1.7;}
+
 /* loading dots */
 .loading-msg{
   display:flex;align-items:center;gap:12px;
@@ -505,6 +534,7 @@ select option{background:var(--bg3);}
     <div class="output-tabs" id="output-tabs" style="display:none;">
       <div class="tab active" onclick="switchTab('preview',this)">Preview</div>
       <div class="tab" onclick="switchTab('markdown',this)">Markdown</div>
+      <div class="tab" onclick="switchTab('linkedin',this)">LinkedIn</div>
       <div class="tab" onclick="switchTab('seo',this)">SEO Notes</div>
     </div>
 
@@ -519,6 +549,8 @@ select option{background:var(--bg3);}
       <div id="tab-preview" style="display:none;"></div>
       <!-- markdown -->
       <div id="tab-markdown" style="display:none;" class="raw-output"></div>
+      <!-- linkedin -->
+      <div id="tab-linkedin" style="display:none;"></div>
       <!-- seo -->
       <div id="tab-seo" style="display:none;"></div>
     </div>
@@ -533,7 +565,9 @@ select option{background:var(--bg3);}
 let currentTone = 'friendly';
 let currentLen = 'medium';
 let generatedMarkdown = '';
+let generatedLinkedIn = '';
 let generatedSEO = null;
+const LINKEDIN_LIMIT = 3000;
 
 function updateCount(){
   const v = document.getElementById('topic').value.length;
@@ -562,6 +596,7 @@ function switchTab(name, el){
   el.classList.add('active');
   document.getElementById('tab-preview').style.display = name === 'preview' ? 'block' : 'none';
   document.getElementById('tab-markdown').style.display = name === 'markdown' ? 'block' : 'none';
+  document.getElementById('tab-linkedin').style.display = name === 'linkedin' ? 'block' : 'none';
   document.getElementById('tab-seo').style.display = name === 'seo' ? 'block' : 'none';
 }
 
@@ -573,15 +608,19 @@ function showToast(msg){
 }
 
 function copyContent(){
-  navigator.clipboard.writeText(generatedMarkdown).then(() => showToast('Copied to clipboard!'));
+  const active = document.querySelector('.tab.active')?.textContent || '';
+  const text = active.includes('LinkedIn') ? generatedLinkedIn : generatedMarkdown;
+  navigator.clipboard.writeText(text).then(() => showToast(active.includes('LinkedIn') ? 'LinkedIn post copied!' : 'Copied to clipboard!'));
 }
 
 function savePost(){
   if(!generatedMarkdown) return;
-  const blob = new Blob([generatedMarkdown], {type:'text/plain'});
+  const active = document.querySelector('.tab.active')?.textContent || '';
+  const isLinkedIn = active.includes('LinkedIn');
+  const blob = new Blob([isLinkedIn ? generatedLinkedIn : generatedMarkdown], {type:'text/plain'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'gwd-blog-post.txt';
+  a.download = isLinkedIn ? 'gwd-linkedin-post.txt' : 'gwd-blog-post.txt';
   a.click();
   showToast('Saved!');
 }
@@ -646,6 +685,7 @@ FORMAT REQUIREMENTS — respond with valid JSON only, no markdown fences, no pre
   "category": "One of: Tips & Advice | Behind the Scenes | Local Business | Web Design | Success Stories | Getting Online",
   "readTime": "e.g. 4 min read",
   "body": "The full blog post body in Markdown format. Use ## for H2 headings, ### for H3. Use **bold** for emphasis. Use > for pull quotes. Use - for bullet lists where helpful.",
+  "linkedinPost": "A ready-to-paste LinkedIn post based on the article. Keep it under 3000 characters total, including spaces and line breaks. Aim for 900-1600 characters. Use a strong first line, short paragraphs, Terry's voice, 2-4 relevant hashtags, and a light CTA. Do not use markdown headings.",
   "seoTitle": "SEO-optimised title tag (under 60 chars)",
   "seoDescription": "Meta description (under 155 chars)",
   "seoKeywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5"],
@@ -672,10 +712,12 @@ FORMAT REQUIREMENTS — respond with valid JSON only, no markdown fences, no pre
 
     const post = JSON.parse(raw);
     generatedMarkdown = `# ${post.title}\n\n*${post.excerpt}*\n\n${post.body}`;
+    generatedLinkedIn = trimToLinkedInLimit(post.linkedinPost || makeLinkedInFallback(post));
     generatedSEO = post;
 
     renderPreview(post);
     renderMarkdown(post);
+    renderLinkedIn();
     renderSEO(post);
 
     document.getElementById('output-tabs').style.display = 'flex';
@@ -689,6 +731,7 @@ FORMAT REQUIREMENTS — respond with valid JSON only, no markdown fences, no pre
     tabs[0].classList.add('active');
     document.getElementById('tab-preview').style.display = 'block';
     document.getElementById('tab-markdown').style.display = 'none';
+    document.getElementById('tab-linkedin').style.display = 'none';
     document.getElementById('tab-seo').style.display = 'none';
 
   } catch(err) {
@@ -723,6 +766,67 @@ function renderPreview(post){
 
 function renderMarkdown(post){
   document.getElementById('tab-markdown').textContent = generatedMarkdown;
+}
+
+function renderLinkedIn(){
+  document.getElementById('tab-linkedin').innerHTML = `
+    <div class="linkedin-wrap">
+      <div class="linkedin-card">
+        <div class="linkedin-meta">
+          <div class="linkedin-label">LinkedIn post</div>
+          <div class="linkedin-count" id="linkedin-count">${countChars(generatedLinkedIn)} / ${LINKEDIN_LIMIT}</div>
+        </div>
+        <textarea class="linkedin-post" id="linkedin-post" oninput="updateLinkedInPost()">${escapeHtml(generatedLinkedIn)}</textarea>
+        <div class="linkedin-help">LinkedIn posts allow up to 3,000 characters. Edit here, then use Copy while this tab is active.</div>
+      </div>
+    </div>
+  `;
+  updateLinkedInCounter();
+}
+
+function updateLinkedInPost(){
+  generatedLinkedIn = document.getElementById('linkedin-post').value;
+  updateLinkedInCounter();
+}
+
+function updateLinkedInCounter(){
+  const countEl = document.getElementById('linkedin-count');
+  if(!countEl) return;
+  const count = countChars(generatedLinkedIn);
+  countEl.textContent = `${count} / ${LINKEDIN_LIMIT}`;
+  countEl.classList.toggle('warn', count > LINKEDIN_LIMIT * 0.9 && count <= LINKEDIN_LIMIT);
+  countEl.classList.toggle('over', count > LINKEDIN_LIMIT);
+}
+
+function countChars(text){
+  return Array.from(text || '').length;
+}
+
+function trimToLinkedInLimit(text){
+  const chars = Array.from((text || '').trim());
+  if(chars.length <= LINKEDIN_LIMIT) return chars.join('');
+  return chars.slice(0, LINKEDIN_LIMIT - 1).join('').trimEnd() + '…';
+}
+
+function makeLinkedInFallback(post){
+  return trimToLinkedInLimit(`${post.title}\n\n${post.excerpt}\n\n${stripMarkdown(post.body).slice(0, 1200).trim()}\n\nRead more at groundwork-digital.ca/blog.html\n\n#SmallBusiness #DigitalMarketing #Outaouais`);
+}
+
+function stripMarkdown(text){
+  return (text || '')
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/\*(.*?)\*/g, '$1')
+    .replace(/^\> /gm, '')
+    .replace(/^- /gm, '- ');
+}
+
+function escapeHtml(text){
+  return (text || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 function renderSEO(post){
