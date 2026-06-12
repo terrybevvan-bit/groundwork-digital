@@ -115,6 +115,19 @@ button:hover,
   margin:0 0 14px;
   font-size:22px;
 }
+.card-title-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:14px;
+}
+.card-title-row h2{margin:0}
+.btn-small{
+  padding:9px 12px;
+  border-radius:10px;
+  font-size:13px;
+}
 .form-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -367,6 +380,94 @@ input[type="checkbox"]{
   font-size:12px;
   line-height:1.5;
 }
+.pricing-sheet{
+  display:none;
+}
+.pricing-page{
+  background:white;
+  color:#111;
+  font-family:Arial,Helvetica,sans-serif;
+  padding:0;
+}
+.pricing-page-header{
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  align-items:flex-start;
+  padding-bottom:18px;
+  border-bottom:2px solid #111827;
+}
+.pricing-page-brand{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+}
+.pricing-page-logo{
+  width:52px;
+  height:52px;
+  border-radius:10px;
+}
+.pricing-page h1{
+  color:#111;
+  font-size:34px;
+  margin:0 0 6px;
+  line-height:1;
+}
+.pricing-page h2{
+  color:#111;
+  font-size:18px;
+  margin:24px 0 10px;
+}
+.pricing-page p{
+  color:#4b5563;
+  line-height:1.5;
+  margin:0;
+}
+.pricing-contact{
+  text-align:right;
+  color:#4b5563;
+  font-size:12px;
+  line-height:1.55;
+}
+.pricing-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:12.5px;
+}
+.pricing-table th{
+  text-align:left;
+  color:#6b7280;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  font-size:10px;
+  border-bottom:1px solid #d1d5db;
+  padding:8px 0;
+}
+.pricing-table td{
+  border-bottom:1px solid #e5e7eb;
+  padding:9px 0;
+  vertical-align:top;
+}
+.pricing-table .pricing-amount{
+  text-align:right;
+  white-space:nowrap;
+  font-weight:900;
+  color:#111827;
+}
+.pricing-desc{
+  color:#4b5563;
+  line-height:1.4;
+  margin-top:3px;
+}
+.pricing-note{
+  margin-top:22px;
+  border:1px solid #d1d5db;
+  border-radius:12px;
+  padding:14px;
+  color:#374151;
+  font-size:12px;
+  line-height:1.55;
+}
 @media(max-width:1000px){
   .grid{grid-template-columns:1fr}
   .invoice{position:relative;top:0}
@@ -391,6 +492,8 @@ input[type="checkbox"]{
     border-radius:0;
     padding:0;
   }
+  body.pricing-print .invoice{display:none}
+  body.pricing-print .pricing-sheet{display:block}
   @page{margin:.5in}
 }
 </style>
@@ -453,7 +556,10 @@ input[type="checkbox"]{
   </section>
 
   <section class="card">
-    <h2>Website Package</h2>
+    <div class="card-title-row">
+      <h2>Website Package</h2>
+      <button class="btn-gold btn-small" onclick="savePricingPdf()">Save Pricing PDF</button>
+    </div>
     <div id="packages"></div>
   </section>
 
@@ -594,6 +700,8 @@ input[type="checkbox"]{
   </div>
 
 </aside>
+
+<section class="pricing-sheet" id="pricingSheet"></section>
 
 </div>
 </div>
@@ -1071,6 +1179,77 @@ function toggleCopyBox(){
   box.style.display = box.style.display === "none" ? "block" : "none";
   renderInvoice();
 }
+
+function pricingRows(items, amountLabel){
+  return items.map(item => `
+    <tr>
+      <td>
+        <strong>${item.name}</strong>
+        <div class="pricing-desc">${item.description || item.unit || ""}</div>
+      </td>
+      <td class="pricing-amount">${amountLabel(item)}</td>
+    </tr>
+  `).join("");
+}
+
+function buildPricingSheet(){
+  const websitePackages = packages.filter(pkg => !pkg.addonsOnly);
+
+  el("pricingSheet").innerHTML = `
+    <div class="pricing-page">
+      <div class="pricing-page-header">
+        <div class="pricing-page-brand">
+          <img class="pricing-page-logo" src="../favicon.svg" alt="GroundWork Digital logo">
+          <div>
+            <div class="small-label">Pricing Overview</div>
+            <h1>Groundwork Digital</h1>
+            <p>Website packages, add-ons, and monthly care for local businesses.</p>
+          </div>
+        </div>
+        <div class="pricing-contact">
+          <strong>GroundWork Digital</strong><br>
+          https://groundwork-digital.ca/<br>
+          613-292-4762<br>
+          terry@groundwork-digital.ca<br>
+          CAD pricing
+        </div>
+      </div>
+
+      <h2>Website Packages</h2>
+      <table class="pricing-table">
+        <thead><tr><th>Package</th><th class="pricing-amount">Starting Price</th></tr></thead>
+        <tbody>${pricingRows(websitePackages, item => money(item.price))}</tbody>
+      </table>
+
+      <h2>Add-Ons</h2>
+      <table class="pricing-table">
+        <thead><tr><th>Add-On</th><th class="pricing-amount">Price</th></tr></thead>
+        <tbody>${pricingRows(addOns, item => item.percent ? item.unit : `${money(item.price)} ${item.unit || ""}`)}</tbody>
+      </table>
+
+      <h2>Monthly Care Plans</h2>
+      <table class="pricing-table">
+        <thead><tr><th>Plan</th><th class="pricing-amount">Monthly Price</th></tr></thead>
+        <tbody>${pricingRows(monthlyPlans.filter(plan => plan.price > 0), item => `${money(item.price)}/mo`)}</tbody>
+      </table>
+
+      <div class="pricing-note">
+        <strong>Notes:</strong> Prices are starting points in CAD and may change based on project scope, content needs, integrations, timeline, and required functionality.
+        GST/QST may apply where applicable. A typical website project uses 50% deposit / 50% on launch unless otherwise agreed.
+      </div>
+    </div>
+  `;
+}
+
+function savePricingPdf(){
+  buildPricingSheet();
+  document.body.classList.add("pricing-print");
+  window.print();
+}
+
+window.addEventListener("afterprint", () => {
+  document.body.classList.remove("pricing-print");
+});
 
 function copyInvoiceText(){
   renderInvoice();
