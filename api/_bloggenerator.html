@@ -531,7 +531,7 @@ select option{background:var(--bg3);}
       </div>
     </div>
 
-    <div class="output-tabs" id="output-tabs" style="display:none;">
+    <div class="output-tabs" id="output-tabs">
       <div class="tab active" onclick="switchTab('preview',this)">Preview</div>
       <div class="tab" onclick="switchTab('markdown',this)">Markdown</div>
       <div class="tab" onclick="switchTab('linkedin',this)">LinkedIn</div>
@@ -594,10 +594,43 @@ function setLen(btn, val){
 function switchTab(name, el){
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
+  if(!generatedMarkdown){
+    showEmptyForTab(name);
+    document.getElementById('tab-preview').style.display = 'none';
+    document.getElementById('tab-markdown').style.display = 'none';
+    document.getElementById('tab-linkedin').style.display = 'none';
+    document.getElementById('tab-seo').style.display = 'none';
+    return;
+  }
+  document.getElementById('empty-state').style.display = 'none';
   document.getElementById('tab-preview').style.display = name === 'preview' ? 'block' : 'none';
   document.getElementById('tab-markdown').style.display = name === 'markdown' ? 'block' : 'none';
   document.getElementById('tab-linkedin').style.display = name === 'linkedin' ? 'block' : 'none';
   document.getElementById('tab-seo').style.display = name === 'seo' ? 'block' : 'none';
+}
+
+function showEmptyForTab(name){
+  const empty = document.getElementById('empty-state');
+  const title = empty.querySelector('.empty-title');
+  const sub = empty.querySelector('.empty-sub');
+  empty.style.display = 'flex';
+  if(name === 'linkedin'){
+    title.innerHTML = 'Your LinkedIn post<br>will appear here.';
+    sub.textContent = 'Generate a blog post and the tool will also create a LinkedIn-ready version under 3,000 characters.';
+    return;
+  }
+  if(name === 'seo'){
+    title.innerHTML = 'Your SEO notes<br>will appear here.';
+    sub.textContent = 'Generate a post to create the SEO title, description, keywords, and slug.';
+    return;
+  }
+  if(name === 'markdown'){
+    title.innerHTML = 'Your Markdown<br>will appear here.';
+    sub.textContent = 'Generate a post to create copyable Markdown for publishing.';
+    return;
+  }
+  title.innerHTML = 'Your blog post<br>will appear here.';
+  sub.textContent = 'Fill in the details on the left and click Generate to create a ready-to-publish blog post for groundwork-digital.ca.';
 }
 
 function showToast(msg){
