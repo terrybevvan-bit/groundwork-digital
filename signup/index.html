@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Subscribe - GroundWork Digital</title>
+<meta name="description" content="Start a GroundWork Digital monthly website and marketing subscription."/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/subscription.css"/>
+<script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+<nav>
+  <a href="/index.html" class="nav-logo">
+    <div class="logo-mark">GW</div>
+    <div><div class="logo-name">GroundWork</div><div class="logo-sub">Digital</div></div>
+  </a>
+  <ul class="nav-links" id="nav-menu">
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/services.html">Services</a></li>
+    <li><a href="/work.html">Our Work</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+    <li><a href="/pricing/">Pricing</a></li>
+    <li><a href="/contact.html">Get a Quote</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="/contact.html" class="nav-cta">Free Quote</a>
+    <a href="/fr/" class="lang-switch" aria-label="Version francaise">FR</a>
+    <button id="theme-toggle" aria-label="Toggle theme"><span id="theme-icon">*</span></button>
+    <button id="nav-burger" aria-label="Menu" aria-expanded="false">=</button>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <div class="section-tag">Subscription Signup</div>
+      <h1>Start your <em id="hero-tier">monthly plan.</em></h1>
+      <p>Enter your business details and payment method. Your subscription starts immediately after the first payment is confirmed.</p>
+    </div>
+  </header>
+
+  <main class="content-section">
+    <div class="container">
+      <div class="signup-grid">
+        <aside class="signup-panel plan-summary">
+          <div class="plan-kicker">Selected Plan</div>
+          <h2 id="plan-name">Loading plan</h2>
+          <div class="plan-price" id="plan-price">$0 <span>/mo CAD</span></div>
+          <p class="section-copy" id="plan-copy">Checking the plan from your signup link.</p>
+          <a class="btn-outline" href="/pricing/">Change Plan</a>
+        </aside>
+
+        <section class="signup-panel">
+          <form id="signup-form">
+            <div class="form-grid">
+              <label class="field full">
+                <span class="field-label">Business Name</span>
+                <input name="businessName" autocomplete="organization" required/>
+              </label>
+              <label class="field">
+                <span class="field-label">Contact Name</span>
+                <input name="contactName" autocomplete="name" required/>
+              </label>
+              <label class="field">
+                <span class="field-label">Email</span>
+                <input name="email" type="email" autocomplete="email" required/>
+              </label>
+              <label class="field full">
+                <span class="field-label">Phone</span>
+                <input name="phone" type="tel" autocomplete="tel" required/>
+              </label>
+            </div>
+
+            <div id="payment-element"></div>
+            <button class="form-submit" id="submit-button" type="submit" disabled>Loading Payment Form</button>
+            <div class="message" id="signup-message" role="status" aria-live="polite"></div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="/subscription.js"></script>
+<script>
+(function(){
+  const plans = {
+    starter: {
+      name: 'Starter',
+      price: '$99',
+      amount: 9900,
+      copy: 'Website care, light updates, basic local SEO, and email support.'
+    },
+    growth: {
+      name: 'Growth',
+      price: '$249',
+      amount: 24900,
+      copy: 'Monthly content improvements, local SEO review, campaign planning, and priority support.'
+    },
+    partner: {
+      name: 'Partner',
+      price: '$499',
+      amount: 49900,
+      copy: 'Hands-on digital support with strategy calls, reporting, landing page work, and faster updates.'
+    }
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const tier = (params.get('tier') || '').toLowerCase();
+  const plan = plans[tier];
+  const form = document.getElementById('signup-form');
+  const button = document.getElementById('submit-button');
+  const message = document.getElementById('signup-message');
+  let stripe;
+  let elements;
+
+  function showMessage(text, type) {
+    message.textContent = text;
+    message.className = 'message show ' + (type || 'info');
+  }
+
+  function setLoading(isLoading) {
+    button.disabled = isLoading;
+    button.textContent = isLoading ? 'Processing' : 'Subscribe';
+  }
+
+  function stripeAppearance() {
+    const styles = getComputedStyle(document.documentElement);
+    return {
+      theme: 'night',
+      variables: {
+        colorPrimary: styles.getPropertyValue('--green').trim(),
+        colorBackground: styles.getPropertyValue('--bg2').trim(),
+        colorText: styles.getPropertyValue('--text').trim(),
+        colorDanger: styles.getPropertyValue('--coral').trim(),
+        fontFamily: styles.getPropertyValue('--sans').trim(),
+        borderRadius: '2px'
+      }
+    };
+  }
+
+  async function init() {
+    if (!plan) {
+      document.getElementById('plan-name').textContent = 'Choose a plan';
+      document.getElementById('plan-price').innerHTML = 'Missing <span>tier</span>';
+      document.getElementById('plan-copy').textContent = 'This signup link needs a valid tier. Please choose Starter, Growth, or Partner from the pricing page.';
+      showMessage('Please choose a valid plan before subscribing.', 'error');
+      button.textContent = 'Choose a Plan';
+      button.addEventListener('click', function(event){
+        event.preventDefault();
+        window.location.href = '/pricing/';
+      });
+      return;
+    }
+
+    document.getElementById('hero-tier').textContent = plan.name + ' plan.';
+    document.getElementById('plan-name').textContent = plan.name;
+    document.getElementById('plan-price').innerHTML = plan.price + ' <span>/mo CAD</span>';
+    document.getElementById('plan-copy').textContent = plan.copy;
+
+    try {
+      const configResponse = await fetch('/api/stripe-config');
+      const config = await configResponse.json();
+      if (!configResponse.ok) throw new Error(config.error || 'Stripe is not configured.');
+
+      stripe = Stripe(config.publishableKey);
+      elements = stripe.elements({
+        mode: 'subscription',
+        amount: plan.amount,
+        currency: 'cad',
+        appearance: stripeAppearance()
+      });
+
+      elements.create('payment').mount('#payment-element');
+      setLoading(false);
+    } catch (error) {
+      showMessage(error.message || 'Unable to load the payment form.', 'error');
+      button.textContent = 'Payment Unavailable';
+    }
+  }
+
+  form.addEventListener('submit', async function(event) {
+    event.preventDefault();
+    if (!plan || !stripe || !elements) return;
+
+    setLoading(true);
+    message.className = 'message';
+    message.textContent = '';
+
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    try {
+      const submitResult = await elements.submit();
+      if (submitResult.error) throw new Error(submitResult.error.message);
+
+      const response = await fetch('/api/create-subscription', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tier,
+          businessName: data.businessName,
+          contactName: data.contactName,
+          email: data.email,
+          phone: data.phone
+        })
+      });
+
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Unable to create the subscription.');
+
+      const returnUrl = new URL('/signup/success.html', window.location.origin);
+      returnUrl.searchParams.set('tier', tier);
+      returnUrl.searchParams.set('subscription', result.subscriptionId);
+
+      const confirmation = await stripe.confirmPayment({
+        elements,
+        clientSecret: result.clientSecret,
+        confirmParams: {
+          return_url: returnUrl.toString()
+        },
+        redirect: 'if_required'
+      });
+
+      if (confirmation.error) throw new Error(confirmation.error.message);
+      window.location.href = returnUrl.toString();
+    } catch (error) {
+      showMessage(error.message || 'Payment could not be completed. Please check the card details and try again.', 'error');
+      setLoading(false);
+    }
+  });
+
+  init();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Subscription Started - GroundWork Digital</title>
+<meta name="description" content="GroundWork Digital subscription signup confirmation."/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/subscription.css"/>
+</head>
+<body>
+<nav>
+  <a href="/index.html" class="nav-logo">
+    <div class="logo-mark">GW</div>
+    <div><div class="logo-name">GroundWork</div><div class="logo-sub">Digital</div></div>
+  </a>
+  <ul class="nav-links" id="nav-menu">
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/services.html">Services</a></li>
+    <li><a href="/work.html">Our Work</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+    <li><a href="/pricing/">Pricing</a></li>
+    <li><a href="/contact.html">Get a Quote</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="/contact.html" class="nav-cta">Free Quote</a>
+    <a href="/fr/" class="lang-switch" aria-label="Version francaise">FR</a>
+    <button id="theme-toggle" aria-label="Toggle theme"><span id="theme-icon">*</span></button>
+    <button id="nav-burger" aria-label="Menu" aria-expanded="false">=</button>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <main class="content-section" style="padding-top:150px;min-height:72vh;">
+    <div class="container">
+      <section class="success-panel">
+        <div class="section-tag">Payment Confirmed</div>
+        <h2>You're all <em>set.</em></h2>
+        <p>Your <strong id="success-tier">GroundWork Digital</strong> monthly subscription is active.</p>
+        <p>I will be in touch within 1 business day to kick off the work, confirm priorities, and make sure the first month starts cleanly.</p>
+        <ul>
+          <li>Billing has started immediately with the payment method you entered.</li>
+          <li>Cancellation is handled by email or phone with 14 days notice under the service agreement.</li>
+          <li>Your card details stay inside Stripe and are not stored on this site.</li>
+        </ul>
+        <div class="success-actions">
+          <a class="btn-primary" href="/contact.html">Contact Terry</a>
+          <a class="btn-outline" href="/index.html">Back Home</a>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<script src="/subscription.js"></script>
+<script>
+(function(){
+  const names = { starter: 'Starter', growth: 'Growth', partner: 'Partner' };
+  const tier = new URLSearchParams(window.location.search).get('tier');
+  const label = names[(tier || '').toLowerCase()];
+  if(label) document.getElementById('success-tier').textContent = label;
+})();
+</script>
+</body>
+</html>
