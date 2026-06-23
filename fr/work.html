@@ -19,7 +19,7 @@
 <style>
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:auto;}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 :root{
   --bg:#0e0b08;--bg2:#15110b;--bg3:#1d1811;
@@ -122,9 +122,9 @@ section.content-section.alt{background:var(--bg2);}
     <div class="logo-mark">GW</div>
     <div><div class="logo-name">GroundWork</div><div class="logo-sub">Digital</div></div>
   </a>
-  <ul class="nav-links" id="nav-menu"><li><a href="/fr/" class="">Accueil</a></li><li><a href="/fr/services.html" class="">Services</a></li><li><a href="/fr/work.html" class="active">R&eacute;alisations</a></li><li><a href="/fr/blog.html" class="">Blogue</a></li><li><a href="/fr/contact.html" class="">Demander une soumission</a></li></ul>
+  <ul class="nav-links" id="nav-menu"><li><a href="/fr/" class="">Accueil</a></li><li><a href="/fr/services.html" class="">Services</a></li><li><a href="/pricing/" class="">Tarifs</a></li><li><a href="/fr/work.html" class="active">R&eacute;alisations</a></li><li><a href="/fr/blog.html" class="">Blogue</a></li><li><a href="/fr/contact.html" class="">Contact</a></li></ul>
   <div class="nav-right">
-    <a href="/fr/contact.html" class="nav-cta">Soumission gratuite</a>
+    <a href="/pricing/" class="nav-cta">Tarifs</a>
     <a href="/work.html" class="lang-switch" aria-label="Version anglaise">EN</a>
     <button id="theme-toggle" aria-label="Changer le th&egrave;me"><span id="theme-icon">☀</span></button>
     <button id="nav-burger" aria-label="Menu" aria-expanded="false">☰</button>
@@ -237,7 +237,7 @@ section.content-section.alt{background:var(--bg2);}
       <ul>
         <li><a href="mailto:terry@groundwork-digital.ca">terry@groundwork-digital.ca</a></li>
         <li><a href="tel:+16132924762">613-292-4762</a></li>
-        <li><a href="/fr/contact.html">Consultation gratuite</a></li>
+        <li><a href="/pricing/">Tarifs</a></li>
       </ul>
     </div>
   </div>
@@ -281,6 +281,8 @@ section.content-section.alt{background:var(--bg2);}
 (function(){
   const canvas=document.getElementById('grid-canvas');
   if(!canvas)return;
+  canvas.remove();
+  return;
   const ctx=canvas.getContext('2d');
   const CELL=48,DOT_R=1.1,LINE_OP=0.02,DOT_OP=0.07,NUM_PULSES=6,NUM_SCANS=1,NUM_PACKETS=4;
   let W,H,cols,rows;

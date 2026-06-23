@@ -26,7 +26,7 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:auto;}
 body{
   font-family:var(--sans);
   background:var(--bg);
@@ -498,7 +498,7 @@ select option{background:var(--bg3);}
     <div>
       <div class="field-label">Call to action</div>
       <select id="cta">
-        <option value="consult">Book a free consultation</option>
+        <option value="consult">View pricing</option>
         <option value="contact">Get in touch with Terry</option>
         <option value="website">Visit groundwork-digital.ca</option>
         <option value="none">No explicit CTA</option>
@@ -672,7 +672,7 @@ const lengthInstructions = {
 };
 
 const ctaInstructions = {
-  consult: "End with a CTA to book a free consultation with Terry at GroundWork Digital.",
+  consult: "End with a CTA to view transparent pricing or contact Terry at GroundWork Digital.",
   contact: "End with a CTA encouraging readers to reach out to Terry directly at terry@groundwork-digital.ca.",
   website: "End with a CTA to visit groundwork-digital.ca to learn more.",
   none:    "No explicit CTA — end with a thoughtful closing statement."
@@ -804,7 +804,7 @@ function renderPreview(post){
     <p class="article-excerpt">${post.excerpt}</p>
     <div class="article-body">${bodyHtml}</div>
     <div class="article-cta">
-      <p>Ready to get your business online? Terry offers a free, no-obligation consultation.</p>
+      <p>Ready to get your business online? Start with GroundWork Digital's transparent monthly pricing.</p>
       <a href="https://groundwork-digital.ca" target="_blank">Let's talk → groundwork-digital.ca</a>
     </div>
   `;

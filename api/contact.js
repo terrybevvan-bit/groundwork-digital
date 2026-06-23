@@ -66,7 +66,7 @@ module.exports = async function handler(req, res) {
     const replyTo = String(data.email || '').trim();
 
     const html = `
-      <h2>New GroundWork Digital quote request</h2>
+      <h2>New GroundWork Digital contact request</h2>
       <p><strong>Name:</strong> ${escapeHtml(first)} ${escapeHtml(last)}</p>
       <p><strong>Email:</strong> ${escapeHtml(email)}</p>
       <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
@@ -86,7 +86,7 @@ module.exports = async function handler(req, res) {
         from,
         to,
         reply_to: replyTo,
-        subject: `New quote request from ${first} ${last}`,
+        subject: `New contact request from ${first} ${last}`,
         html,
       }),
     });

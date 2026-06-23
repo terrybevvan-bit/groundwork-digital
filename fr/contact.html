@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <link rel="alternate" hreflang="fr-CA" href="https://www.groundwork-digital.ca/fr/contact.html"/>
 <link rel="alternate" hreflang="en-CA" href="https://www.groundwork-digital.ca/contact.html"/>
-<title>Demander une soumission — GroundWork Digital</title>
-<meta name="description" content="Demandez une soumission gratuite &agrave; GroundWork Digital pour un site Web, le SEO, un profil Google, les m&eacute;dias sociaux, un logo ou d&rsquo;autres services num&eacute;riques."/>
-<meta property="og:title" content="Demander une soumission — GroundWork Digital"/>
-<meta property="og:description" content="Demandez une soumission gratuite &agrave; GroundWork Digital pour un site Web, le SEO, un profil Google, les m&eacute;dias sociaux, l&rsquo;image de marque, l&rsquo;IA et plus encore."/>
+<title>Contact — GroundWork Digital</title>
+<meta name="description" content="Contactez GroundWork Digital pour un site Web, le SEO, un profil Google, les m&eacute;dias sociaux, un logo et des plans num&eacute;riques mensuels."/>
+<meta property="og:title" content="Contact — GroundWork Digital"/>
+<meta property="og:description" content="Contactez GroundWork Digital pour un site Web, le SEO, un profil Google, les m&eacute;dias sociaux, l&rsquo;image de marque, l&rsquo;IA et des plans mensuels transparents."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.groundwork-digital.ca/fr/contact.html"/>
 <meta property="og:image" content="https://www.groundwork-digital.ca/terry_headshot_cropped.png"/>
@@ -19,7 +19,7 @@
 <style>
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:auto;}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 :root{
   --bg:#0e0b08;--bg2:#15110b;--bg3:#1d1811;
@@ -139,9 +139,9 @@ html.light .form-submit:hover{background:#15803d;}
     <div class="logo-mark">GW</div>
     <div><div class="logo-name">GroundWork</div><div class="logo-sub">Digital</div></div>
   </a>
-  <ul class="nav-links" id="nav-menu"><li><a href="/fr/" class="">Accueil</a></li><li><a href="/fr/services.html" class="">Services</a></li><li><a href="/fr/work.html" class="">R&eacute;alisations</a></li><li><a href="/fr/blog.html" class="">Blogue</a></li><li><a href="/fr/contact.html" class="active">Demander une soumission</a></li></ul>
+  <ul class="nav-links" id="nav-menu"><li><a href="/fr/" class="">Accueil</a></li><li><a href="/fr/services.html" class="">Services</a></li><li><a href="/pricing/" class="">Tarifs</a></li><li><a href="/fr/work.html" class="">R&eacute;alisations</a></li><li><a href="/fr/blog.html" class="">Blogue</a></li><li><a href="/fr/contact.html" class="active">Contact</a></li></ul>
   <div class="nav-right">
-    <a href="/fr/contact.html" class="nav-cta">Soumission gratuite</a>
+    <a href="/pricing/" class="nav-cta">Tarifs</a>
     <a href="/contact.html" class="lang-switch" aria-label="Version anglaise">EN</a>
     <button id="theme-toggle" aria-label="Changer le th&egrave;me"><span id="theme-icon">☀</span></button>
     <button id="nav-burger" aria-label="Menu" aria-expanded="false">☰</button>
@@ -162,7 +162,7 @@ html.light .form-submit:hover{background:#15803d;}
 
       <div class="contact-info">
         <h3>Comment puis-je aider?</h3>
-        <p>Que vous ayez besoin d&rsquo;un nouveau site Web, d&rsquo;&ecirc;tre plus visible sur Google ou simplement de savoir par o&ugrave; commencer, r&eacute;servez un appel gratuit de 30 minutes. On fera le point ensemble. Je travaille avec des entreprises de toutes tailles &agrave; Gatineau, dans l&rsquo;Outaouais et dans le Pontiac.</p>
+        <p>Que vous ayez besoin d&rsquo;un nouveau site Web, d&rsquo;&ecirc;tre plus visible sur Google ou simplement de savoir par o&ugrave; commencer, consultez d&rsquo;abord les tarifs, puis contactez-moi pour discuter du bon plan. Je travaille avec des entreprises de toutes tailles &agrave; Gatineau, dans l&rsquo;Outaouais et dans le Pontiac.</p>
 
         <div class="contact-methods">
           <a href="mailto:terry@groundwork-digital.ca" class="contact-method">
@@ -193,7 +193,7 @@ html.light .form-submit:hover{background:#15803d;}
       <div>
         <form class="quote-form" name="contact" method="POST" action="api/contact">
           <p style="display:none;"><label>Don't fill this out if you're human: <input name="website" tabindex="-1" autocomplete="off"/></label></p>
-          <div class="form-heading">Demander une soumission gratuite</div>
+          <div class="form-heading">Contact GroundWork</div>
           <div class="form-sub">Remplissez ce formulaire et je vous r&eacute;pondrai dans un d&eacute;lai d&rsquo;un jour ouvrable.</div>
 
           <div class="form-row">
@@ -267,7 +267,7 @@ html.light .form-submit:hover{background:#15803d;}
       <ul>
         <li><a href="mailto:terry@groundwork-digital.ca">terry@groundwork-digital.ca</a></li>
         <li><a href="tel:+16132924762">613-292-4762</a></li>
-        <li><a href="/fr/contact.html">Consultation gratuite</a></li>
+        <li><a href="/pricing/">Tarifs</a></li>
       </ul>
     </div>
   </div>
@@ -343,6 +343,8 @@ html.light .form-submit:hover{background:#15803d;}
 (function(){
   const canvas=document.getElementById('grid-canvas');
   if(!canvas)return;
+  canvas.remove();
+  return;
   const ctx=canvas.getContext('2d');
   const CELL=48,DOT_R=1.1,LINE_OP=0.02,DOT_OP=0.07,NUM_PULSES=6,NUM_SCANS=1,NUM_PACKETS=4;
   let W,H,cols,rows;

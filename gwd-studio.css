@@ -1,4 +1,6 @@
 /* GroundWork Digital studio refresh */
+html{scroll-behavior:auto !important;}
+
 :root{
   --bg:#050606;
   --bg2:#0b1010;
@@ -63,7 +65,7 @@ body::before{
 }
 
 html.light body::before{mix-blend-mode:multiply;opacity:.55;}
-#grid-canvas{opacity:.34;}
+#grid-canvas{display:none !important;}
 body::after{opacity:.28;}
 
 nav{

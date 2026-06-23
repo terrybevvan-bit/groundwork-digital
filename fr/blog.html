@@ -19,7 +19,7 @@
 <style>
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:auto;}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 :root{
   --bg:#0e0b08;--bg2:#15110b;--bg3:#1d1811;
@@ -133,9 +133,9 @@ section.content-section.alt{background:var(--bg2);}
     <div class="logo-mark">GW</div>
     <div><div class="logo-name">GroundWork</div><div class="logo-sub">Digital</div></div>
   </a>
-  <ul class="nav-links" id="nav-menu"><li><a href="/fr/" class="">Accueil</a></li><li><a href="/fr/services.html" class="">Services</a></li><li><a href="/fr/work.html" class="">R&eacute;alisations</a></li><li><a href="/fr/blog.html" class="active">Blogue</a></li><li><a href="/fr/contact.html" class="">Demander une soumission</a></li></ul>
+  <ul class="nav-links" id="nav-menu"><li><a href="/fr/" class="">Accueil</a></li><li><a href="/fr/services.html" class="">Services</a></li><li><a href="/pricing/" class="">Tarifs</a></li><li><a href="/fr/work.html" class="">R&eacute;alisations</a></li><li><a href="/fr/blog.html" class="active">Blogue</a></li><li><a href="/fr/contact.html" class="">Contact</a></li></ul>
   <div class="nav-right">
-    <a href="/fr/contact.html" class="nav-cta">Soumission gratuite</a>
+    <a href="/pricing/" class="nav-cta">Tarifs</a>
     <a href="/blog.html" class="lang-switch" aria-label="Version anglaise">EN</a>
     <button id="theme-toggle" aria-label="Changer le th&egrave;me"><span id="theme-icon">☀</span></button>
     <button id="nav-burger" aria-label="Menu" aria-expanded="false">☰</button>
@@ -189,7 +189,7 @@ section.content-section.alt{background:var(--bg2);}
       <aside class="blog-sidebar">
         <div class="sidebar-card"><h4>Tous les articles</h4><ul class="sidebar-links"><li><a href="#why-website">Pourquoi chaque entreprise locale a besoin d&rsquo;un site Web</a></li><li><a href="#what-is-seo">C&rsquo;est quoi le SEO?</a></li><li><a href="#invisible-online">Vous &ecirc;tes invisible en ligne</a></li><li><a href="#google-business-profile">Votre profil Google compte</a></li><li><a href="#ai-tools-small-business">Outils d&rsquo;IA pratiques</a></li></ul></div>
         <div class="sidebar-card"><h4>Sujets</h4><ul class="sidebar-links"><li><a href="#why-website">Sites Web</a></li><li><a href="#what-is-seo">SEO</a></li><li><a href="#invisible-online">Pr&eacute;sence num&eacute;rique</a></li><li><a href="#google-business-profile">Profil Google</a></li><li><a href="#ai-tools-small-business">Outils d&rsquo;IA</a></li></ul></div>
-        <div class="sidebar-card"><h4>Consultation gratuite</h4><p style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:1rem;">Vous avez une question sur votre situation? R&eacute;servez une discussion gratuite de 30 minutes.</p><a href="/fr/contact.html" class="btn-primary" style="font-size:13px;padding:10px 20px;">R&eacute;server une discussion gratuite &rarr;</a></div>
+        <div class="sidebar-card"><h4>Tarifs</h4><p style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:1rem;">Commencez par les plans mensuels transparents, puis contactez Terry pour discuter du bon choix.</p><a href="/pricing/" class="btn-primary" style="font-size:13px;padding:10px 20px;">Voir les tarifs &rarr;</a></div>
       </aside>
 
     </div>
@@ -230,7 +230,7 @@ section.content-section.alt{background:var(--bg2);}
       <ul>
         <li><a href="mailto:terry@groundwork-digital.ca">terry@groundwork-digital.ca</a></li>
         <li><a href="tel:+16132924762">613-292-4762</a></li>
-        <li><a href="/fr/contact.html">Consultation gratuite</a></li>
+        <li><a href="/pricing/">Tarifs</a></li>
       </ul>
     </div>
   </div>
@@ -274,6 +274,8 @@ section.content-section.alt{background:var(--bg2);}
 (function(){
   const canvas=document.getElementById('grid-canvas');
   if(!canvas)return;
+  canvas.remove();
+  return;
   const ctx=canvas.getContext('2d');
   const CELL=48,DOT_R=1.1,LINE_OP=0.02,DOT_OP=0.07,NUM_PULSES=6,NUM_SCANS=1,NUM_PACKETS=4;
   let W,H,cols,rows;

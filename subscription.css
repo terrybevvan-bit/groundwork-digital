@@ -1,5 +1,5 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:auto;}
 :root{
   --bg:#050606;--bg2:#0b1010;--bg3:#111918;--surface:#f4f0e5;--surface-2:#dceee7;
   --green:#b6ff3b;--green-dim:rgba(182,255,59,.12);--green-rgb:182,255,59;
