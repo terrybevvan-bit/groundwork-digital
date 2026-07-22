@@ -246,6 +246,15 @@ input[type="checkbox"]{
   max-width:90px;
   padding:8px;
 }
+.job-details{
+  display:grid;
+  grid-template-columns:140px 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+.job-details input{
+  padding:9px 10px;
+}
 .invoice{
   background:white;
   color:#111;
@@ -748,6 +757,13 @@ const packages = [
     addonsOnly:true
   },
   {
+    id:"one-time-job",
+    name:"One-Time Job / Small Fix",
+    price:75,
+    description:"Flat one-time charge for a small job, quick fix, update, or support task. Defaults to the $75 hourly rate.",
+    oneTime:true
+  },
+  {
     id:"starter-landing",
     name:"Starter Landing Page",
     price:895,
@@ -835,6 +851,8 @@ const defaultState = () => ({
   invoiceDate:new Date().toISOString().slice(0,10),
   dueDate:"",
   selectedPackage:"local-launch",
+  oneTimeJobAmount:75,
+  oneTimeJobDescription:"Small job / one-time update",
   selectedAddOns:{},
   monthlyPlan:"none",
   paymentTerms:"50-50",
@@ -856,6 +874,16 @@ function el(id){
   return document.getElementById(id);
 }
 
+function escapeHtml(value){
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[char]));
+}
+
 function renderOptions(){
   el("packages").innerHTML = packages.map(pkg => `
     <div class="option ${state.selectedPackage === pkg.id ? "selected" : ""}">
@@ -864,11 +892,17 @@ function renderOptions(){
         <div style="flex:1">
           <div class="option-title">
             <span>${pkg.name}</span>
-            <span class="price">${pkg.addonsOnly ? "Add-ons only" : money(pkg.price)}</span>
+            <span class="price" ${pkg.oneTime ? 'id="oneTimeJobOptionPrice"' : ""}>${pkg.addonsOnly ? "Add-ons only" : money(pkg.oneTime ? state.oneTimeJobAmount : pkg.price)}</span>
           </div>
           <p>${pkg.description}</p>
         </div>
       </label>
+      ${pkg.oneTime && state.selectedPackage === pkg.id ? `
+        <div class="job-details">
+          <input type="number" min="0" step="0.01" value="${state.oneTimeJobAmount}" oninput="setOneTimeJobAmount(this.value)" aria-label="One-time job amount">
+          <input value="${escapeHtml(state.oneTimeJobDescription)}" oninput="setOneTimeJobDescription(this.value)" placeholder="Small job / one-time update" aria-label="One-time job description">
+        </div>
+      ` : ""}
     </div>
   `).join("");
 
@@ -969,7 +1003,7 @@ function calculate(){
     };
   }).filter(Boolean);
 
-  const packageTotal = pkg.addonsOnly ? 0 : pkg.price;
+  const packageTotal = pkg.addonsOnly ? 0 : pkg.oneTime ? Number(state.oneTimeJobAmount || 0) : pkg.price;
   const beforePercent = packageTotal + flatLines.reduce((sum, item) => sum + item.lineTotal, 0);
 
   const percentLines = Object.keys(state.selectedAddOns).map(id => {
@@ -1039,9 +1073,9 @@ function renderInvoice(){
       <tr>
         <td>
           <strong>${calc.pkg.name}</strong>
-          <div class="line-desc">${calc.pkg.description}</div>
+          <div class="line-desc">${calc.pkg.oneTime ? escapeHtml(state.oneTimeJobDescription || calc.pkg.description) : calc.pkg.description}</div>
         </td>
-        <td class="right"><strong>${money(calc.pkg.price)}</strong></td>
+        <td class="right"><strong>${money(calc.pkg.oneTime ? state.oneTimeJobAmount : calc.pkg.price)}</strong></td>
       </tr>
     `,
     ...calc.lines.map(item => `
@@ -1105,7 +1139,8 @@ function buildInvoiceText(calc, termsText){
     state.clientEmail ? `Email: ${state.clientEmail}` : null,
     state.clientPhone ? `Phone: ${state.clientPhone}` : null,
     "",
-    calc.pkg.addonsOnly ? "Invoice Type: Add-ons only" : `Selected Package: ${calc.pkg.name} — ${money(calc.pkg.price)}`,
+    calc.pkg.addonsOnly ? "Invoice Type: Add-ons only" : `Selected Package: ${calc.pkg.name} — ${money(calc.pkg.oneTime ? state.oneTimeJobAmount : calc.pkg.price)}`,
+    calc.pkg.oneTime && state.oneTimeJobDescription ? `Job Details: ${state.oneTimeJobDescription}` : null,
     ...calc.lines.map(item => `${item.name}${item.qty > 1 ? ` x ${item.qty}` : ""} — ${money(item.lineTotal)}`),
     `Subtotal: ${money(calc.subtotal)}`,
     state.applyTaxes ? `GST: ${money(calc.gst)}` : null,
@@ -1147,6 +1182,19 @@ function setPackage(id){
       block:"start"
     });
   }
+}
+
+function setOneTimeJobAmount(amount){
+  state.oneTimeJobAmount = Math.max(0, Number(amount) || 0);
+  if(el("oneTimeJobOptionPrice")){
+    el("oneTimeJobOptionPrice").textContent = money(state.oneTimeJobAmount);
+  }
+  renderInvoice();
+}
+
+function setOneTimeJobDescription(description){
+  state.oneTimeJobDescription = description;
+  renderInvoice();
 }
 
 function setMonthly(id){
