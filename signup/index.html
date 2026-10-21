@@ -6,7 +6,7 @@
 <title>Subscribe - GroundWork Digital</title>
 <meta name="description" content="Start a GroundWork Digital monthly website and marketing subscription."/>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;750&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="/subscription.css"/>
 <script src="https://js.stripe.com/v3/"></script>
 </head>
@@ -27,8 +27,8 @@
   <div class="nav-right">
     <a href="/pricing/" class="nav-cta">Pricing</a>
     <a href="/fr/" class="lang-switch" aria-label="Version francaise">FR</a>
-    <button id="theme-toggle" aria-label="Toggle theme"><span id="theme-icon">*</span></button>
-    <button id="nav-burger" aria-label="Menu" aria-expanded="false">=</button>
+
+
   </div>
 </nav>
 
@@ -129,14 +129,14 @@
   function stripeAppearance() {
     const styles = getComputedStyle(document.documentElement);
     return {
-      theme: 'night',
+      theme: 'stripe',
       variables: {
-        colorPrimary: styles.getPropertyValue('--green').trim(),
-        colorBackground: styles.getPropertyValue('--bg2').trim(),
-        colorText: styles.getPropertyValue('--text').trim(),
-        colorDanger: styles.getPropertyValue('--coral').trim(),
-        fontFamily: styles.getPropertyValue('--sans').trim(),
-        borderRadius: '2px'
+        colorPrimary: styles.getPropertyValue('--accent').trim(),
+        colorBackground: styles.getPropertyValue('--white').trim(),
+        colorText: styles.getPropertyValue('--ink').trim(),
+        colorDanger: styles.getPropertyValue('--error').trim(),
+        fontFamily: styles.getPropertyValue('--font').trim(),
+        borderRadius: '12px'
       }
     };
   }

@@ -15,161 +15,12 @@
 <meta property="og:site_name" content="GroundWork Digital"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <link rel="icon" href="../favicon.svg" type="image/svg+xml"/>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,300;400;500;600;700&display=swap" rel="stylesheet"/>
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;750&display=swap" rel="stylesheet"/>
 
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:auto;}
-body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-:root{
-  --bg:#0e0b08;--bg2:#15110b;--bg3:#1d1811;
-  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.14);
-  --green:#f59e0b;--green-dim:rgba(245,158,11,0.12);--green-rgb:245,158,11;
-  --text:#f5f1e8;--text2:#9a9080;--text3:#5a5248;
-  --nav-bg:rgba(14,11,8,0.92);--card-bg:rgba(21,17,11,0.95);
-  --serif:'Instrument Serif',serif;--sans:'Bricolage Grotesque',sans-serif;--mono:'DM Mono',monospace;
-}
-html.light{
-  --bg:#faf6ef;--bg2:#f2ece0;--bg3:#e8e0d0;
-  --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.16);
-  --green:#b45309;--green-dim:rgba(180,83,9,0.10);--green-rgb:180,83,9;
-  --text:#1a1208;--text2:#4a4238;--text3:#8a7c70;
-  --nav-bg:rgba(250,246,239,0.92);--card-bg:rgba(242,236,224,0.95);
-}
-html.transitioning,html.transitioning *{transition:background-color .3s ease,color .3s ease,border-color .3s ease !important;}
-#grid-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
-body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.5;}
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;background:var(--nav-bg);border-bottom:1px solid var(--border);backdrop-filter:blur(14px);}
-.nav-logo{display:flex;align-items:center;gap:11px;text-decoration:none;}
-.logo-mark{width:38px;height:38px;background:#100c07;border:1px solid var(--green);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:17px;font-weight:700;color:var(--text);line-height:1;flex-shrink:0;position:relative;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(var(--green-rgb),.12);}
-.logo-mark::before,.logo-mark::after{content:'';position:absolute;left:6px;right:6px;height:1px;background:var(--green);opacity:.75;}
-.logo-mark::before{top:37%;}
-.logo-mark::after{bottom:31%;opacity:.35;}
-.logo-name{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--text);line-height:.95;}
-.logo-sub{font-family:var(--mono);font-size:9px;color:var(--green);letter-spacing:2.2px;text-transform:uppercase;margin-top:3px;}
-.nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none;}
-.nav-links a{font-size:12px;color:var(--text2);text-decoration:none;transition:color .15s;letter-spacing:.1px;}
-.nav-links a:hover,.nav-links a.active{color:var(--green);}
-.nav-right{display:flex;align-items:center;gap:.75rem;}
-.nav-cta{padding:8px 20px;background:var(--green);color:var(--bg) !important;font-weight:600 !important;font-size:12px !important;border-radius:100px;text-decoration:none;transition:background .15s;}
-.nav-cta:hover{background:#fbbf24;}
-html.light .nav-cta:hover{background:#92400e;}
-#theme-toggle{width:34px;height:34px;border-radius:8px;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;}
-#theme-toggle:hover{border-color:var(--green);color:var(--green);}
-#nav-burger{display:none;background:none;border:1px solid var(--border2);border-radius:7px;width:36px;height:36px;cursor:pointer;color:var(--text2);font-size:18px;align-items:center;justify-content:center;}
-@media(max-width:820px){.nav-links{display:none;}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:64px;left:0;right:0;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:1.5rem 2rem;gap:1.25rem;z-index:199;}#nav-burger{display:flex;}nav{padding:0 1.25rem;}}
-
-footer{position:relative;z-index:1;background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2rem 2rem;}
-.footer-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;}
-.footer-brand .logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
-.footer-brand p{font-size:13px;color:var(--text3);line-height:1.7;max-width:240px;}
-.footer-col h4{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem;}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
-.footer-col ul li a{font-size:13px;color:var(--text2);text-decoration:none;transition:color .15s;}
-.footer-col ul li a:hover{color:var(--green);}
-.footer-bottom{max-width:1000px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text3);flex-wrap:wrap;gap:.5rem;}
-@media(max-width:700px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem;}.footer-brand{grid-column:1/-1;}}
-
-/* UTILS */
-.page-wrap{position:relative;z-index:1;}
-.container{max-width:1000px;margin:0 auto;padding:0 2rem;}
-.section-tag{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:1rem;}
-.section-tag::before{content:'';width:18px;height:1px;background:var(--green);}
-.section-heading{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:400;line-height:1.1;letter-spacing:-.4px;color:var(--text);margin-bottom:1.5rem;}
-.section-heading em{font-style:italic;color:var(--green);}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--green);color:var(--bg);font-weight:600;font-size:14px;border-radius:100px;text-decoration:none;transition:background .15s,transform .1s;}
-.btn-primary:hover{background:#fbbf24;transform:translateY(-1px);}
-html.light .btn-primary:hover{background:#92400e;}
-.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border:1px solid var(--border2);color:var(--text2);font-size:14px;border-radius:100px;text-decoration:none;transition:all .15s;}
-.btn-outline:hover{border-color:var(--green);color:var(--green);}
-/* PAGE HERO (non-index) */
-.page-hero{padding:130px 2rem 80px;position:relative;z-index:1;}
-.page-hero-inner{max-width:1000px;margin:0 auto;}
-.page-hero h1{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4rem);font-weight:400;line-height:1.07;letter-spacing:-.8px;color:var(--text);margin-bottom:1.25rem;}
-.page-hero h1 em{font-style:italic;color:var(--green);}
-.page-hero p{font-size:1.05rem;color:var(--text2);line-height:1.8;max-width:580px;font-weight:300;}
-.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 100% at 20% 50%,rgba(10,12,15,0) 0%,rgba(10,12,15,.7) 70%,rgba(10,12,15,.95) 100%);pointer-events:none;}
-html.light .page-hero::before{background:radial-gradient(ellipse 80% 100% at 20% 50%,rgba(244,243,239,0) 0%,rgba(244,243,239,.7) 70%,rgba(244,243,239,.95) 100%);}
-section.content-section{padding:80px 2rem;position:relative;z-index:1;}
-section.content-section.alt{background:var(--bg2);}
-
-
-/* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:110px 2rem 80px;position:relative;}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 90% at 28% 50%,rgba(14,11,8,0) 0%,rgba(14,11,8,.55) 55%,rgba(14,11,8,.92) 100%);z-index:0;pointer-events:none;}
-html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,rgba(250,246,239,0) 0%,rgba(250,246,239,.55) 55%,rgba(250,246,239,.92) 100%);}
-.hero-inner{max-width:1000px;margin:0 auto;width:100%;position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center;}
-.hero-label{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:1.75rem;}
-.hero-label::before{content:'';width:20px;height:1px;background:var(--green);}
-.hero-h1{font-family:var(--serif);font-size:clamp(3rem,6.5vw,5rem);font-weight:400;line-height:1.05;letter-spacing:-1px;color:var(--text);margin-bottom:1.5rem;}
-.hero-h1 em{font-style:italic;color:var(--green);}
-.hero-sub{font-size:1.15rem;color:var(--text2);line-height:1.8;font-weight:300;max-width:480px;margin-bottom:2.5rem;}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;}
-.hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap;padding-top:2rem;border-top:1px solid var(--border);}
-.hstat-num{font-family:var(--serif);font-size:1.9rem;color:var(--text);line-height:1;}
-.hstat-label{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.5px;margin-top:3px;}
-.hero-photo-wrap{position:relative;flex-shrink:0;}
-.hero-photo{width:280px;height:350px;object-fit:cover;object-position:top;border-radius:16px;display:block;filter:grayscale(5%);border:1px solid var(--border2);}
-.hero-photo-card{position:absolute;bottom:-18px;left:-18px;background:var(--card-bg);border:1px solid var(--border2);border-radius:10px;padding:10px 14px;white-space:nowrap;backdrop-filter:blur(8px);}
-.hero-photo-card .name{font-size:13px;font-weight:600;color:var(--text);}
-.hero-photo-card .role{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:2px;}
-/* TICKER */
-.ticker-wrap{overflow:hidden;position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:11px 0;background:var(--bg2);}
-.ticker{display:flex;width:max-content;animation:tick 26s linear infinite;}
-.ticker-item{display:inline-flex;align-items:center;gap:18px;padding:0 36px;font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;white-space:nowrap;}
-.ticker-item::after{content:'Â·';color:var(--green);font-size:14px;}
-@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-/* SERVICES OVERVIEW */
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-top:2.5rem;}
-.svc-card{background:var(--bg);padding:1.75rem;display:flex;flex-direction:column;gap:.6rem;transition:background .15s;text-decoration:none;}
-.svc-card:hover{background:var(--bg2);}
-.svc-num{font-family:var(--mono);font-size:10px;color:var(--text3);}
-.svc-icon{font-size:20px;}
-.svc-card h3{font-size:15px;font-weight:600;color:var(--text);}
-.svc-card p{font-size:14px;color:var(--text2);line-height:1.65;font-weight:300;}
-.svc-badge{display:inline-block;padding:3px 10px;background:var(--green-dim);color:var(--green);font-size:10px;font-family:var(--mono);border-radius:100px;margin-top:auto;align-self:flex-start;}
-/* ABOUT STRIP */
-.about-strip{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:center;}
-.about-img{width:220px;border-radius:16px;border:1px solid var(--border2);filter:grayscale(5%);}
-.cred-pills{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem;}
-.cred-pill{font-family:var(--mono);font-size:10px;color:var(--text3);border:1px solid var(--border);border-radius:100px;padding:4px 12px;}
-.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
-.work-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;transition:border-color .2s,transform .15s;display:flex;flex-direction:column;}
-.work-card:hover{border-color:var(--green);transform:translateY(-3px);}
-.work-card-thumb{height:180px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:3rem;border-bottom:1px solid var(--border);}
-.work-card-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
-.work-card-body{padding:1.5rem;flex:1;display:flex;flex-direction:column;}
-.work-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem;}
-.work-tag{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.5px;text-transform:uppercase;}
-.work-card h3{font-family:var(--serif);font-size:1.25rem;font-weight:400;color:var(--text);margin-bottom:.6rem;}
-.work-card p{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;flex:1;}
-.work-card-link{font-family:var(--mono);font-size:11px;color:var(--green);margin-top:1rem;letter-spacing:.5px;}
-@media(max-width:860px){.work-grid{grid-template-columns:1fr 1fr;}}@media(max-width:640px){.work-grid{grid-template-columns:1fr;}}
-/* BLOG PREVIEW */
-.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
-.blog-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;transition:border-color .15s,transform .15s;display:flex;flex-direction:column;}
-.blog-card:hover{border-color:var(--green);transform:translateY(-2px);}
-.blog-card-body{padding:1.5rem;flex:1;display:flex;flex-direction:column;}
-.blog-tag{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.8px;text-transform:uppercase;margin-bottom:.75rem;}
-.blog-card h3{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--text);line-height:1.3;margin-bottom:.75rem;}
-.blog-card p{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;flex:1;}
-.blog-read{font-family:var(--mono);font-size:11px;color:var(--green);margin-top:1.25rem;letter-spacing:.5px;}
-/* CTA BAND */
-.cta-band{text-align:center;padding:100px 2rem;position:relative;}
-.cta-band::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(245,158,11,.05) 0%,transparent 70%);pointer-events:none;}
-.cta-band-inner{max-width:600px;margin:0 auto;position:relative;z-index:1;}
-.cta-band h2{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:400;letter-spacing:-.5px;color:var(--text);margin-bottom:1rem;}
-.cta-band h2 em{font-style:italic;color:var(--green);}
-.cta-band p{font-size:1rem;color:var(--text2);line-height:1.75;font-weight:300;margin-bottom:2.5rem;}
-.cta-band-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
-@media(max-width:860px){.hero-inner{grid-template-columns:1fr;}.hero-photo-wrap{display:none;}.services-grid{grid-template-columns:1fr 1fr;}.blog-grid{grid-template-columns:1fr;}.about-strip{grid-template-columns:1fr;}}
-@media(max-width:540px){.services-grid{grid-template-columns:1fr;}.hero{padding:90px 1.25rem 60px;}}
-
-</style>
 <link rel="stylesheet" href="../gwd-studio.css"/>
 </head>
 <body>
-<canvas id="grid-canvas"></canvas>
+
 <nav>
   <a href="/fr/" class="nav-logo">
     <div class="logo-mark">GW</div>
@@ -179,8 +30,8 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
   <div class="nav-right">
     <a href="/pricing/" class="nav-cta">Tarifs</a>
     <a href="/" class="lang-switch" aria-label="Version anglaise">EN</a>
-    <button id="theme-toggle" aria-label="Changer le th&egrave;me"><span id="theme-icon">â˜€</span></button>
-    <button id="nav-burger" aria-label="Menu" aria-expanded="false">â˜°</button>
+
+
   </div>
 </nav>
 <div class="page-wrap">
@@ -204,7 +55,7 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
         <div class="hstat"><div class="hstat-num">Local</div><div class="hstat-label">Racines du Pontiac</div></div>
       </div>
     </div>
-    <div class="hero-photo-wrap">
+    <div class="hero-photo-wrap"><div class="chat-mock" role="group" aria-label="Exemple de conversation avec un assistant IA"><div class="chat-header"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>Assistant IA — démo</span></div><div class="chat-body"><div class="chat-meta">Aujourd’hui · 9:41</div><div class="chat-bubble customer">Bonjour ! Quelles sont vos heures ? Offrez-vous un service d’urgence ?</div><div class="chat-author"><span class="ai-avatar">AI</span><strong>Assistant</strong><time datetime="09:41">9:41</time></div><div class="chat-bubble assistant">Bonjour ! Nous sommes ouverts de 8 h à 17 h, du lundi au vendredi, avec un service d’urgence 24 h/24. Puis-je prendre votre nom et votre numéro pour qu’on vous rappelle ?</div><div class="lead-chip"><svg class="line-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Contact enregistré : nom + téléphone</div></div></div>
       <img src="https://www.groundwork-digital.ca/terry_headshot_cropped.png" alt="Terry Bevvan" class="hero-photo"/>
       <div class="hero-photo-card"><div class="name">Terry Bevvan</div><div class="role">Fondateur &middot; Aylmer, QC</div></div>
     </div>
@@ -224,23 +75,23 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
   <div class="container">
     <div class="section-tag">Capacit&eacute;s du studio</div>
     <h2 class="section-heading">Du travail num&eacute;rique avec une intention, un plan et un <em>lancement propre.</em></h2>
-    <p style="color:var(--text2);font-size:1rem;font-weight:300;line-height:1.7;max-width:620px;margin-bottom:1.5rem">Design Web, recherche locale, contenu et identit&eacute; visuelle qui fonctionnent ensemble. Pas de forfaits gonfl&eacute;s. Pas d&rsquo;allure de mod&egrave;le par d&eacute;faut.</p>
-    <div style="margin-bottom:1.5rem;padding:.875rem 1.25rem;background:var(--green-dim);border:1px solid rgba(var(--green-rgb),.2);border-radius:10px;display:flex;align-items:center;gap:.875rem;flex-wrap:wrap;">
-      <span style="font-size:1.1rem;flex-shrink:0">ðŸ’¬</span>
-      <div style="font-size:13px;color:var(--text2);"><span style="font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-right:.5rem">Nouveau ici?</span>Commencez par la <a href="/pricing/" style="color:var(--green);text-decoration:none;font-weight:600">page des tarifs</a>, puis contactez-moi pour discuter du bon plan.</div>
+    <p class="section-intro">Design Web, recherche locale, contenu et identit&eacute; visuelle qui fonctionnent ensemble. Pas de forfaits gonfl&eacute;s. Pas d&rsquo;allure de mod&egrave;le par d&eacute;faut.</p>
+    <div class="consult-callout">
+      <span class="consult-icon"><svg class="line-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-6 3V6a2 2 0 0 1 2-2Z"/><path d="M7 9h10M7 13h6"/></svg></span>
+      <div class="consult-copy"><span class="consult-label">Nouveau ici?</span>Commencez par la <a href="/pricing/" class="inline-link">page des tarifs</a>, puis contactez-moi pour discuter du bon plan.</div>
     </div>
     <div class="services-grid">
-      <a href="/fr/services.html#websites" class="svc-card"><div class="svc-num">01</div><div class="svc-icon">ðŸŒ</div><h3>Sites Web et pages d&rsquo;atterrissage</h3><p>Des sites professionnels qui fonctionnent sur tous les appareils et transforment les visiteurs en clients.</p><span class="svc-badge">Populaire</span></a>
-      <a href="/fr/services.html#google" class="svc-card"><div class="svc-num">02</div><div class="svc-icon">ðŸ“</div><h3>Profil d&rsquo;entreprise Google</h3><p>Soyez visible sur Google Maps et dans les recherches locales. Mise en place rapide, r&eacute;sultats durables.</p><span class="svc-badge">Gain rapide</span></a>
-      <a href="/fr/services.html#seo" class="svc-card"><div class="svc-num">03</div><div class="svc-icon">ðŸ”Ž</div><h3>SEO local</h3><p>Soyez trouv&eacute; par les gens pr&egrave;s de vous, avant vos concurrents.</p><span class="svc-badge">Long terme</span></a>
-      <a href="/fr/services.html#social" class="svc-card"><div class="svc-num">04</div><div class="svc-icon">ðŸ“£</div><h3>Contenu pour m&eacute;dias sociaux</h3><p>Des publications r&eacute;guli&egrave;res pour garder votre marque pr&eacute;sente et professionnelle.</p><span class="svc-badge">R&eacute;current</span></a>
-      <a href="/fr/services.html#marketing" class="svc-card"><div class="svc-num">05</div><div class="svc-icon">ðŸ“ˆ</div><h3>Marketing num&eacute;rique</h3><p>Des campagnes cibl&eacute;es qui rejoignent les bonnes personnes au bon moment.</p><span class="svc-badge">Croissance</span></a>
-      <a href="/fr/services.html#logo" class="svc-card"><div class="svc-num">06</div><div class="svc-icon">âœï¸</div><h3>Logo et image de marque</h3><p>Une identit&eacute; claire, m&eacute;morable et fid&egrave;le &agrave; votre entreprise.</p><span class="svc-badge">Identit&eacute;</span></a>
-      <a href="/fr/services.html#apparel" class="svc-card"><div class="svc-num">07</div><div class="svc-icon">ðŸ‘•</div><h3>V&ecirc;tements et articles promo</h3><p>Articles personnalis&eacute;s via Printify et Etsy pour faire circuler votre marque.</p><span class="svc-badge">Nouveau</span></a>
-      <a href="/fr/services.html#ai" class="svc-card"><div class="svc-num">08</div><div class="svc-icon">??</div><h3>Consultation en outils d&rsquo;IA</h3><p>De l&rsquo;IA pratique qui sauve du temps et de l&rsquo;argent. Pas de battage, juste ce qui fonctionne.</p><span class="svc-badge">Pr&ecirc;t pour la suite</span></a>
-      <a href="/fr/services.html#strategy" class="svc-card"><div class="svc-num">09</div><div class="svc-icon">??</div><h3>Strat&eacute;gie num&eacute;rique</h3><p>Un plan clair b&acirc;ti autour de votre entreprise. Pas de jargon, pas de remplissage.</p><span class="svc-badge">Commencer ici</span></a>
+      <a href="/fr/services.html#websites" class="svc-card"><div class="svc-num">01</div><div class="svc-icon"><svg class="line-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg></div><h3>Sites Web et pages d&rsquo;atterrissage</h3><p>Des sites professionnels qui fonctionnent sur tous les appareils et transforment les visiteurs en clients.</p><span class="svc-badge">Populaire</span></a>
+      <a href="/fr/services.html#google" class="svc-card"><div class="svc-num">02</div><div class="svc-icon"><svg class="line-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg></div><h3>Profil d&rsquo;entreprise Google</h3><p>Soyez visible sur Google Maps et dans les recherches locales. Mise en place rapide, r&eacute;sultats durables.</p><span class="svc-badge">Gain rapide</span></a>
+      <a href="/fr/services.html#seo" class="svc-card"><div class="svc-num">03</div><div class="svc-icon"><svg class="line-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg></div><h3>SEO local</h3><p>Soyez trouv&eacute; par les gens pr&egrave;s de vous, avant vos concurrents.</p><span class="svc-badge">Long terme</span></a>
+      <a href="/fr/services.html#social" class="svc-card"><div class="svc-num">04</div><div class="svc-icon"><svg class="line-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg></div><h3>Contenu pour m&eacute;dias sociaux</h3><p>Des publications r&eacute;guli&egrave;res pour garder votre marque pr&eacute;sente et professionnelle.</p><span class="svc-badge">R&eacute;current</span></a>
+      <a href="/fr/services.html#marketing" class="svc-card"><div class="svc-num">05</div><div class="svc-icon"><svg class="line-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg></div><h3>Marketing num&eacute;rique</h3><p>Des campagnes cibl&eacute;es qui rejoignent les bonnes personnes au bon moment.</p><span class="svc-badge">Croissance</span></a>
+      <a href="/fr/services.html#logo" class="svc-card"><div class="svc-num">06</div><div class="svc-icon"><svg class="line-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg></div><h3>Logo et image de marque</h3><p>Une identit&eacute; claire, m&eacute;morable et fid&egrave;le &agrave; votre entreprise.</p><span class="svc-badge">Identit&eacute;</span></a>
+      <a href="/fr/services.html#apparel" class="svc-card"><div class="svc-num">07</div><div class="svc-icon"><svg class="line-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg></div><h3>V&ecirc;tements et articles promo</h3><p>Articles personnalis&eacute;s via Printify et Etsy pour faire circuler votre marque.</p><span class="svc-badge">Nouveau</span></a>
+      <a href="/fr/services.html#ai" class="svc-card"><div class="svc-num">08</div><div class="svc-icon"><svg class="line-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg></div><h3>Consultation en outils d&rsquo;IA</h3><p>De l&rsquo;IA pratique qui sauve du temps et de l&rsquo;argent. Pas de battage, juste ce qui fonctionne.</p><span class="svc-badge">Pr&ecirc;t pour la suite</span></a>
+      <a href="/fr/services.html#strategy" class="svc-card"><div class="svc-num">09</div><div class="svc-icon"><svg class="line-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg></div><h3>Strat&eacute;gie num&eacute;rique</h3><p>Un plan clair b&acirc;ti autour de votre entreprise. Pas de jargon, pas de remplissage.</p><span class="svc-badge">Commencer ici</span></a>
     </div>
-    <div style="margin-top:2rem"><a href="/fr/services.html" class="btn-outline">Voir tous les services &rarr;</a></div>
+    <div class="section-link"><a href="/fr/services.html" class="btn-outline">Voir tous les services &rarr;</a></div>
   </div>
 </section>
 
@@ -260,8 +111,8 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
       </div>
       <div>
         <h2 class="section-heading">Pas une agence impersonnelle.<br><em>Local pour vrai.</em></h2>
-        <p style="font-size:1rem;color:var(--text2);line-height:1.8;font-weight:300;margin-bottom:1rem;">J&rsquo;ai grandi dans le Pontiac. Ma famille y est encore. Apr&egrave;s plus de 25 ans en TI, chez Bell Canada et au gouvernement du Canada, j&rsquo;utilise maintenant cette exp&eacute;rience pour aider les petites entreprises de l&rsquo;Outaouais &agrave; b&acirc;tir la pr&eacute;sence num&eacute;rique qu&rsquo;elles m&eacute;ritent.</p>
-        <p style="font-size:1rem;color:var(--text2);line-height:1.8;font-weight:300;margin-bottom:2rem;">Vous ne faites pas affaire avec une agence anonyme. Vous travaillez avec quelqu&rsquo;un qui conna&icirc;t la r&eacute;gion, parle les deux langues et veut vraiment voir les entreprises locales r&eacute;ussir.</p>
+        <p class="about-copy">J&rsquo;ai grandi dans le Pontiac. Ma famille y est encore. Apr&egrave;s plus de 25 ans en TI, chez Bell Canada et au gouvernement du Canada, j&rsquo;utilise maintenant cette exp&eacute;rience pour aider les petites entreprises de l&rsquo;Outaouais &agrave; b&acirc;tir la pr&eacute;sence num&eacute;rique qu&rsquo;elles m&eacute;ritent.</p>
+        <p class="about-copy-last">Vous ne faites pas affaire avec une agence anonyme. Vous travaillez avec quelqu&rsquo;un qui conna&icirc;t la r&eacute;gion, parle les deux langues et veut vraiment voir les entreprises locales r&eacute;ussir.</p>
         <a href="/fr/contact.html" class="btn-primary">Travailler avec Terry &rarr;</a>
       </div>
     </div>
@@ -273,7 +124,7 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
   <div class="container">
     <div class="section-tag">Travail terminÃ©</div>
     <h2 class="section-heading">Projets rÃ©cents qui montrent ce que nous livrons.</h2>
-    <p style="color:var(--text2);font-size:1rem;font-weight:300;line-height:1.7;max-width:620px;margin-bottom:1.5rem;">Voici quelques exemples du travail local que GroundWork Digital rÃ©alise : sites Web, image de marque, profils Google Business et marketing numÃ©rique prÃªts au lancement.</p>
+    <p class="section-intro">Voici quelques exemples du travail local que GroundWork Digital rÃ©alise : sites Web, image de marque, profils Google Business et marketing numÃ©rique prÃªts au lancement.</p>
     <div class="work-grid">
       <a class="work-card" href="https://www.missionstopcancer.ca" target="_blank" rel="noopener">
         <div class="work-card-thumb"><img src="/images/missionstopcancer.png" alt="Capture d'&eacute;cran du site Missions to Cancer" loading="lazy"/></div>
@@ -312,7 +163,7 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
         </div>
       </a>
       <article class="work-card">
-        <div class="work-card-thumb">ðŸ“</div>
+        <div class="work-card-thumb"><svg class="line-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg></div>
         <div class="work-card-body">
           <div class="work-tags"><span class="work-tag">SEO local</span><span class="work-tag">Google Maps</span></div>
           <h3>Configuration Google Business</h3>
@@ -321,7 +172,7 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
         </div>
       </article>
       <article class="work-card">
-        <div class="work-card-thumb">âœï¸</div>
+        <div class="work-card-thumb"><svg class="line-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg></div>
         <div class="work-card-body">
           <div class="work-tags"><span class="work-tag">Branding</span><span class="work-tag">IdentitÃ©</span></div>
           <h3>Logo et rafraÃ®chissement visuel</h3>
@@ -330,7 +181,7 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
         </div>
       </article>
     </div>
-    <div style="margin-top:2rem"><a href="/fr/work.html" class="btn-outline">Voir d'autres Ã©tudes de cas â†’</a></div>
+    <div class="section-link"><a href="/fr/work.html" class="btn-outline">Voir d'autres Ã©tudes de cas â†’</a></div>
   </div>
 </section>
 
@@ -344,7 +195,7 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
       <a href="/fr/blog.html#what-is-seo" class="blog-card"><div class="blog-card-body"><div class="blog-tag">SEO</div><h3>C&rsquo;est quoi le SEO et pourquoi une entreprise locale devrait s&rsquo;en soucier?</h3><p>Une explication simple de ce que le r&eacute;f&eacute;rencement signifie pour une petite entreprise de l&rsquo;Outaouais.</p><span class="blog-read">Lire la suite &rarr;</span></div></a>
       <a href="/fr/blog.html#invisible-online" class="blog-card"><div class="blog-card-body"><div class="blog-tag">Pr&eacute;sence num&eacute;rique</div><h3>Vous &ecirc;tes invisible en ligne et &ccedil;a vous co&ucirc;te des clients</h3><p>Comment savoir si votre entreprise est trouvable et quoi faire si elle ne l&rsquo;est pas.</p><span class="blog-read">Lire la suite &rarr;</span></div></a>
     </div>
-    <div style="margin-top:2rem"><a href="/fr/blog.html" class="btn-outline">Voir tous les articles &rarr;</a></div>
+    <div class="section-link"><a href="/fr/blog.html" class="btn-outline">Voir tous les articles &rarr;</a></div>
   </div>
 </section>
 
@@ -406,86 +257,7 @@ html.light .hero::before{background:radial-gradient(ellipse 65% 90% at 28% 50%,r
   </div>
 </footer>
 </div>
-<script>
-/* GWD SHARED JS â€” paste into every page's <script> block */
 
-// â”€â”€ THEME TOGGLE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-(function(){
-  const h=document.documentElement,btn=document.getElementById('theme-toggle'),icon=document.getElementById('theme-icon');
-  const SUN='â˜€',MOON='â˜¾';
-  if(localStorage.getItem('gwd-theme')==='light'){h.classList.add('light');if(icon)icon.textContent=MOON;}
-  else{if(icon)icon.textContent=SUN;}
-  if(btn)btn.addEventListener('click',function(){
-    h.classList.add('transitioning');
-    setTimeout(()=>h.classList.remove('transitioning'),400);
-    const isLight=h.classList.toggle('light');
-    if(icon)icon.textContent=isLight?MOON:SUN;
-    localStorage.setItem('gwd-theme',isLight?'light':'dark');
-    if(window.gwdGridColor)window.gwdGridColor();
-  });
-})();
-
-// â”€â”€ MOBILE NAV â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-(function(){
-  const burger=document.getElementById('nav-burger'),menu=document.getElementById('nav-menu');
-  if(burger&&menu)burger.addEventListener('click',function(){
-    const open=menu.classList.toggle('open');
-    burger.setAttribute('aria-expanded',open);
-  });
-  // close on link click
-  if(menu)menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
-})();
-
-// â”€â”€ ANIMATED GRID CANVAS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-(function(){
-  const canvas=document.getElementById('grid-canvas');
-  if(!canvas)return;
-  canvas.remove();
-  return;
-  const ctx=canvas.getContext('2d');
-  const CELL=48,DOT_R=1.1,LINE_OP=0.02,DOT_OP=0.07,NUM_PULSES=6,NUM_SCANS=1,NUM_PACKETS=4;
-  let W,H,cols,rows;
-  function getGreen(){return getComputedStyle(document.documentElement).getPropertyValue('--green-rgb').trim()||'74,222,128';}
-  let GREEN=getGreen();
-  window.gwdGridColor=function(){GREEN=getGreen();};
-  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;cols=Math.ceil(W/CELL)+2;rows=Math.ceil(H/CELL)+2;}
-  const pulses=[],scans=[],packets=[];
-  function initPulses(){pulses.length=0;for(let i=0;i<NUM_PULSES;i++)pulses.push({col:Math.floor(Math.random()*(cols-2))+1,row:Math.floor(Math.random()*(rows-2))+1,life:Math.random(),speed:.003+Math.random()*.004,maxR:18+Math.random()*28,bright:.5+Math.random()*.5});}
-  function initScans(){scans.length=0;for(let i=0;i<NUM_SCANS;i++)scans.push({y:Math.random()*H,speed:.15+Math.random()*.25,opacity:.03+Math.random()*.04});}
-  function spawnPacket(){const h2=Math.random()>.5,col=Math.floor(Math.random()*(cols-2))+1,row=Math.floor(Math.random()*(rows-2))+1;packets.push({horiz:h2,x:col*CELL,y:row*CELL,t:0,len:(2+Math.floor(Math.random()*5))*CELL,speed:.6+Math.random()*1.2,opacity:.35+Math.random()*.45,width:2+Math.random()*2,dir:Math.random()>.5?1:-1});}
-  function initPackets(){packets.length=0;for(let i=0;i<NUM_PACKETS;i++)spawnPacket();}
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    ctx.strokeStyle=`rgba(${GREEN},${LINE_OP})`;ctx.lineWidth=.5;ctx.beginPath();
-    for(let c=0;c<=cols;c++){ctx.moveTo(c*CELL,0);ctx.lineTo(c*CELL,H);}
-    for(let r=0;r<=rows;r++){ctx.moveTo(0,r*CELL);ctx.lineTo(W,r*CELL);}
-    ctx.stroke();
-    ctx.fillStyle=`rgba(${GREEN},${DOT_OP})`;
-    for(let c=0;c<=cols;c++)for(let r=0;r<=rows;r++){ctx.beginPath();ctx.arc(c*CELL,r*CELL,DOT_R,0,Math.PI*2);ctx.fill();}
-    for(const p of pulses){
-      p.life+=p.speed;if(p.life>1){p.life=0;p.col=Math.floor(Math.random()*(cols-2))+1;p.row=Math.floor(Math.random()*(rows-2))+1;}
-      const cx=p.col*CELL,cy=p.row*CELL,r=p.life*p.maxR,op=p.bright*(1-p.life)*.5;
-      ctx.strokeStyle=`rgba(${GREEN},${op})`;ctx.lineWidth=1;ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.stroke();
-      if(p.life<.15){const dop=p.bright*(1-p.life/.15)*.9;const g=ctx.createRadialGradient(cx,cy,0,cx,cy,6);g.addColorStop(0,`rgba(${GREEN},${dop})`);g.addColorStop(1,`rgba(${GREEN},0)`);ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,6,0,Math.PI*2);ctx.fill();}
-    }
-    for(const s of scans){s.y+=s.speed;if(s.y>H+80)s.y=-80;const g=ctx.createLinearGradient(0,s.y-40,0,s.y+40);g.addColorStop(0,`rgba(${GREEN},0)`);g.addColorStop(.5,`rgba(${GREEN},${s.opacity})`);g.addColorStop(1,`rgba(${GREEN},0)`);ctx.fillStyle=g;ctx.fillRect(0,s.y-40,W,80);}
-    for(let i=packets.length-1;i>=0;i--){
-      const pk=packets[i];pk.t+=pk.speed;if(pk.t>pk.len){packets.splice(i,1);spawnPacket();continue;}
-      const prog=pk.t/pk.len,hx=pk.horiz?pk.x+pk.dir*pk.t:pk.x,hy=pk.horiz?pk.y:pk.y+pk.dir*pk.t,tx=pk.horiz?pk.x+pk.dir*Math.max(0,pk.t-40):pk.x,ty=pk.horiz?pk.y:pk.y+pk.dir*Math.max(0,pk.t-40);
-      const g=pk.horiz?ctx.createLinearGradient(tx,hy,hx,hy):ctx.createLinearGradient(hx,ty,hx,hy);
-      const fi=Math.min(1,prog*4),fo=Math.min(1,(1-prog)*4),op=pk.opacity*fi*fo;
-      g.addColorStop(0,`rgba(${GREEN},0)`);g.addColorStop(1,`rgba(${GREEN},${op})`);
-      ctx.strokeStyle=g;ctx.lineWidth=pk.width;ctx.beginPath();ctx.moveTo(tx,ty);ctx.lineTo(hx,hy);ctx.stroke();
-      ctx.fillStyle=`rgba(${GREEN},${op*1.4})`;ctx.beginPath();ctx.arc(hx,hy,pk.width*.8,0,Math.PI*2);ctx.fill();
-    }
-    const sy=window.scrollY||0,fs=window.innerHeight*.6,fe=window.innerHeight*1.8;
-    canvas.style.opacity=1-Math.max(0,Math.min(1,(sy-fs)/(fe-fs)))*.85;
-    requestAnimationFrame(draw);
-  }
-  window.addEventListener('resize',()=>{resize();initPulses();});
-  resize();initPulses();initScans();initPackets();draw();
-})();
-
-</script>
+<script src="/subscription.js" defer></script>
 </body>
 </html>
